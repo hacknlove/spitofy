@@ -1,0 +1,92 @@
+<header>
+    <nav>
+        <div class="link">
+            <a href="/Releases">Releases</a>
+        </div>
+        <div class="link">
+            <a href="/live-dates">Dates</a>
+        </div>
+    </nav>
+</header>
+<footer>
+    <nav>
+        <div class="link">
+            <a href="/Releases">Merch</a>
+        </div>
+        <div class="link">
+            <a href="/live-dates">Covers</a>
+        </div>
+    </nav>
+</footer>
+<script>
+    function random() {
+        const aover = document.querySelector("nav>.link>a:hover");
+        
+        const as = document.querySelectorAll("nav>.link>a");
+        as.forEach(a => {
+            if (aover === a) return;
+
+            a.style.fontWeight = 200 + Math.random() * 700
+            
+            if (Math.random() < 0.90) {
+                a.style.textTransform = "uppercase";
+            } else {
+                a.style.textTransform = "lowercase";
+            } 
+
+            if (Math.random() < 0.90) {
+                a.style.fontStyle = "normal";
+            } else {
+                a.style.fontStyle = "oblique";
+            } 
+
+            if (Math.random() > 0.95) {
+                a.style.letterSpacing = -5 + Math.random() * 10 + 'px'
+            }
+        });
+        window.requestAnimationFrame(random);
+
+    }
+
+    window.requestAnimationFrame(random);
+</script>
+
+<style>
+    header, footer {
+        background: #0006;
+        padding: 20px;
+        backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.151);
+        z-index: 10;
+    }
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 30px;
+        font-weight: 100;
+        letter-spacing: 5px;
+    }
+    @media (max-width: 400px) {
+        a {
+            font-size: 20px;
+        }
+    }
+</style>

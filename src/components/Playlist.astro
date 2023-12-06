@@ -1,0 +1,30 @@
+---
+import Track from "./Track.astro";
+
+import { getCollection } from 'astro:content';
+
+const tracks = (await getCollection('tracks'));
+---
+
+<div>{
+    tracks.map(track => (
+        <Track
+            img={track.data.img}
+            mp3={track.data.mp3}
+            title={track.data.name}
+            slug={track.data.slug}
+        />
+    ))
+    }
+
+</div>
+
+<style>
+
+    div {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+</style>

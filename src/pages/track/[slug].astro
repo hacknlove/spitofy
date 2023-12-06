@@ -1,0 +1,39 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Background from '../../components/Background.astro';
+import Menu from '../../components/Menu.astro';
+import Layout from '../../layouts/Layout.astro';
+import { Picture } from 'astro:assets';
+
+export async function getStaticPaths() {
+	const tracks = await getCollection('tracks');
+	return tracks.map((track) => ({
+		params: { slug: track.data.slug },
+		props: track,
+	}));
+}
+type Props = CollectionEntry<'tracks'>;
+
+const track = Astro.props;
+const { img, name } = track.data;
+
+---
+
+<Layout title="Spitofy. Make the music Punk Again">
+
+
+	<Background />
+	<Picture class="mainPicture" alt={name} src={img} width={75} height={75}/>
+
+	<Menu />
+</Layout>
+
+<style>
+	.mainPicture {
+		width: 75vmin;
+		height: 75vmin;
+		margin: 0 auto;
+		display: block;
+	}
+
+</style>

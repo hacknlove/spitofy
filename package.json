@@ -1,0 +1,26 @@
+{
+  "name": "",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "pages:dev": "wrangler pages dev --compatibility-date=2023-10-03 --proxy 4321 --do ROOM=Room@room -- astro dev --port 4321",
+    "pages:deploy": "astro build && wrangler pages deploy ./dist",
+    "pages:preview": "wrangler pages dev ./dist --compatibility-date=2023-10-03",
+    "lint": "eslint --fix . && prettier --write .",
+    "kill": "kill -9 $(lsof -t -i:8787) $(lsof -t -i:8788)"
+  },
+  "dependencies": {
+    "astro": "^3.6.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0",
+    "sass": "^1.69.5",
+    "wrangler": "^3.18.0"
+  }
+}
