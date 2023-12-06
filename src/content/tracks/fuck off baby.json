@@ -1,6 +1,6 @@
 {
-    "img": "https://media.spitofy.com/fuck off baby.png",
-    "mp3": "https://media.spitofy.com/fuck off baby.mp3",
-    "name": "Fuck Off, Baby",
-    "slug": "fuck off baby"
+  "img": "https://media.spitofy.com/fuck%20off%20baby.png",
+  "mp3": "https://media.spitofy.com/fuck%20off%20baby.mp3",
+  "name": "Fuck Off, Baby",
+  "slug": "fuck off baby"
 }

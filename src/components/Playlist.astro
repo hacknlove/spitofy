@@ -1,5 +1,5 @@
 ---
-import Track from "./Track.astro";
+import Track from "./Track.jsx";
 
 import { getCollection } from 'astro:content';
 
@@ -9,9 +9,10 @@ const tracks = (await getCollection('tracks'));
 <div>{
     tracks.map(track => (
         <Track
+            client:idle
             img={track.data.img}
             mp3={track.data.mp3}
-            title={track.data.name}
+            name={track.data.name}
             slug={track.data.slug}
         />
     ))
@@ -20,7 +21,6 @@ const tracks = (await getCollection('tracks'));
 </div>
 
 <style>
-
     div {
         display: flex;
         gap: 40px;

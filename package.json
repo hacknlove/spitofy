@@ -15,10 +15,15 @@
     "kill": "kill -9 $(lsof -t -i:8787) $(lsof -t -i:8788)"
   },
   "dependencies": {
-    "astro": "^3.6.4"
+    "@astrojs/solid-js": "^3.0.2",
+    "astro": "^3.6.4",
+    "solid-js": "^1.4.3"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
     "eslint": "^8.55.0",
+    "eslint-plugin-astro": "^0.30.0",
     "prettier": "^3.1.0",
     "sass": "^1.69.5",
     "wrangler": "^3.18.0"

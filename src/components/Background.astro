@@ -32,6 +32,7 @@ import Spitofy from "./Spitofy.svg.astro";
   </div>
   <script>
     function randomLogo () {
+      const logoover = document.getElementById("logoover") as HTMLElement;
       logoover.style.top = Math.random() * 100 + "lvh";
       logoover.style.left = Math.random() * 100 + "vw";
       logoover.style.transform = `rotate(${Math.random() * 360}deg)`

@@ -23,7 +23,7 @@ const { img, name } = track.data;
 
 
 	<Background />
-	<Picture class="mainPicture" alt={name} src={img} width={75} height={75}/>
+	<Picture transition:name={name} class="mainPicture" alt={name} src={img} width={75} height={75}/>
 
 	<Menu />
 </Layout>
