@@ -1,6 +1,8 @@
 ---
 // import NodeListOf type
 
+import AudioPlayer from "./AudioPlayer/AudioPlayer";
+
 
 // get the path of the page
 
@@ -10,10 +12,10 @@ let current: string
 
 switch (url.pathname) {
     case "/":
-        current = "releases"
+        current = "tracks"
         break;
-    case "/dates":
-        current = "dates"
+    case "/shows":
+        current = "shows"
         break;
     case "/merch":
         current = "merch"
@@ -22,18 +24,19 @@ switch (url.pathname) {
         current = "covers"
         break;
     default:
-        current = "releases"
+        current = "tracks"
 }
 
 ---
 
 <header>
     <nav>
-        <a class:list={[{ current: current === 'releases' }]} href="/">Releases</a>
-        <a  class:list={[{ current: current === 'dates' }]} href="/dates">Dates</a>
+        <a class:list={[{ current: current === 'tracks' }]} href="/">Tracks</a>
+        <a  class:list={[{ current: current === 'shows' }]} href="/shows">Shows</a>
     </nav>
 </header>
 <footer>
+    <AudioPlayer client:idle transition:persist transition:name="audioPlayer"/>
     <nav>
         <a  class:list={[{ current: current === 'merch' }]} href="/merch">Merch</a>
         <a  class:list={[{ current: current === 'covers' }]} href="/covers">Covers</a>
@@ -90,7 +93,6 @@ switch (url.pathname) {
 <style lang="scss">
     header, footer {
         background: #0006;
-        padding: 20px;
         backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
         box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.151);
         z-index: 10;
@@ -108,15 +110,13 @@ switch (url.pathname) {
         right: 0;
     }
     nav {
+        padding: 20px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
     }
     a {
-        min-width: 20%;
-        &:last-child {
-            text-align: right;
-        }
+        width: 6em;
         &.current {
             text-decoration: dotted underline;
         }

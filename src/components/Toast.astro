@@ -1,0 +1,22 @@
+---
+const text = Astro.props.text
+---
+
+<div>
+    {text}
+</div>
+
+<style>
+    div {
+        color: white;
+        backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+        background-color: #0009;
+        width: auto;
+        display: inline-block;
+        padding: 20px 40px;
+        font-size: 19px;
+        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.151);
+        z-index: 10;
+        margin-bottom: 20px;
+    }
+</style>

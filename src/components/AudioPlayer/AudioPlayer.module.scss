@@ -1,0 +1,47 @@
+.AudioPlayer {
+  width: 100vw;
+  box-sizing: border-box;
+  color: #fff;
+  svg {
+    cursor: url(/hand.webp), pointer;
+  }
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+}
+.progress {
+  position: absolute;
+  top: -50px;
+  width: 100%;
+  height: 100px;
+
+  span {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    font-weight: 900;
+    font-family: monospace;
+    font-size: 20px;
+  }
+
+  .progressBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: grayscale(1) brightness(99);
+  }
+  img.progressForeground {
+    top: 0;
+    left: 0;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    transition: clip-path 0.1s;
+  }
+}
