@@ -12,6 +12,8 @@ module.exports = {
     {
       env: {
         node: true,
+        browser: true,
+        es2021: true,
       },
       files: [".eslintrc.{js,cjs}"],
       parserOptions: {
@@ -32,6 +34,11 @@ module.exports = {
       rules: {
         // override/add rules settings here, such as:
         // "astro/no-set-html-directive": "error"
+      },
+      env: {
+        node: true,
+        browser: true,
+        es2021: true,
       },
     },
   ],
