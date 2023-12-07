@@ -1,49 +1,84 @@
+---
+// import NodeListOf type
+
+
+// get the path of the page
+
+const url = Astro.url
+
+let current: string
+
+switch (url.pathname) {
+    case "/":
+        current = "releases"
+        break;
+    case "/dates":
+        current = "dates"
+        break;
+    case "/merch":
+        current = "merch"
+        break;
+    case "/covers":
+        current = "covers"
+        break;
+    default:
+        current = "releases"
+}
+
+---
+
 <header>
     <nav>
-        <div class="link">
-            <a href="/Releases">Releases</a>
-        </div>
-        <div class="link">
-            <a href="/live-dates">Dates</a>
-        </div>
+        <a class:list={[{ current: current === 'releases' }]} href="/">Releases</a>
+        <a  class:list={[{ current: current === 'dates' }]} href="/dates">Dates</a>
     </nav>
 </header>
 <footer>
     <nav>
-        <div class="link">
-            <a href="/Releases">Merch</a>
-        </div>
-        <div class="link">
-            <a href="/live-dates">Covers</a>
-        </div>
+        <a  class:list={[{ current: current === 'merch' }]} href="/merch">Merch</a>
+        <a  class:list={[{ current: current === 'covers' }]} href="/covers">Covers</a>
     </nav>
 </footer>
 <script>
     function random() {
-        const aover = document.querySelector("nav>.link>a:hover");
+        // 'NodeListOf' is not defined
+        // eslint-disable-next-line
+        const as = document.querySelectorAll("nav>a:not(:hover)") as NodeListOf<HTMLElement>;
         
-        const as = document.querySelectorAll("nav>.link>a");
         as.forEach(a => {
-            if (aover === a) return;
 
-            a.style.fontWeight = 200 + Math.random() * 700
+            a.style.fontWeight = (200 + Math.random() * 700).toString()
             
             if (Math.random() < 0.90) {
                 a.style.textTransform = "uppercase";
             } else {
                 a.style.textTransform = "lowercase";
-            } 
+            }
+
+            a.style.textDecorationLine = "none";
+
 
             if (Math.random() < 0.90) {
                 a.style.fontStyle = "normal";
             } else {
                 a.style.fontStyle = "oblique";
             } 
+        });
+
+        const current = document.querySelector("nav>a.current:not(:hover)") as HTMLElement;
+
+        if (current) {
+            current.style.textDecorationThickness = Math.random() * 5 + 'px'
+            current.style.textDecorationLine = ["underline", "overline", "line-through"][Math.floor(Math.random() * 3)]
+            current.style.textDecorationColor = `hsl(${Math.random() * 360}, 100%, 75%)`
+            current.style.textDecorationStyle = ["solid", "dotted", "dashed"][Math.floor(Math.random() * 3)]
 
             if (Math.random() > 0.95) {
-                a.style.letterSpacing = -5 + Math.random() * 10 + 'px'
+                current.style.letterSpacing = -5 + Math.random() * 10 + 'px'
             }
-        });
+
+        }
+
         window.requestAnimationFrame(random);
 
     }
@@ -51,7 +86,7 @@
     window.requestAnimationFrame(random);
 </script>
 
-<style>
+<style lang="scss">
     header, footer {
         background: #0006;
         padding: 20px;
@@ -77,6 +112,13 @@
         justify-content: space-between;
     }
     a {
+        min-width: 20%;
+        &:last-child {
+            text-align: right;
+        }
+        &.current {
+            text-decoration: dotted underline;
+        }
         color: white;
         text-decoration: none;
         text-transform: uppercase;
