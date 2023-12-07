@@ -34,7 +34,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    filter: grayscale(1) brightness(99);
   }
   img.progressForeground {
     top: 0;
@@ -42,6 +41,7 @@
     height: 100%;
     position: absolute;
     width: 100%;
+    filter: invert(1);
     transition: clip-path 0.1s;
   }
 }

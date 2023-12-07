@@ -94,9 +94,8 @@ export default function AudioPlayer() {
               class={styles.progressForeground}
               src="/output.png"
               style={{
-                "clip-path": `inset(0 ${
-                  100 - (curentTime() / totalTime()) * 100
-                }% 0 0)`,
+                "clip-path": `inset(0 0 0 ${(curentTime() / totalTime()) * 100
+                }%)`,
               }}
             />
             <span>
