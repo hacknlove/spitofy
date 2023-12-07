@@ -7,6 +7,8 @@
   color: white;
   align-items: center;
   cursor: url(/hand.webp), pointer;
+  transform: scale(0.95);
+  transition: 0.15s;
 }
 .Track__img {
   width: 350px;
@@ -15,4 +17,10 @@
   display: block;
   margin: 0;
   padding: 0;
+}
+
+.Track:hover {
+  .Track__img {
+    transform: scale(1.05);
+  }
 }

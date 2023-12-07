@@ -57,15 +57,18 @@ switch (url.pathname) {
 
             a.style.textDecorationLine = "none";
 
-
-            if (Math.random() < 0.90) {
+            if (Math.random() > 0.95) {
+                a.style.letterSpacing = -2 + Math.random() * 6
+                 + 'px'
+            }
+            if (Math.random() < 0.80) {
                 a.style.fontStyle = "normal";
             } else {
                 a.style.fontStyle = "oblique";
             } 
         });
 
-        const current = document.querySelector("nav>a.current:not(:hover)") as HTMLElement;
+        const current = document.querySelector("nav>a.current") as HTMLElement;
 
         if (current) {
             current.style.textDecorationThickness = Math.random() * 5 + 'px'
@@ -73,9 +76,7 @@ switch (url.pathname) {
             current.style.textDecorationColor = `hsl(${Math.random() * 360}, 100%, 75%)`
             current.style.textDecorationStyle = ["solid", "dotted", "dashed"][Math.floor(Math.random() * 3)]
 
-            if (Math.random() > 0.95) {
-                current.style.letterSpacing = -5 + Math.random() * 10 + 'px'
-            }
+
 
         }
 
