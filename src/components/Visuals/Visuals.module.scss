@@ -1,0 +1,68 @@
+.Visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: right 0.2s;
+
+  button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: url(/hand.webp), pointer;
+    color: #fffa;
+    transition:
+      transform 0.2s,
+      color 0.2s;
+
+    &:focus,
+    &:hover {
+      transform: scale(1.2);
+      color: #fff;
+    }
+  }
+
+  color: #fff;
+
+  z-index: 10;
+
+  .PhCaret {
+    width: 15px;
+    height: 15px;
+    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+    background-color: #0008;
+    padding: 10px;
+    transition: opacity 0.2s;
+    opacity: 1;
+  }
+
+  &:hover,
+  &:focus-within {
+    right: 0;
+
+    .PhCaret {
+      opacity: 0;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.151);
+    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+    background-color: #0008;
+
+    padding: 10px;
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
