@@ -10,7 +10,8 @@ do
 
     curl --request POST \
          --url https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/images/v1 \
-         --header "Authorization: Bearer $CF_API_KEY" \
+         --header "X-Auth-Key: $CF_API_KEY" \
+         --header "X-Auth-Email: $CF_EMAIL" \
          --header 'Content-Type: multipart/form-data' \
          --form "file=@$image" \
          --form "id=$FILENAME" \
