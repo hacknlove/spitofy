@@ -17,6 +17,8 @@
   "dependencies": {
     "@astrojs/solid-js": "^3.0.2",
     "astro": "^3.6.4",
+    "butterchurn": "^2.6.7",
+    "butterchurn-presets": "^2.4.7",
     "solid-js": "^1.4.3"
   },
   "devDependencies": {

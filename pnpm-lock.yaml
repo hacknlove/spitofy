@@ -11,6 +11,12 @@ dependencies:
   astro:
     specifier: ^3.6.4
     version: 3.6.4(sass@1.69.5)(typescript@5.3.2)
+  butterchurn:
+    specifier: ^2.6.7
+    version: 2.6.7
+  butterchurn-presets:
+    specifier: ^2.4.7
+    version: 2.4.7
   solid-js:
     specifier: ^1.4.3
     version: 1.8.7
@@ -534,6 +540,16 @@ packages:
       "@babel/plugin-syntax-jsx": 7.23.3(@babel/core@7.23.5)
       "@babel/plugin-transform-modules-commonjs": 7.23.3(@babel/core@7.23.5)
       "@babel/plugin-transform-typescript": 7.23.5(@babel/core@7.23.5)
+    dev: false
+
+  /@babel/runtime@7.23.5:
+    resolution:
+      {
+        integrity: sha512-NdUTHcPe4C99WxPub+K9l9tK5/lV4UXIoaHSYgzco9BCyjKAAwzdBI+wWtYqHt7LJdbo74ZjRPJgzVweq1sz0w==,
+      }
+    engines: { node: ">=6.9.0" }
+    dependencies:
+      regenerator-runtime: 0.14.0
     dev: false
 
   /@babel/template@7.22.15:
@@ -2280,6 +2296,16 @@ packages:
       babel-plugin-jsx-dom-expressions: 0.37.9(@babel/core@7.23.5)
     dev: false
 
+  /babel-runtime@6.26.0:
+    resolution:
+      {
+        integrity: sha512-ITKNuq2wKlW1fJg9sSW52eepoYgZBggvOAHC0u/CYu/qxQ9EVzThCgR69BnSXLHjy2f7SY5zaQ4yt7H9ZVxY2g==,
+      }
+    dependencies:
+      core-js: 2.6.12
+      regenerator-runtime: 0.11.1
+    dev: false
+
   /bail@2.0.2:
     resolution:
       {
@@ -2445,6 +2471,27 @@ packages:
     dependencies:
       run-applescript: 5.0.0
     dev: true
+
+  /butterchurn-presets@2.4.7:
+    resolution:
+      {
+        integrity: sha512-4MdM8ripz/VfH1BCldrIKdAc/1ryJFBDvqlyow6Ivo1frwj0H3duzvSMFC7/wIjAjxb1QpwVHVqGqS9uAFKhpg==,
+      }
+    dependencies:
+      babel-runtime: 6.26.0
+      ecma-proposal-math-extensions: 0.0.2
+      lodash: 4.17.21
+    dev: false
+
+  /butterchurn@2.6.7:
+    resolution:
+      {
+        integrity: sha512-BJiRA8L0L2+84uoG2SSfkp0kclBuN+vQKf217pK7pMlwEO2ZEg3MtO2/o+l8Qpr8Nbejg8tmL1ZHD1jmhiaaqg==,
+      }
+    dependencies:
+      "@babel/runtime": 7.23.5
+      ecma-proposal-math-extensions: 0.0.2
+    dev: false
 
   /callsites@3.1.0:
     resolution:
@@ -2701,6 +2748,15 @@ packages:
       }
     engines: { node: ">= 0.6" }
 
+  /core-js@2.6.12:
+    resolution:
+      {
+        integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==,
+      }
+    deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+    requiresBuild: true
+    dev: false
+
   /cross-spawn@7.0.3:
     resolution:
       {
@@ -2935,6 +2991,13 @@ packages:
     resolution:
       {
         integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==,
+      }
+    dev: false
+
+  /ecma-proposal-math-extensions@0.0.2:
+    resolution:
+      {
+        integrity: sha512-80BnDp2Fn7RxXlEr5HHZblniY4aQ97MOAicdWWpSo0vkQiISSE9wLR4SqxKsu4gCtXFBIPPzy8JMhay4NWRg/Q==,
       }
     dev: false
 
@@ -4393,6 +4456,13 @@ packages:
         integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==,
       }
 
+  /lodash@4.17.21:
+    resolution:
+      {
+        integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==,
+      }
+    dev: false
+
   /log-symbols@5.1.0:
     resolution:
       {
@@ -5747,6 +5817,20 @@ packages:
     engines: { node: ">=8.10.0" }
     dependencies:
       picomatch: 2.3.1
+
+  /regenerator-runtime@0.11.1:
+    resolution:
+      {
+        integrity: sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==,
+      }
+    dev: false
+
+  /regenerator-runtime@0.14.0:
+    resolution:
+      {
+        integrity: sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==,
+      }
+    dev: false
 
   /rehype-parse@8.0.5:
     resolution:
