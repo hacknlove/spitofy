@@ -19,11 +19,14 @@ export default function Track({ img, mp3, name, slug }) {
       transition:name={name}
       href={`/track/${slug}`}
     >
-      <picture>
-        <source srcset={img} type="image/webp" />
-        <source srcset={img} type="image/jpeg" />
-        <img class={styles.Track__img} src={img} alt={name} />
-      </picture>
+      <img
+        class={styles.Track__img}
+        src={`${import.meta.env.CF_IMAGE_URL}${img}/350x350`}
+        srcset={`${import.meta.env.CF_IMAGE_URL}${img}/350x350 x1, ${
+          import.meta.env.CF_IMAGE_URL
+        }${img}/700x700 x2`}
+        alt={name}
+      />
     </span>
   );
 }
