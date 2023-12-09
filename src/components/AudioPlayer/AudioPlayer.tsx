@@ -1,6 +1,5 @@
-import { type JSX } from "solid-js";
+import { createSignal, onMount, type JSX } from "solid-js";
 import styles from "./AudioPlayer.module.scss";
-import { createSignal, onMount } from "solid-js";
 
 export function SolarPauseBold(props: JSX.IntrinsicElements["svg"]) {
   return (
@@ -48,53 +47,64 @@ function secondsToHuman(seconds) {
 }
 
 export default function AudioPlayer() {
-  const [isPlaying, setIsPlaying] = createSignal(false);
-  const [hasTrack, setHasTrack] = createSignal(false);
+  const [isPlaying, setIsPlaying] = createSignal(true);
+  const [track, setTrack] = createSignal(
+    "https://media.spitofy.com/besame.mp3",
+  );
   const [curentTime, setCurentTime] = createSignal(0);
   const [totalTime, setTotalTime] = createSignal(0);
 
-  let globalAudio: HTMLAudioElement;
-
   onMount(() => {
-    globalAudio = document.getElementById("globalaudio") as HTMLAudioElement;
+    const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+
+    audio.addEventListener("play", () => {
+      setIsPlaying(true);
+    });
+    audio.addEventListener("pause", () => {
+      setIsPlaying(false);
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      setCurentTime(audio.currentTime);
+    });
+
+    audio.addEventListener("durationchange", () => {
+      setTotalTime(audio.duration);
+    });
+
+    audio.addEventListener("ended", () => {
+      setIsPlaying(false);
+      setCurentTime(0);
+      setTotalTime(0);
+    });
+
+    audio.addEventListener("loadedmetadata", () => {
+      setTrack(audio.src);
+    });
   });
 
-  function pause() {
-    globalAudio.pause();
-    setIsPlaying(false);
-  }
-
   function play() {
-    globalAudio.play();
-    setIsPlaying(true);
+    const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+    audio.play();
   }
 
-  function canPlay() {
-    setTotalTime(globalAudio.duration);
-    setHasTrack(true);
-    setIsPlaying(true);
+  function pause() {
+    const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+    audio.pause();
   }
 
-  function timeUpdate() {
-    setCurentTime(globalAudio.currentTime);
-  }
   return (
     <>
-      <audio
-        autoplay
-        id="globalaudio"
-        onCanPlay={canPlay}
-        onTimeUpdate={timeUpdate}
-      ></audio>
-      {hasTrack() && (
+      {track() && (
         <>
           <div class={styles.progress}>
-            <img class={styles.progressBackground} src="/output.png" />
+            <img class={styles.progressBackground} src={`${track()}.png`} />
             <img
               class={styles.progressForeground}
-              src="/output.png"
+              src={`${track()}.png`}
               style={{
-                "clip-path": `inset(0 0 0 ${(curentTime() / totalTime()) * 100
+                "clip-path": `inset(0 0 0 ${
+                  (curentTime() / totalTime()) * 100
                 }%)`,
               }}
             />

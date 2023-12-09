@@ -11,10 +11,9 @@
   align-items: center;
 }
 .progress {
-  position: absolute;
-  top: -50px;
   width: 100%;
   height: 100px;
+  position: relative;
 
   span {
     color: #fff;

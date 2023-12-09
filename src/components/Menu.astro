@@ -34,9 +34,9 @@ switch (url.pathname) {
         <a class:list={[{ current: current === 'tracks' }]} href="/">Tracks</a>
         <a  class:list={[{ current: current === 'shows' }]} href="/shows">Shows</a>
     </nav>
+    <AudioPlayer client:idle transition:persist transition:name="audioPlayer"/>
 </header>
 <footer>
-    <AudioPlayer client:idle transition:persist transition:name="audioPlayer"/>
     <nav>
         <a  class:list={[{ current: current === 'merch' }]} href="/merch">Merch</a>
         <a  class:list={[{ current: current === 'covers' }]} href="/covers">Covers</a>

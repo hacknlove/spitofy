@@ -1,6 +1,5 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import Background from '../../components/Background.astro';
 import Menu from '../../components/Menu.astro';
 import Layout from '../../layouts/Layout.astro';
 import { Picture } from 'astro:assets';
@@ -21,8 +20,6 @@ const { img, name } = track.data;
 
 <Layout title="Spitofy. Make the music Punk Again">
 
-
-	<Background />
 	<Picture transition:name={name} class="mainPicture" alt={name} src={img} width={75} height={75}/>
 
 	<Menu />

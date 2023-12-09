@@ -1,0 +1,30 @@
+---
+import Audio from "../components/working"; 
+---
+<body>
+    <Audio client:only />
+</body>
+
+<style is:global>
+    body {
+        background-color: black;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    audio {
+        position: fixed;
+        bottom: 0;
+        z-index: 1;
+        height: 100px;
+        width: 100%;
+    }
+</style>

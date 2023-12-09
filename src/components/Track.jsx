@@ -3,9 +3,10 @@ import { navigate } from "astro:transitions/client";
 
 export default function Track({ img, mp3, name, slug }) {
   async function onClick() {
-    const globalAudio = document.getElementById("globalaudio");
-    globalAudio.src = mp3;
-    await globalAudio.play();
+    const audio = document.getElementById("audioGlobal");
+    audio.src = mp3;
+
+    audio.play();
 
     navigate(`/track/${slug}`, {
       replace: true,

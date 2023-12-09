@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import Butterchurn from '../components/Butterchurn/Butterchurn';
 
 interface Props {
 	title: string;
@@ -30,7 +31,19 @@ const { title } = Astro.props;
 		<ViewTransitions />
 	</head>
 	<body>
+		<Butterchurn client:only  transition:name="canvas"
+		transition:persist />
+
+		<audio
+			autoplay
+			id="audioGlobal"
+			crossorigin="anonymous"
+			transition:name="audioGlobal"
+			transition:persist
+		/>
 		<slot />
+		
+
 	</body>
 </html>
 <style is:global>
