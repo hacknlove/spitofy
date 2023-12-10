@@ -1,29 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Menu from '../components/Menu.astro';
-import Title from '../components/Title.astro';
-import Toast from '../components/Toast.astro';
-import { DatesInput } from '../components/DatesInput/DatesInput';
+import Layout from "../layouts/Layout.astro";
+import Menu from "../components/Menu.astro";
+import Title from "../components/Title.astro";
+import Toast from "../components/Toast.astro";
+import { DatesInput } from "../components/DatesInput/DatesInput";
 ---
 
 <Layout title="Spitofy. Make the music Punk Again">
+  <Title title="Shows" />
 
-	<Title title="Shows" />
+  <div class="container">
+    <Toast text="No shows for the next 30 days" />
 
-	<div class="container">
-		<Toast text="No shows for the next 30 days" />
-	
-		<DatesInput />
-	</div>
+    <DatesInput />
+  </div>
 
-	<Menu />
+  <Menu />
 </Layout>
 
 <style>
-	.container {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 </style>

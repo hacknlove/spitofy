@@ -1,35 +1,39 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import Menu from '../../components/Menu.astro';
-import Layout from '../../layouts/Layout.astro';
+import { type CollectionEntry, getCollection } from "astro:content";
+import Menu from "../../components/Menu.astro";
+import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-	const tracks = await getCollection('tracks');
-	return tracks.map((track) => ({
-		params: { slug: track.data.slug },
-		props: track,
-	}));
+  const tracks = await getCollection("tracks");
+  return tracks.map((track) => ({
+    params: { slug: track.data.slug },
+    props: track,
+  }));
 }
-type Props = CollectionEntry<'tracks'>;
+type Props = CollectionEntry<"tracks">;
 
 const track = Astro.props;
 const { img, name } = track.data;
-
 ---
 
 <Layout title="Spitofy. Make the music Punk Again">
+  <img
+    transition:name={name}
+    class="mainPicture"
+    src={`${import.meta.env.CF_IMAGE_URL}${img}/350x350`}
+    srcset={`${import.meta.env.CF_IMAGE_URL}${img}/350x350 x1, ${
+      import.meta.env.CF_IMAGE_URL
+    }${img}/700x700 x2`}
+  />
 
-	<img transition:name={name} class="mainPicture" src={`${import.meta.env.CF_IMAGE_URL}${img}/350x350`} srcset={`${import.meta.env.CF_IMAGE_URL}${img}/350x350 x1, ${import.meta.env.CF_IMAGE_URL}${img}/700x700 x2`} />
-
-	<Menu />
+  <Menu />
 </Layout>
 
 <style>
-	.mainPicture {
-		width: 75vmin;
-		height: 75vmin;
-		margin: 0 auto;
-		display: block;
-	}
-
+  .mainPicture {
+    width: 75vmin;
+    height: 75vmin;
+    margin: 0 auto;
+    display: block;
+  }
 </style>

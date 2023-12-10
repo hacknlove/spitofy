@@ -1,16 +1,16 @@
 ---
-import { getEntry } from 'astro:content';
+import { getEntry } from "astro:content";
 
-const track = await getEntry('tracks', 'we will never die');
+const track = await getEntry("tracks", "we will never die");
 ---
 
 <audio
-    autoplay
-    id="audioGlobal"
-    crossorigin="anonymous"
-    transition:name="audioGlobal"
-    transition:persist
-    data-bmp={track.data.bpm}
+  autoplay
+  id="audioGlobal"
+  crossorigin="anonymous"
+  transition:name="audioGlobal"
+  transition:persist
+  data-bmp={track.data.bpm}
 >
-    <source src={track.data.mp3} />
+  <source src={track.data.mp3} />
 </audio>

@@ -3,133 +3,137 @@
 
 import AudioPlayer from "./AudioPlayer/AudioPlayer";
 
-
 // get the path of the page
 
-const url = Astro.url
+const url = Astro.url;
 
-let current: string
+let current: string;
 
 switch (url.pathname) {
-    case "/":
-        current = "tracks"
-        break;
-    case "/shows":
-        current = "shows"
-        break;
-    case "/merch":
-        current = "merch"
-        break;
-    case "/covers":
-        current = "covers"
-        break;
-    default:
-        current = "tracks"
+  case "/":
+    current = "tracks";
+    break;
+  case "/shows":
+    current = "shows";
+    break;
+  case "/merch":
+    current = "merch";
+    break;
+  case "/covers":
+    current = "covers";
+    break;
+  default:
+    current = "tracks";
 }
-
 ---
 
 <header>
-    <nav>
-        <a class:list={[{ current: current === 'tracks' }]} href="/">Tracks</a>
-        <a  class:list={[{ current: current === 'shows' }]} href="/shows">Shows</a>
-    </nav>
-    <AudioPlayer client:idle transition:persist transition:name="audioPlayer"/>
+  <nav>
+    <a class:list={[{ current: current === "tracks" }]} href="/">Tracks</a>
+    <a class:list={[{ current: current === "shows" }]} href="/shows">Shows</a>
+  </nav>
+  <AudioPlayer client:idle transition:persist transition:name="audioPlayer" />
 </header>
 <footer>
-    <nav>
-        <a  class:list={[{ current: current === 'merch' }]} href="/merch">Merch</a>
-        <a  class:list={[{ current: current === 'covers' }]} href="/covers">Covers</a>
-    </nav>
+  <nav>
+    <a class:list={[{ current: current === "merch" }]} href="/merch">Merch</a>
+    <a class:list={[{ current: current === "covers" }]} href="/covers">Covers</a
+    >
+  </nav>
 </footer>
 <script>
-    function random() {
-        // 'NodeListOf' is not defined
-        // eslint-disable-next-line
-        const as = document.querySelectorAll("nav>a:not(:hover)") as NodeListOf<HTMLElement>;
-        
-        as.forEach(a => {
+  function random() {
+    // 'NodeListOf' is not defined
+    // eslint-disable-next-line
+    const as = document.querySelectorAll(
+      "nav>a:not(:hover)",
+    ) as NodeListOf<HTMLElement>;
 
-            a.style.fontWeight = (200 + Math.random() * 700).toString()
-            
-            if (Math.random() < 0.90) {
-                a.style.textTransform = "uppercase";
-            } else {
-                a.style.textTransform = "lowercase";
-            }
+    as.forEach((a) => {
+      a.style.fontWeight = (200 + Math.random() * 700).toString();
 
-            a.style.textDecorationLine = "none";
+      if (Math.random() < 0.9) {
+        a.style.textTransform = "uppercase";
+      } else {
+        a.style.textTransform = "lowercase";
+      }
 
-            if (Math.random() > 0.95) {
-                a.style.letterSpacing = -2 + Math.random() * 6
-                 + 'px'
-            }
-            if (Math.random() < 0.80) {
-                a.style.fontStyle = "normal";
-            } else {
-                a.style.fontStyle = "oblique";
-            } 
-        });
+      a.style.textDecorationLine = "none";
 
-        const current = document.querySelector("nav>a.current") as HTMLElement;
+      if (Math.random() > 0.95) {
+        a.style.letterSpacing = -2 + Math.random() * 6 + "px";
+      }
+      if (Math.random() < 0.8) {
+        a.style.fontStyle = "normal";
+      } else {
+        a.style.fontStyle = "oblique";
+      }
+    });
 
-        if (current) {
-            current.style.textDecorationThickness = Math.random() * 5 + 'px'
-            current.style.textDecorationLine = ["underline", "overline", "line-through"][Math.floor(Math.random() * 3)]
-            current.style.textDecorationColor = `hsl(${Math.random() * 360}, 100%, 75%)`
-            current.style.textDecorationStyle = ["solid", "dotted", "dashed"][Math.floor(Math.random() * 3)]
+    const current = document.querySelector("nav>a.current") as HTMLElement;
 
-
-
-        }
-
-        window.requestAnimationFrame(random);
-
+    if (current) {
+      current.style.textDecorationThickness = Math.random() * 5 + "px";
+      current.style.textDecorationLine = [
+        "underline",
+        "overline",
+        "line-through",
+      ][Math.floor(Math.random() * 3)];
+      current.style.textDecorationColor = `hsl(${
+        Math.random() * 360
+      }, 100%, 75%)`;
+      current.style.textDecorationStyle = ["solid", "dotted", "dashed"][
+        Math.floor(Math.random() * 3)
+      ];
     }
 
     window.requestAnimationFrame(random);
+  }
+
+  window.requestAnimationFrame(random);
 </script>
 
 <style lang="scss">
-    header, footer {
-        background: #0006;
-        backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
-        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.151);
-        z-index: 10;
+  header,
+  footer {
+    background: #0006;
+    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.151);
+    z-index: 10;
+  }
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  nav {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  a {
+    width: 6em;
+    &.current {
+      text-decoration: dotted underline;
     }
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-    }
-    footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
-    nav {
-        padding: 20px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: 100;
+    letter-spacing: 5px;
+  }
+  @media (max-width: 400px) {
     a {
-        width: 6em;
-        &.current {
-            text-decoration: dotted underline;
-        }
-        color: white;
-        text-decoration: none;
-        text-transform: uppercase;
-        font-size: 30px;
-        font-weight: 100;
-        letter-spacing: 5px;
+      font-size: 20px;
     }
-    @media (max-width: 400px) {
-        a {
-            font-size: 20px;
-        }
-    }
+  }
 </style>
