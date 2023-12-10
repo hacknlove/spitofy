@@ -2,5 +2,6 @@
   "img": "besame.png",
   "mp3": "https://media.spitofy.com/besame.mp3",
   "name": "Besame",
-  "slug": "besame"
+  "slug": "besame",
+  "bpm": 120
 }

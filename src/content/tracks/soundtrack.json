@@ -2,5 +2,6 @@
   "img": "soundtrack.png",
   "mp3": "https://media.spitofy.com/soundtrack.mp3",
   "name": "Sound Track",
-  "slug": "soundtrack"
+  "slug": "soundtrack",
+  "bpm": 120
 }

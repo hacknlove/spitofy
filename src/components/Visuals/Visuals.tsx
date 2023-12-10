@@ -5,13 +5,23 @@ import PhCaretLeft from "./PhCaretLeft";
 import PhSpiralFill from "./PhSpiralFill";
 
 import styles from "./Visuals.module.scss";
-import "./Visuals.global.scss";
-const classes = ["equalizer", "waveform", "butterchurn", "basic"];
+
+import { createSignal } from "solid-js";
 
 export default function Visuals() {
+  const [mode, setMode] = createSignal("basicVisuals");
+
   function onClick() {
-    document.body.classList.remove(...classes);
-    document.body.classList.add(this.dataset.type);
+    const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+    audio.play();
+    setMode(this.dataset.type);
+
+    document
+      .querySelectorAll(".activeVisuals")
+      .forEach((el: HTMLDivElement) => {
+        el.classList.remove("activeVisuals");
+        el.style.display = "";
+      });
 
     document.body.dispatchEvent(
       new CustomEvent("visualChange", {
@@ -22,6 +32,15 @@ export default function Visuals() {
     );
 
     this.blur();
+
+    const element = document.getElementById(
+      this.dataset.type,
+    ) as HTMLDivElement;
+    if (!element) {
+      return;
+    }
+    element.classList.add("activeVisuals");
+    element.style.display = "block";
   }
   return (
     <div class={styles.Visual}>
@@ -29,16 +48,32 @@ export default function Visuals() {
         <PhCaretLeft class={styles.PhCaret} />
       </button>
       <div class={styles.buttons}>
-        <button onClick={onClick} data-type="equalizer">
+        <button
+          class={mode() === "equalizerVisuals" ? styles.active : ""}
+          onClick={onClick}
+          data-type="equalizerVisuals"
+        >
           <MdiEqualizer />
         </button>
-        <button onClick={onClick} data-type="waveform">
+        <button
+          class={mode() === "waveformVisuals" ? styles.active : ""}
+          onClick={onClick}
+          data-type="waveformVisuals"
+        >
           <MdiWaveform />
         </button>
-        <button onClick={onClick} data-type="butterchurn">
+        <button
+          class={mode() === "butterchurnVisuals" ? styles.active : ""}
+          onClick={onClick}
+          data-type="butterchurnVisuals"
+        >
           <MingcuteFireworkFill />
         </button>
-        <button onClick={onClick} data-type="basic">
+        <button
+          class={mode() === "basicVisuals" ? styles.active : ""}
+          onClick={onClick}
+          data-type="basicVisuals"
+        >
           <PhSpiralFill />
         </button>
       </div>

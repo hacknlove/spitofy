@@ -2,5 +2,6 @@
   "img": "traia.png",
   "mp3": "https://media.spitofy.com/traia.mp3",
   "name": "Traia",
-  "slug": "traia"
+  "slug": "traia",
+  "bpm": 120
 }

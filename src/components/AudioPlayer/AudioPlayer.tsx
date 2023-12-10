@@ -49,13 +49,15 @@ function secondsToHuman(seconds) {
 export default function AudioPlayer() {
   const [isPlaying, setIsPlaying] = createSignal(true);
   const [track, setTrack] = createSignal(
-    "https://media.spitofy.com/besame.mp3",
+    "https://media.spitofy.com/we will never die.mp3",
   );
   const [curentTime, setCurentTime] = createSignal(0);
   const [totalTime, setTotalTime] = createSignal(0);
 
   onMount(() => {
     const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+    setTotalTime(audio.duration);
+    setCurentTime(audio.currentTime);
 
     audio.addEventListener("play", () => {
       setIsPlaying(true);

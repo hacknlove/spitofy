@@ -3,7 +3,7 @@ import Spitofy from "./Spitofy.svg.astro";
 
 ---
 
-<div class="container">
+<div id="basicVisuals" class="container activeVisuals" style={{ display: 'block' }}>
 
   <div class="polygon">
       <div class="side"></div>
@@ -31,7 +31,13 @@ import Spitofy from "./Spitofy.svg.astro";
     <Spitofy />
   </div>
   <script>
-    function randomLogo () {
+    let lastFrame = 0;
+    function randomLogo (currentFrame: number) {
+      if (currentFrame - lastFrame < 100) {
+        window.requestAnimationFrame(randomLogo);
+        return;
+      }
+      lastFrame = currentFrame;
       const logoover = document.getElementById("logoover") as HTMLElement;
       logoover.style.top = Math.random() * 100 + "lvh";
       logoover.style.left = Math.random() * 100 + "vw";
@@ -42,6 +48,7 @@ import Spitofy from "./Spitofy.svg.astro";
     window.requestAnimationFrame(randomLogo);
   </script>
 
+
   <style lang="scss">
     .logo {
       width: 350px;
@@ -50,7 +57,7 @@ import Spitofy from "./Spitofy.svg.astro";
       top: 50%;
       top: 50lvh;
       transform: translate(-50%, -50%);
-      z-index: -1;
+      z-index: 0;
       filter: drop-shadow(0 0 15px #000);
     }
     .logo.logo-over {
@@ -59,7 +66,7 @@ import Spitofy from "./Spitofy.svg.astro";
       top: 50%;
       top: 50lvh;
       transform: translate(-50%, -50%);
-      opacity: 0.5;
+      opacity: 0.1;
       z-index: 99999;
       pointer-events: none;
       filter: drop-shadow(0 0 15px #fff);
@@ -74,6 +81,7 @@ import Spitofy from "./Spitofy.svg.astro";
     }
 
 .container {
+  display: none;
   background-color: #000;
   height: 100vh;
   margin: 0;

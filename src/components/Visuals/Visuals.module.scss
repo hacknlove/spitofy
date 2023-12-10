@@ -24,6 +24,9 @@
       transform: scale(1.2);
       color: #fff;
     }
+    &.active {
+      color: #fabada;
+    }
   }
 
   color: #fff;
@@ -38,6 +41,7 @@
     padding: 10px;
     transition: opacity 0.2s;
     opacity: 1;
+    border-radius: 100%;
   }
 
   &:hover,
