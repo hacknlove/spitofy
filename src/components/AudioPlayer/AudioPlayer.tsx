@@ -46,26 +46,20 @@ export default function AudioPlayer() {
 
   return (
     <>
-      {track() && (
-        <>
-          <div class={styles.progress}>
-            <img class={styles.progressBackground} src={`${track()}.png`} />
-            <img
-              class={styles.progressForeground}
-              src={`${track()}.png`}
-              style={{
-                "clip-path": `inset(0 0 0 ${
-                  (curentTime() / totalTime()) * 100
-                }%)`,
-              }}
-            />
-            <span>
-              {secondsToHuman(curentTime())}/{secondsToHuman(totalTime())}
-            </span>
-          </div>
-          <div class={styles.AudioPlayer}></div>
-        </>
-      )}
+      <div class={styles.progress}>
+        <img class={styles.progressBackground} src={`${track()}.png`} />
+        <img
+          class={styles.progressForeground}
+          src={`${track()}.png`}
+          style={{
+            "clip-path": `inset(0 0 0 ${(curentTime() / totalTime()) * 100}%)`,
+          }}
+        />
+        <span>
+          {secondsToHuman(curentTime())}/{secondsToHuman(totalTime())}
+        </span>
+      </div>
+      <div class={styles.AudioPlayer}></div>
     </>
   );
 }
