@@ -1,7 +1,8 @@
 ---
 import { getEntry } from "astro:content";
 
-const track = await getEntry("tracks", "we will never die");
+const track =
+  Astro.props.track || (await getEntry("tracks", "we will never die"));
 ---
 
 <audio
