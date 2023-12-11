@@ -34,8 +34,18 @@ import Spitofy from "./Spitofy.svg.astro";
 </div>
 <script>
   let lastFrame = 0;
+  const audio = document.getElementById("audioGlobal") as HTMLAudioElement;
   function randomLogo(currentFrame: number) {
-    if (currentFrame - lastFrame < 100) {
+    const bpm = audio.dataset.bmp;
+
+    if (!bpm) {
+      return;
+    }
+
+    let currentBpm = parseInt(bpm);
+   
+    
+    if (currentFrame - lastFrame < 1000 / (currentBpm / 60) / 4) {
       window.requestAnimationFrame(randomLogo);
       return;
     }
@@ -53,21 +63,38 @@ import Spitofy from "./Spitofy.svg.astro";
 <style lang="scss">
   .logo {
     width: 350px;
-    left: 50%;
+    right: 0;
     position: fixed;
-    top: 50%;
-    top: 50lvh;
-    transform: translate(-50%, -50%);
+    bottom: 0;
     z-index: 0;
     filter: drop-shadow(0 0 15px #000);
+    mix-blend-mode: multiply;
   }
+  .logo:not(.logo-over) {
+    animation: explode 0.5s linear infinite;
+  }
+
+  @keyframes explode {
+    0% {
+      transform: scale(1); 
+    }
+
+    75% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(10);
+    }
+    
+  }
+
   .logo.logo-over {
     left: 50%;
     position: fixed;
     top: 50%;
     top: 50lvh;
     transform: translate(-50%, -50%);
-    opacity: 0.1;
+    opacity: 1;
     z-index: 99999;
     pointer-events: none;
     filter: drop-shadow(0 0 15px #fff);

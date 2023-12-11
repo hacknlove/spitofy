@@ -39,7 +39,10 @@ const { title } = Astro.props;
 
     <Audio transition:name="audioGlobal" transition:persist />
     <slot />
-  </body><style is:global>
+  </body>
+</html>
+
+  <style is:global>
     html {
       font-family: system-ui, sans-serif;
       background: #13151a;
@@ -48,11 +51,15 @@ const { title } = Astro.props;
     body {
       margin: 0;
       cursor: url(/normalhand.webp), auto;
-      margin: 100px 0px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      min-height: 100lvh;
     }
     a {
       cursor: url(/hand.webp), pointer;
     }
   </style>
-</html>

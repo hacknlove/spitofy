@@ -1,8 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Menu from "../components/Menu.astro";
----
+import { getEntry } from "astro:content";
+import Cover from "../components/Cover/Cover.astro";
 
-<Layout title="Spitofy. Make the music Punk Again">
+const track = await getEntry("tracks", "we will never die");
+---
+<Layout title=`Spitofy. ${track.data.name}`>
   <Menu />
+
+  <Cover track={track} />
 </Layout>

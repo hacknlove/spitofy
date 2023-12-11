@@ -1,0 +1,110 @@
+---
+import FePlay from './FePlay.astro';
+import FePause from './FePause.astro';
+import FeFastForward from './FeFastForward.astro';
+import MingcuteVolumeFill from './MingcuteVolumeFill.astro';
+
+const { track } = Astro.props;
+---
+
+<div>
+    <img 
+    transition:name={track.data.name}
+    class="mainPicture"
+    src={`${import.meta.env.CF_IMAGE_URL}${track.data.img}/350x350`}
+    srcset={`${import.meta.env.CF_IMAGE_URL}${track.data.img}/350x350 350w, ${import.meta.env.CF_IMAGE_URL}${track.data.img}/700x700 700w, ${import.meta.env.CF_IMAGE_URL}${track.data.img}/1024x1024 1024w`}
+    sizes="(max-width: 450px) 350px, (max-height: 450px) 350px, (max-width: 875px) 700px, (max-height: 875px) 700px, 1024px"
+    />
+
+    <div class="buttons">
+        <FeFastForward id="mainFastBackwardButton" class="fastBackward likeAButton" />
+        <div class="playPause likeAButton">
+            <FePlay id="mainPlayButton" class="play" />
+            <FePause id="mainPauseButton" class="pause" />
+        </div>
+        <FeFastForward id="mainFastForwardButton" class="fastForward likeAButton" />
+        <MingcuteVolumeFill id="mainVolumeButton" class="volume likeAButton" />
+    </div>
+    <script>
+        document.getElementById('mainPlayButton')?.addEventListener('click', () => {
+            (document.getElementById('audioGlobal') as HTMLAudioElement)?.play();
+        });
+        document.getElementById('mainPauseButton')?.addEventListener('click', () => {
+            (document.getElementById('audioGlobal') as HTMLAudioElement)?.pause();
+        });
+    </script>
+</div>
+
+<style lang="scss">
+    div {
+        position: relative;
+    }
+    img {
+        width: 80vmin;
+        height: 80vmin;
+    }
+    .likeAButton {
+        cursor: url(/hand.webp), pointer;
+        border: 2px solid #fff0;
+        z-index: 1;
+
+        &:hover {
+            border: 2px solid #fffb;
+            background: #000;
+            color: #fff;
+        }
+    }
+    .buttons {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        display: flex;
+        column-gap: 10px;
+        justify-content: center;
+        
+        .playPause {
+            display: flex;
+            column-gap: 0;
+        }
+
+        svg {
+            height: 100px;
+            width: 100px;
+            border-radius: 10px;
+            color: #fffb;
+            background: #000b;
+
+        }
+
+        .play {
+            width: 200px;
+            margin-right: 0;
+            clip-path: inset(0 0 0 0);
+            transition: margin-right 1s, clip-path 1s;
+        }
+        .pause {
+            width: 200px;
+            clip-path: inset(0 0 0 100%);
+            margin-left: -200px;
+            transition: margin-left 1s, clip-path 1s;
+        }
+
+        .fastBackward {
+            transform: rotate(180deg);
+        }
+    }
+
+    body.playing .buttons {
+        .play {
+            clip-path: inset(0 100% 0 0);
+            margin-right: -200px;
+        }
+        .pause {
+            clip-path: inset(0 0 0 0);
+            margin-left: 0;
+        }
+    }
+    
+</style>

@@ -14,3 +14,16 @@ const track = await getEntry("tracks", "we will never die");
 >
   <source src={track.data.mp3} />
 </audio>
+
+<script>
+  const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+  audio.addEventListener("ended", () => {
+    document.body.classList.remove("playing");
+  });
+  audio.addEventListener("play", () => {
+    document.body.classList.add("playing");
+  });
+  audio.addEventListener("pause", () => {
+    document.body.classList.remove("playing");
+  });
+</script>
