@@ -22,7 +22,7 @@ import FePause from "./FePause.astro";
     position: absolute;
     top: 50%;
     left: 50%;
-    opacity: 1;
+    opacity: 0;
     transition: opacity var(--quarter-note);
     transform: translate(-50%, -50%);
 
@@ -65,7 +65,7 @@ import FePause from "./FePause.astro";
     }
   }
 
-  body.playing.userRecentAction .playPause {
+  body.userRecentAction .playPause {
     opacity: 1;
   }
 </style>
