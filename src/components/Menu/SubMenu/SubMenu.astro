@@ -7,6 +7,9 @@ let current: string;
 
 switch (url.pathname) {
   case "/":
+    current = "home";
+    break;
+  case "/tracks":
     current = "tracks";
     break;
   case "/shows":
@@ -28,7 +31,9 @@ switch (url.pathname) {
     <CiHamburgerMd class="openSubmenu" />
   </button>
   <nav>
-    <a class:list={[{ current: current === "tracks" }]} href="/">Tracks</a>
+    <a class:list={[{ current: current === "home" }]} href="/">Home</a>
+    <a class:list={[{ current: current === "tracks" }]} href="/tracks">Tracks</a
+    >
     <a class:list={[{ current: current === "shows" }]} href="/shows">Shows</a>
     <a class:list={[{ current: current === "merch" }]} href="/merch">Merch</a>
     <a class:list={[{ current: current === "covers" }]} href="/covers">Covers</a
