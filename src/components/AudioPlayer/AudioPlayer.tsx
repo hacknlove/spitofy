@@ -39,6 +39,8 @@ export default function AudioPlayer() {
 
     audio.addEventListener("loadedmetadata", () => {
       setTrack(audio.src);
+      setTotalTime(audio.duration);
+      setCurentTime(audio.currentTime);
     });
   });
 
