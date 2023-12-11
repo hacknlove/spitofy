@@ -1,7 +1,10 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import Footer from "../../components/Menu/Footer.astro";
-import Layout from "../../layouts/Layout.astro";
+import Header from "@/components/Menu/Header.astro";
+import Footer from "@/components/Menu/Footer.astro";
+import Layout from "@/layouts/Layout.astro";
+import Cover from "@/components/Cover/Cover.astro";
+import Controls from "@/components/Controls/Controls.astro";
 
 export async function getStaticPaths() {
   const tracks = await getCollection("tracks");
@@ -13,19 +16,13 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"tracks">;
 
 const track = Astro.props;
-const { img, name } = track.data;
+const { name } = track.data;
 ---
 
-<Layout title="Spitofy. Make the music Punk Again">
-  <img
-    transition:name={name}
-    class="mainPicture"
-    src={`${import.meta.env.CF_IMAGE_URL}${img}/350x350`}
-    srcset={`${import.meta.env.CF_IMAGE_URL}${img}/350x350 x1, ${
-      import.meta.env.CF_IMAGE_URL
-    }${img}/700x700 x2`}
-  />
-
+<Layout title="Spitofy. Make the music Punk Again" track={track}>
+  <Header title={name} />
+  <Cover track={track} />
+  <Controls track={track} />
   <Footer />
 </Layout>
 

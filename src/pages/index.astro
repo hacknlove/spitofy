@@ -9,10 +9,9 @@ import Controls from "@/components/Controls/Controls.astro";
 const track = await getEntry("tracks", "we will never die");
 ---
 
-<Layout title={`Spitofy. ${track.data.name}`}>
+<Layout title={`Spitofy. ${track.data.name}`} track={track}>
   <Header title={track.data.name} />
-  <Footer />
-
   <Cover track={track} />
   <Controls track={track} />
+  <Footer />
 </Layout>
