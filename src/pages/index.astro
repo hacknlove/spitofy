@@ -1,13 +1,18 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Menu from "../components/Menu.astro";
 import { getEntry } from "astro:content";
-import Cover from "../components/Cover/Cover.astro";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Menu/Header.astro";
+import Menu from "@/components/Menu/Menu.astro";
+import Cover from "@/components/Cover/Cover.astro";
+import Controls from "@/components/Controls/Controls.astro";
 
 const track = await getEntry("tracks", "we will never die");
 ---
-<Layout title=`Spitofy. ${track.data.name}`>
+
+<Layout title={`Spitofy. ${track.data.name}`}>
+  <Header title={track.data.name} />
   <Menu />
 
   <Cover track={track} />
+  <Controls track={track} />
 </Layout>

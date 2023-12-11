@@ -1,0 +1,25 @@
+---
+import AudioPlayer from "../AudioPlayer/AudioPlayer";
+---
+
+<footer>
+  <AudioPlayer />
+</footer>
+
+<style lang="scss">
+  footer {
+    background: #0006;
+    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.151);
+    z-index: 10;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: bottom var(--quarter-note) ease-out;
+  }
+
+  body.playing footer {
+    bottom: -75px;
+  }
+</style>

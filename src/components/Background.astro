@@ -43,8 +43,7 @@ import Spitofy from "./Spitofy.svg.astro";
     }
 
     let currentBpm = parseInt(bpm);
-   
-    
+
     if (currentFrame - lastFrame < 1000 / (currentBpm / 60) / 4) {
       window.requestAnimationFrame(randomLogo);
       return;
@@ -71,12 +70,12 @@ import Spitofy from "./Spitofy.svg.astro";
     mix-blend-mode: multiply;
   }
   .logo:not(.logo-over) {
-    animation: explode 0.5s linear infinite;
+    animation: explode var(--quarter-note) linear infinite;
   }
 
   @keyframes explode {
     0% {
-      transform: scale(1); 
+      transform: scale(1);
     }
 
     75% {
@@ -85,7 +84,6 @@ import Spitofy from "./Spitofy.svg.astro";
     100% {
       transform: scale(10);
     }
-    
   }
 
   .logo.logo-over {

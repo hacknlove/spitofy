@@ -1,0 +1,118 @@
+---
+import FePlay from "./FePlay.astro";
+import FePause from "./FePause.astro";
+import MingcuteVolumeFill from "./MingcuteVolumeFill.astro";
+import MingcutePlaylistFill from "./MingcutePlaylistFill.astro";
+import BiStars from "./BiStars.astro";
+---
+
+<div class="buttons">
+  <BiStars class="likeAButton" />
+  <MingcutePlaylistFill
+    id="mainFastForwardButton"
+    class="fastForward likeAButton"
+  />
+  <div class="playPause likeAButton">
+    <FePlay id="mainPlayButton" class="play" />
+    <FePause id="mainPauseButton" class="pause" />
+  </div>
+  <MingcuteVolumeFill id="mainVolumeButton" class="volume likeAButton" />
+</div>
+<script>
+  document.getElementById("mainPlayButton")?.addEventListener("click", () => {
+    (document.getElementById("audioGlobal") as HTMLAudioElement)?.play();
+  });
+  document.getElementById("mainPauseButton")?.addEventListener("click", () => {
+    (document.getElementById("audioGlobal") as HTMLAudioElement)?.pause();
+  });
+</script>
+
+<style lang="scss">
+  .buttons {
+    position: absolute;
+    top: calc((100lvh - 104px) / 2);
+    left: calc((100vw - 546px) / 2);
+    z-index: 11;
+    opacity: 1;
+
+    transition:
+      top var(--quarter-note),
+      left var(--quarter-note),
+      opacity var(--whole-note);
+
+    display: flex;
+    column-gap: 10px;
+    justify-content: center;
+
+    .likeAButton,
+    svg.likeAButton {
+      cursor: url(/hand.webp), pointer;
+      border: 2px solid #fff0;
+      z-index: 1;
+
+      height: 100px;
+      width: 100px;
+      border-radius: 10px;
+      color: #fffb;
+      background: #000b;
+      transition:
+        width var(--quarter-note),
+        height var(--quarter-note);
+
+      &.playPause {
+        width: 200px;
+      }
+
+      &:hover {
+        border: 2px solid #fffb;
+        background: #000;
+        color: #fff;
+      }
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .play {
+      display: block;
+    }
+    .pause {
+      display: none;
+    }
+
+    .fastBackward {
+      transform: rotate(180deg);
+    }
+  }
+
+  body.playing .buttons {
+    top: 0;
+    left: 0;
+    opacity: 0.1;
+
+    .likeAButton {
+      height: 50px;
+      width: 50px;
+
+      &.playPause {
+        width: 100px;
+      }
+    }
+
+    .play {
+      display: none;
+    }
+    .pause {
+      display: block;
+    }
+  }
+
+  body.playing .buttons:hover {
+    opacity: 1;
+    transition:
+      top var(--quarter-note),
+      left var(--quarter-note),
+      opacity var(--quarter-note);
+  }
+</style>

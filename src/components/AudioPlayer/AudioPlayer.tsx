@@ -1,4 +1,4 @@
-import { createSignal, onMount, type JSX } from "solid-js";
+import { createSignal, onMount } from "solid-js";
 import styles from "./AudioPlayer.module.scss";
 
 function secondsToHuman(seconds) {
@@ -13,7 +13,6 @@ function secondsToHuman(seconds) {
 }
 
 export default function AudioPlayer() {
-  const [isPlaying, setIsPlaying] = createSignal(true);
   const [track, setTrack] = createSignal(
     "https://media.spitofy.com/we will never die.mp3",
   );
@@ -25,13 +24,6 @@ export default function AudioPlayer() {
     setTotalTime(audio.duration);
     setCurentTime(audio.currentTime);
 
-    audio.addEventListener("play", () => {
-      setIsPlaying(true);
-    });
-    audio.addEventListener("pause", () => {
-      setIsPlaying(false);
-    });
-
     audio.addEventListener("timeupdate", () => {
       setCurentTime(audio.currentTime);
     });
@@ -41,7 +33,6 @@ export default function AudioPlayer() {
     });
 
     audio.addEventListener("ended", () => {
-      setIsPlaying(false);
       setCurentTime(0);
       setTotalTime(0);
     });
@@ -50,16 +41,6 @@ export default function AudioPlayer() {
       setTrack(audio.src);
     });
   });
-
-  function play() {
-    const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
-    audio.play();
-  }
-
-  function pause() {
-    const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
-    audio.pause();
-  }
 
   return (
     <>

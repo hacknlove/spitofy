@@ -39,27 +39,39 @@ const { title } = Astro.props;
 
     <Audio transition:name="audioGlobal" transition:persist />
     <slot />
+    <style is:global>
+      html {
+        font-family: system-ui, sans-serif;
+        background: #13151a;
+        background-size: 224px;
+      }
+      body {
+        margin: 0;
+        cursor: url(/normalhand.webp), auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        min-height: 100lvh;
+      }
+      a {
+        cursor: url(/hand.webp), pointer;
+      }
+
+      :root {
+        --BPM: 120;
+
+        /* ms for each duration depending on the BPM  */
+        --quarter-note: calc(60s / var(--BPM));
+        --half-note: calc(2 * 60s / var(--BPM));
+        --whole-note: calc(4 * 60s / var(--BPM));
+        --eighth-note: calc(60s / var(--BPM) / 2);
+        --sixteenth-note: calc(60s / var(--BPM) / 4);
+        --word: calc(var(--whole-note) * 4);
+        --phrase: calc(var(--word) * 4);
+      }
+    </style>
   </body>
 </html>
-
-  <style is:global>
-    html {
-      font-family: system-ui, sans-serif;
-      background: #13151a;
-      background-size: 224px;
-    }
-    body {
-      margin: 0;
-      cursor: url(/normalhand.webp), auto;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      min-height: 100lvh;
-    }
-    a {
-      cursor: url(/hand.webp), pointer;
-    }
-  </style>

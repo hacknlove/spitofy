@@ -1,0 +1,88 @@
+---
+import SubMenu from "./SubMenu/SubMenu.astro";
+
+const title = Astro.props.title;
+---
+
+<header>
+  <h1>{title}</h1>
+  <SubMenu />
+</header>
+
+<script>
+  function random() {
+    // 'NodeListOf' is not defined
+    // eslint-disable-next-line
+    const h1 = document.querySelector("header>h1") as HTMLHeadingElement;
+
+    h1.style.fontWeight = (200 + Math.random() * 700).toString();
+
+    if (Math.random() < 0.9) {
+      h1.style.textTransform = "uppercase";
+    } else {
+      h1.style.textTransform = "lowercase";
+    }
+
+    if (Math.random() > 0.95) {
+      h1.style.letterSpacing = -2 + Math.random() * 6 + "px";
+    }
+    if (Math.random() < 0.8) {
+      h1.style.fontStyle = "normal";
+    } else {
+      h1.style.fontStyle = "oblique";
+    }
+
+    if (Math.random() < 0.5) {
+      h1.style.color = "#fff";
+    } else {
+      h1.style.color = `hsl(${Math.random() * 360}, 100%, 75%)`;
+    }
+
+    h1.style.textDecorationThickness = Math.random() * 5 + "px";
+    h1.style.textDecorationLine = ["underline", "overline", "line-through"][
+      Math.floor(Math.random() * 3)
+    ];
+    h1.style.textDecorationColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
+    h1.style.textDecorationStyle = ["solid", "dotted", "dashed"][
+      Math.floor(Math.random() * 3)
+    ];
+
+    window.requestAnimationFrame(random);
+  }
+
+  window.requestAnimationFrame(random);
+</script>
+
+<style lang="scss">
+  header {
+    background: #0006;
+    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.151);
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    transition: top var(--quarter-note) ease-out;
+  }
+
+  body.playing header {
+    top: -55px;
+    opacity: 0.5;
+  }
+  body.playing header:hover,
+  body.playing header:focus-within {
+    top: 0;
+    opacity: 1;
+  }
+
+  h1 {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: 100;
+    letter-spacing: 5px;
+  }
+</style>

@@ -1,9 +1,5 @@
 ---
-// import NodeListOf type
-
-import AudioPlayer from "./AudioPlayer/AudioPlayer";
-
-// get the path of the page
+import CiHamburgerMd from "./CiHamburgerMd.astro";
 
 const url = Astro.url;
 
@@ -27,26 +23,25 @@ switch (url.pathname) {
 }
 ---
 
-<header>
+<div>
+  <button>
+    <CiHamburgerMd class="openSubmenu" />
+  </button>
   <nav>
     <a class:list={[{ current: current === "tracks" }]} href="/">Tracks</a>
     <a class:list={[{ current: current === "shows" }]} href="/shows">Shows</a>
-  </nav>
-  <AudioPlayer client:idle transition:persist transition:name="audioPlayer" />
-</header>
-<footer>
-  <nav>
     <a class:list={[{ current: current === "merch" }]} href="/merch">Merch</a>
     <a class:list={[{ current: current === "covers" }]} href="/covers">Covers</a
     >
   </nav>
-</footer>
+</div>
+
 <script>
   function random() {
     // 'NodeListOf' is not defined
-    // eslint-disable-next-line
     const as = document.querySelectorAll(
       "nav>a:not(:hover)",
+      // eslint-disable-next-line
     ) as NodeListOf<HTMLElement>;
 
     as.forEach((a) => {
@@ -94,46 +89,59 @@ switch (url.pathname) {
 </script>
 
 <style lang="scss">
-  header,
-  footer {
-    background: #0006;
-    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
-    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.151);
-    z-index: 10;
-  }
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  div {
+    position: absolute;
+    right: 10px;
+    color: white;
+    top: 12px;
   }
   nav {
-    padding: 20px;
+    position: absolute;
+    top: 62px;
+    right: -210px;
+    width: 200px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  a {
-    width: 6em;
-    &.current {
-      text-decoration: dotted underline;
-    }
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 30px;
-    font-weight: 100;
-    letter-spacing: 5px;
-  }
-  @media (max-width: 400px) {
+    flex-direction: column;
+    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+    background-color: #0006;
+    padding: 10px;
+    box-sizing: border-box;
+    row-gap: 10px;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.151);
+    z-index: 10;
+    transition: right var(--quarter-note) ease-out;
     a {
-      font-size: 20px;
+      text-decoration: none;
+      color: #fff;
+      width: 6em;
+      &.current {
+        text-decoration: dotted underline;
+      }
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 30px;
+      font-weight: 100;
+      letter-spacing: 5px;
+    }
+  }
+  div:focus-within,
+  div:hover {
+    nav {
+      right: -10px;
+    }
+  }
+
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: url(/hand.webp), pointer;
+    .openSubmenu {
+      color: #fff;
+      height: 50px;
+      width: 50px;
     }
   }
 </style>
