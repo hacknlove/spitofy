@@ -59,6 +59,38 @@ import Spitofy from "./Spitofy.svg.astro";
   window.requestAnimationFrame(randomLogo);
 </script>
 
+<script>
+  import { debounce } from "throttle-debounce";
+
+  function setClass() {
+    document.body.classList.add("userRecentAction");
+  }
+  function removeClass() {
+    document.body.classList.remove("userRecentAction");
+  }
+
+  const setAtTheBeginning = debounce(1000, setClass, {
+    atBegin: true,
+  });
+  const removeAtTheEnd = debounce(1000, removeClass, {
+    atBegin: false,
+  });
+
+  const events = [
+    "click",
+    "touchstart",
+    "touchmove",
+    "touchend",
+    "touchcancel",
+    "mousemove",
+  ];
+
+  events.forEach((event) => {
+    document.body.addEventListener(event, setAtTheBeginning);
+    document.body.addEventListener(event, removeAtTheEnd);
+  });
+</script>
+
 <style lang="scss">
   .logo {
     width: 350px;

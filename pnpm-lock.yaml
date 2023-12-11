@@ -20,6 +20,9 @@ dependencies:
   solid-js:
     specifier: ^1.4.3
     version: 1.8.7
+  throttle-debounce:
+    specifier: ^5.0.0
+    version: 5.0.0
 
 devDependencies:
   "@typescript-eslint/eslint-plugin":
@@ -6688,6 +6691,14 @@ packages:
         integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==,
       }
     dev: true
+
+  /throttle-debounce@5.0.0:
+    resolution:
+      {
+        integrity: sha512-2iQTSgkkc1Zyk0MeVrt/3BvuOXYPl/R8Z0U2xxo9rjwNciaHDG3R+Lm6dh4EeUci49DanvBnuqI6jshoQQRGEg==,
+      }
+    engines: { node: ">=12.22" }
+    dev: false
 
   /titleize@3.0.0:
     resolution:
