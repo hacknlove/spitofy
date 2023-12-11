@@ -68,11 +68,12 @@ const title = Astro.props.title;
   }
 
   body.playing header {
-    top: -55px;
+    top: -75px;
     opacity: 0.5;
   }
   body.playing header:hover,
-  body.playing header:focus-within {
+  body.playing header:focus-within,
+  body.userRecentAction.playing header {
     top: 0;
     opacity: 1;
   }
