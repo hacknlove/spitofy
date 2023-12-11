@@ -35,6 +35,7 @@ import Spitofy from "./Spitofy.svg.astro";
 <script>
   let lastFrame = 0;
   const audio = document.getElementById("audioGlobal") as HTMLAudioElement;
+  const background  = document.getElementById("basicVisuals") as HTMLElement;
   function randomLogo(currentFrame: number) {
     const bpm = audio.dataset.bmp;
 
@@ -54,6 +55,9 @@ import Spitofy from "./Spitofy.svg.astro";
     logoover.style.left = Math.random() * 100 + "vw";
     logoover.style.transform = `rotate(${Math.random() * 360}deg)`;
     window.requestAnimationFrame(randomLogo);
+
+    background.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, ${Math.random() * 25 + 25}%)`;
+    background.style.perspective = `${Math.random() * 2 + 2}vmin`;
   }
 
   window.requestAnimationFrame(randomLogo);
