@@ -9,11 +9,13 @@ import FePause from "./FePause.astro";
 </div>
 
 <script>
-  document.getElementById("mainPlayButton")?.addEventListener("click", () => {
-    (document.getElementById("audioGlobal") as HTMLAudioElement)?.play();
-  });
-  document.getElementById("mainPauseButton")?.addEventListener("click", () => {
-    (document.getElementById("audioGlobal") as HTMLAudioElement)?.pause();
+  document.addEventListener("astro:page-load", () => {
+    document.getElementById("mainPlayButton")?.addEventListener("click", () => {
+      (document.getElementById("audioGlobal") as HTMLAudioElement)?.play();
+    });
+    document.getElementById("mainPauseButton")?.addEventListener("click", () => {
+      (document.getElementById("audioGlobal") as HTMLAudioElement)?.pause();
+    });
   });
 </script>
 
