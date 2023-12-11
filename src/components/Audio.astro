@@ -17,14 +17,21 @@ const track =
 </audio>
 
 <script>
-  const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
-  audio.addEventListener("ended", () => {
-    document.body.classList.remove("playing");
-  });
-  audio.addEventListener("play", () => {
-    document.body.classList.add("playing");
-  });
-  audio.addEventListener("pause", () => {
-    document.body.classList.remove("playing");
+  document.addEventListener("astro:page-load", () => {
+    const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+
+    if (!audio.paused) {
+      document.body.classList.add("playing");
+    }
+
+    audio.addEventListener("ended", () => {
+      document.body.classList.remove("playing");
+    });
+    audio.addEventListener("play", () => {
+      document.body.classList.add("playing");
+    });
+    audio.addEventListener("pause", () => {
+      document.body.classList.remove("playing");
+    });
   });
 </script>

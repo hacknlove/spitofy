@@ -34,14 +34,11 @@ import Spitofy from "./Spitofy.svg.astro";
 </div>
 <script>
   let lastFrame = 0;
-  const audio = document.getElementById("audioGlobal") as HTMLAudioElement;
-  const background = document.getElementById("basicVisuals") as HTMLElement;
+  let audio;
+  let background;
+  
   function randomLogo(currentFrame: number) {
-    const bpm = audio.dataset.bmp;
-
-    if (!bpm) {
-      return;
-    }
+    const bpm = audio.dataset.bmp || "120";
 
     let currentBpm = parseInt(bpm);
 
@@ -62,7 +59,12 @@ import Spitofy from "./Spitofy.svg.astro";
     background.style.perspective = `${Math.random() * 2 + 2}vmin`;
   }
 
-  window.requestAnimationFrame(randomLogo);
+  document.addEventListener("astro:page-load", () => {
+    audio = document.getElementById("audioGlobal") as HTMLAudioElement;
+    background = document.getElementById("basicVisuals") as HTMLElement;
+
+    window.requestAnimationFrame(randomLogo);
+  });
 </script>
 
 <script>
@@ -91,10 +93,15 @@ import Spitofy from "./Spitofy.svg.astro";
     "mousemove",
   ];
 
-  events.forEach((event) => {
-    document.body.addEventListener(event, setAtTheBeginning);
-    document.body.addEventListener(event, removeAtTheEnd);
+  document.addEventListener("astro:page-load", () => {
+    setAtTheBeginning();
+
+    events.forEach((event) => {
+      document.body.addEventListener(event, setAtTheBeginning);
+      document.body.addEventListener(event, removeAtTheEnd);
+    });
   });
+
 </script>
 
 <style lang="scss">
