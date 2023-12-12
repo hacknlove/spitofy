@@ -1,5 +1,5 @@
 ---
-import Track from "./Track.jsx";
+import Track from "./Track.astro";
 
 import { getCollection } from "astro:content";
 
@@ -10,11 +10,11 @@ const tracks = await getCollection("tracks");
   {
     tracks.map((track) => (
       <Track
-        client:idle
         img={track.data.img}
         mp3={track.data.mp3}
         name={track.data.name}
         slug={track.data.slug}
+        bpm={track.data.bpm}
       />
     ))
   }
@@ -22,8 +22,10 @@ const tracks = await getCollection("tracks");
 
 <style>
   div {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
     gap: 40px;
+    width: 100%;
     flex-wrap: wrap;
     justify-content: center;
   }

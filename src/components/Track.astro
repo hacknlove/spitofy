@@ -1,0 +1,64 @@
+---
+const { img, mp3, name, slug } = Astro.props;
+---
+
+<a
+  class="Track"
+  transition:name={name}
+  href={`/track/${slug}`}
+  data-slug={slug}
+  data-mp3={mp3}
+>
+  <img
+    class="Track__img"
+    src={`${import.meta.env.CF_IMAGE_URL}${img}/350x350`}
+    srcset={`${import.meta.env.CF_IMAGE_URL}${img}/350x350 x1, ${
+      import.meta.env.CF_IMAGE_URL
+    }${img}/700x700 x2`}
+    alt={name}
+  />
+</a>
+
+<style lang="scss">
+  .Track {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+    background-color: #0008;
+    color: white;
+    align-items: center;
+    cursor: url(/hand.webp), pointer;
+    transform: scale(0.95);
+    transition: 0.15s;
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.151);
+  }
+  .Track__img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .Track:hover {
+    .Track__img {
+      transform: scale(1.05);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+
+    document.querySelectorAll(".Track").forEach((el) => {
+      el.addEventListener("click", onClick);
+    });
+
+    async function onClick() {
+      audio.src = this.dataset.mp3;
+    }
+  });
+</script>

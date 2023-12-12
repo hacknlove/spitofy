@@ -94,7 +94,7 @@ import Spitofy from "./Spitofy.svg.astro";
   ];
 
   document.addEventListener("astro:page-load", () => {
-    setAtTheBeginning();
+    setClass();
 
     events.forEach((event) => {
       document.body.addEventListener(event, setAtTheBeginning);
