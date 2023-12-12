@@ -75,5 +75,14 @@ const { title, track } = Astro.props;
         --phrase: calc(var(--word) * 4);
       }
     </style>
+    <script>
+      let bodyClassName;
+      document.addEventListener("astro:before-swap", () => {
+        bodyClassName = document.body.className;
+      });
+      document.addEventListener("astro:after-swap", () => {
+        document.body.className = bodyClassName;
+      });
+    </script>
   </body>
 </html>
