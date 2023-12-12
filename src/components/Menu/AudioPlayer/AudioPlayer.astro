@@ -1,7 +1,6 @@
 ---
 import FePlay from "@/components/Controls/FePlay.astro";
 import FePause from "@/components/Controls/FePause.astro";
-import BiStars from "./BiStars.astro";
 import AntDesignFullscreenOutlined from "./AntDesignFullscreenOutlined.astro";
 import AntDesignFullscreenExitOutlined from "./AntDesignFullscreenExitOutlined.astro";
 import WaveFormProgress from "./WaveFormProgess.astro";
@@ -13,9 +12,7 @@ import WaveFormProgress from "./WaveFormProgess.astro";
     <FePause id="playerPauseButton" class="pause" />
   </button>
   <WaveFormProgress />
-  <button class="star">
-    <BiStars id="mainStarButton" class="star" />
-  </button>
+
   <button class="fullscreen">
     <AntDesignFullscreenOutlined class="fullscreenEnter" />
     <AntDesignFullscreenExitOutlined class="fullscreenExit" />

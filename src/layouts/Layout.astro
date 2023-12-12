@@ -1,7 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Butterchurn from "@/components/Butterchurn/Butterchurn.astro";
-import Visuals from "@/components/Visuals/Visuals";
 import Background from "@/components/Background.astro";
 import Audio from "@/components/Audio.astro";
 import type { CollectionEntry } from "astro:content";
@@ -34,8 +33,6 @@ const { title, track } = Astro.props;
     <ViewTransitions />
   </head>
   <body>
-    <Visuals client:idle transition:name="visuals" transition:persist />
-
     <Butterchurn transition:name="canvas" transition:persist />
     <Background transition:name="background" transition:persist />
 
