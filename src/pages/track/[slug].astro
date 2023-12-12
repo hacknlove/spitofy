@@ -21,16 +21,21 @@ const { name } = track.data;
 
 <Layout title="Spitofy. Make the music Punk Again" track={track}>
   <Header title={name} />
-  <Cover track={track} />
-  <Controls track={track} />
+  <div>
+    <Cover track={track} />
+    <Controls track={track} />
+  </div>
   <Footer />
 </Layout>
 
 <style>
-  .mainPicture {
-    width: 75vmin;
-    height: 75vmin;
-    margin: 0 auto;
-    display: block;
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    height: 100lvh;
   }
 </style>
