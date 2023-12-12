@@ -36,7 +36,7 @@ import Spitofy from "./Spitofy.svg.astro";
   let lastFrame = 0;
   let audio;
   let background;
-  
+
   function randomLogo(currentFrame: number) {
     const bpm = audio.dataset.bmp || "120";
 
@@ -101,7 +101,6 @@ import Spitofy from "./Spitofy.svg.astro";
       document.body.addEventListener(event, removeAtTheEnd);
     });
   });
-
 </script>
 
 <style lang="scss">

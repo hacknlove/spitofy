@@ -12,9 +12,8 @@ const track =
   transition:name="audioGlobal"
   transition:persist
   data-bmp={track.data.bpm}
->
-  <source src={track.data.mp3} />
-</audio>
+  preload="metadata"
+  src={track.data.mp3}></audio>
 
 <script>
   document.addEventListener("astro:page-load", () => {

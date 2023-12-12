@@ -23,6 +23,7 @@ export default function AudioPlayer() {
     const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
     setTotalTime(audio.duration);
     setCurentTime(audio.currentTime);
+    setTrack(audio.src);
 
     audio.addEventListener("timeupdate", () => {
       setCurentTime(audio.currentTime);
