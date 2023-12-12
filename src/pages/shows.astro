@@ -10,21 +10,9 @@ import Header from "@/components/Menu/Header.astro";
 <Layout title="Spitofy. Make the music Punk Again">
   <Header title="Shows" />
   <Title title="Shows" />
+  <Toast text="No shows for the next 30 days" />
 
-  <div class="container">
-    <Toast text="No shows for the next 30 days" />
-
-    <DatesInput />
-  </div>
-
+  <DatesInput />
   <Footer />
 </Layout>
 
-<style>
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-</style>
