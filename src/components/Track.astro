@@ -1,5 +1,5 @@
 ---
-const { img, mp3, name, slug } = Astro.props;
+const { img, mp3, name, slug, waveform } = Astro.props;
 ---
 
 <a
@@ -8,12 +8,13 @@ const { img, mp3, name, slug } = Astro.props;
   href={`/track/${slug}`}
   data-slug={slug}
   data-mp3={mp3}
+  data-waveform={waveform}
 >
   <img
     class="Track__img"
-    src={`${import.meta.env.CF_IMAGE_URL}${img}/350x350`}
-    srcset={`${import.meta.env.CF_IMAGE_URL}${img}/350x350 x1, ${
-      import.meta.env.CF_IMAGE_URL
+    src={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350`}
+    srcset={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350 x1, ${
+      import.meta.env.PUBLIC_CF_IMAGE_URL
     }${img}/700x700 x2`}
     alt={name}
   />
@@ -58,6 +59,7 @@ const { img, mp3, name, slug } = Astro.props;
     });
 
     async function onClick() {
+      audio.dataset.waveform = this.dataset.waveform;
       audio.src = this.dataset.mp3;
     }
   });

@@ -1,0 +1,64 @@
+---
+import FePlay from "@/components/Controls/FePlay.astro";
+import FePause from "@/components/Controls/FePause.astro";
+import BiStars from "./BiStars.astro";
+import WaveFormProgress from "./WaveFormProgess.astro";
+---
+
+<div>
+  <button class="playPause">
+    <FePlay id="playerPlayButton" class="play" />
+    <FePause id="playerPauseButton" class="pause" />
+  </button>
+  <WaveFormProgress />
+  <button class="star">
+    <BiStars id="mainStarButton" class="star" />
+  </button>
+</div>
+<script>
+  document.addEventListener("astro:page-load", () => {
+    document
+      .getElementById("playerPlayButton")
+      ?.addEventListener("click", () => {
+        (document.getElementById("audioGlobal") as HTMLAudioElement)?.play();
+      });
+    document
+      .getElementById("playerPauseButton")
+      ?.addEventListener("click", () => {
+        (document.getElementById("audioGlobal") as HTMLAudioElement)?.pause();
+      });
+  });
+</script>
+
+<style lang="scss">
+  div {
+    display: flex;
+  }
+  .pause {
+    display: none;
+  }
+  button {
+    width: 70px;
+    height: 70px;
+    background: none;
+    border: none;
+    cursor: url("/hand.webp"), pointer;
+
+    svg {
+      width: 50px;
+      height: 50px;
+      color: white;
+    }
+  }
+  button:hover {
+    background: black;
+  }
+  body.playing {
+    .play {
+      display: none;
+    }
+    .pause {
+      display: block;
+    }
+  }
+</style>

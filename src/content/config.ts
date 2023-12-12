@@ -5,6 +5,7 @@ const tracks = defineCollection({
   schema: z.object({
     img: z.string(),
     mp3: z.string(),
+    waveform: z.string(),
     name: z.string(),
     slug: z.string(),
     bpm: z.number(),

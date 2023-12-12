@@ -1,6 +1,7 @@
 {
   "img": "traia.png",
   "mp3": "https://media.spitofy.com/traia.mp3",
+  "waveform": "traia.mp3.png",
   "name": "Traia",
   "slug": "traia",
   "bpm": 120

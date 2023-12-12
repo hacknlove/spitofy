@@ -1,6 +1,7 @@
 {
   "img": "besame.png",
   "mp3": "https://media.spitofy.com/besame.mp3",
+  "waveform": "besame.mp3.png",
   "name": "Besame",
   "slug": "besame",
   "bpm": 120

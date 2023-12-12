@@ -15,6 +15,7 @@ const tracks = await getCollection("tracks");
         name={track.data.name}
         slug={track.data.slug}
         bpm={track.data.bpm}
+        waveform={track.data.waveform}
       />
     ))
   }
