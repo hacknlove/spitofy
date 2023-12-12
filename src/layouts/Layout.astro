@@ -4,6 +4,8 @@ import Butterchurn from "@/components/Butterchurn/Butterchurn.astro";
 import Background from "@/components/Background/Background.astro";
 import Audio from "@/components/Audio.astro";
 import type { CollectionEntry } from "astro:content";
+import Logo from "@/components/Background/Logo.astro";
+import LogoOver from "@/components/Background/LogoOver.astro";
 
 interface Props {
   title: string;
@@ -35,9 +37,11 @@ const { title, track } = Astro.props;
   <body>
     <Butterchurn transition:name="canvas" transition:persist />
     <Background transition:name="background" transition:persist />
+    <Logo />
 
     <Audio transition:name="audioGlobal" transition:persist track={track} />
     <slot />
+    <LogoOver />
     <style is:global>
       html {
         font-family: system-ui, sans-serif;

@@ -1,0 +1,57 @@
+---
+import Spitofy from "../Spitofy.svg.astro";
+---
+
+<div id="logoover" class="logo logo-over">
+  <Spitofy />
+</div>
+
+<style>
+  div {
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    top: 50lvh;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: multiply;
+    opacity: 0.5;
+    z-index: 99999;
+    pointer-events: none;
+    filter: drop-shadow(0 0 15px #fff);
+  }
+</style>
+
+<script>
+  let audio;
+  let lastFrame = 0;
+  let logoover;
+
+  function randomLogo(currentFrame: number) {
+    if (!document.body.classList.contains("playing")) {
+      window.requestAnimationFrame(randomLogo);
+      return;
+    }
+    audio ??= document.getElementById("audioGlobal");
+    const bpm = audio.dataset.bmp || "120";
+
+    let currentBpm = parseInt(bpm);
+
+    console.log(currentBpm);
+
+    if (currentFrame - lastFrame < 1000 / (currentBpm / 60) / 4) {
+      window.requestAnimationFrame(randomLogo);
+      return;
+    }
+    console.log("frame");
+    lastFrame = currentFrame;
+
+    logoover ??= document.getElementById("logoover") as HTMLElement;
+    logoover.style.top = Math.random() * 100 + "lvh";
+    logoover.style.left = Math.random() * 100 + "vw";
+    logoover.style.transform = `rotate(${Math.random() * 360}deg)`;
+    logoover.style.width = `${Math.random() * 20 + 10}vmin`;
+    window.requestAnimationFrame(randomLogo);
+  }
+
+  setTimeout(() => randomLogo(window.performance.now()), 3000);
+</script>
