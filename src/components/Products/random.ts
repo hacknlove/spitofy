@@ -1,4 +1,8 @@
 function random() {
+  if (!document.body.classList.contains("playing")) {
+    window.requestAnimationFrame(random);
+    return;
+  }
   // 'NodeListOf' is not defined
   const elements = document.querySelectorAll(
     "#Products h2",

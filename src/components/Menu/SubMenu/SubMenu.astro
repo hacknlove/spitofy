@@ -38,6 +38,10 @@ switch (url.pathname) {
 
 <script>
   function random() {
+    if (!document.body.classList.contains("playing")) {
+      window.requestAnimationFrame(random);
+      return;
+    }
     // 'NodeListOf' is not defined
     const as = document.querySelectorAll(
       "nav>a:not(:hover)",
