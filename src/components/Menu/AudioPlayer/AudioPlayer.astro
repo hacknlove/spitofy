@@ -2,10 +2,12 @@
 import FePlay from "@/components/Controls/FePlay.astro";
 import FePause from "@/components/Controls/FePause.astro";
 import BiStars from "./BiStars.astro";
+import AntDesignFullscreenOutlined from "./AntDesignFullscreenOutlined.astro";
+import AntDesignFullscreenExitOutlined from "./AntDesignFullscreenExitOutlined.astro";
 import WaveFormProgress from "./WaveFormProgess.astro";
 ---
 
-<div>
+<div id="AudioPlayer">
   <button class="playPause">
     <FePlay id="playerPlayButton" class="play" />
     <FePause id="playerPauseButton" class="pause" />
@@ -14,27 +16,19 @@ import WaveFormProgress from "./WaveFormProgess.astro";
   <button class="star">
     <BiStars id="mainStarButton" class="star" />
   </button>
+  <button class="fullscreen">
+    <AntDesignFullscreenOutlined class="fullscreenEnter" />
+    <AntDesignFullscreenExitOutlined class="fullscreenExit" />
+  </button>
 </div>
-<script>
-  document.addEventListener("astro:page-load", () => {
-    document
-      .getElementById("playerPlayButton")
-      ?.addEventListener("click", () => {
-        (document.getElementById("audioGlobal") as HTMLAudioElement)?.play();
-      });
-    document
-      .getElementById("playerPauseButton")
-      ?.addEventListener("click", () => {
-        (document.getElementById("audioGlobal") as HTMLAudioElement)?.pause();
-      });
-  });
-</script>
-
 <style lang="scss">
   div {
     display: flex;
   }
   .pause {
+    display: none;
+  }
+  .fullscreenExit {
     display: none;
   }
   button {
@@ -61,4 +55,45 @@ import WaveFormProgress from "./WaveFormProgess.astro";
       display: block;
     }
   }
+  body.fullscreen {
+    .fullscreenEnter {
+      display: none;
+    }
+    .fullscreenExit {
+      display: block;
+    }
+  }
 </style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    document
+      .getElementById("playerPlayButton")
+      ?.addEventListener("click", () => {
+        (document.getElementById("audioGlobal") as HTMLAudioElement)?.play();
+      });
+    document
+      .getElementById("playerPauseButton")
+      ?.addEventListener("click", () => {
+        (document.getElementById("audioGlobal") as HTMLAudioElement)?.pause();
+      });
+
+    document
+      .querySelector("#AudioPlayer .fullscreen")
+      ?.addEventListener("click", () => {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        } else {
+          document.documentElement.requestFullscreen();
+        }
+      });
+
+    document.addEventListener("fullscreenchange", () => {
+      if (document.fullscreenElement) {
+        document.body.classList.add("fullscreen");
+      } else {
+        document.body.classList.remove("fullscreen");
+      }
+    });
+  });
+</script>
