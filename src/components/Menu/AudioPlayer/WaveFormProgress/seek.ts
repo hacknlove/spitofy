@@ -22,5 +22,4 @@ document.addEventListener("astro:page-load", () => {
 
   WaveFormProgess.addEventListener("mousemove", throttledMouseMove);
   WaveFormProgess.addEventListener("click", seek);
-
 });
