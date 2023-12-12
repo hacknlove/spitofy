@@ -1,0 +1,151 @@
+.logo {
+    width: 350px;
+    right: 0;
+    position: fixed;
+    bottom: 0;
+    z-index: 0;
+    filter: drop-shadow(0 0 15px #000);
+    mix-blend-mode: multiply;
+  }
+  .logo:not(.logo-over) {
+    animation: explode var(--quarter-note) linear infinite;
+    animation-play-state: paused;
+  }
+  body.playing .logo:not(.logo-over)
+   {
+    animation-play-state: running;
+  }
+
+
+  @keyframes explode {
+    0% {
+      transform: scale(1);
+    }
+
+    75% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(10);
+    }
+  }
+
+  .logo.logo-over {
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    top: 50lvh;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    z-index: 99999;
+    pointer-events: none;
+    filter: drop-shadow(0 0 15px #fff);
+  }
+  @media (max-width: 400px) {
+    .logo {
+      width: 200px;
+      svg {
+        width: 200px;
+      }
+    }
+  }
+
+  .container {
+    display: none;
+    background-color: #e15210;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    perspective: 3.125vmin;
+    position: fixed;
+    width: 100vw;
+    height: 100lvh;
+    top: 0;
+    left: 0;
+    animation: 0.11s linear infinite hueRotate;
+    animation-play-state: paused;
+    z-index: -1;
+  }
+  body.playing .container
+   {
+    animation-play-state: running;
+  }
+
+
+  @keyframes hueRotate {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+    50% {
+      filter: hue-rotate(180deg);
+    }
+    100% {
+      filter: hue-rotate(360deg);
+    }
+  }
+
+  // Polygon -----------------------------
+
+  .polygon {
+    animation: 0.13s linear infinite polygon;
+    animation-play-state: paused;
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    transform-style: preserve-3d;
+    transition: top 0.5s;
+    transform: rotatex(90deg) rotatey(0) translatey(-25vmin);
+  }
+  body.playing .polygon
+   {
+    animation-play-state: running;
+  }
+
+  @keyframes polygon {
+    0% {
+      transform: rotatex(90deg) rotatey(0) translatey(-25vmin);
+    }
+
+    100% {
+      transform: rotatex(90deg) rotatey(360deg) translatey(0);
+    }
+  }
+
+  // Side --------------------------------
+
+  $n: 16; // number of sides
+  $r: 25vmin; // inradius (apothem)
+  $a: 2 * $r * tan(180deg / $n); // side length
+
+  .side {
+    background-image: url(/fractal-fire-sky-seamless-background.jpg);
+    background-size: ($n * $a) 25%;
+    height: 100vmin;
+    position: fixed;
+    transform-origin: 0;
+    width: calc(#{$a} + 1px);
+    animation: 0.25s ease alternate infinite inandout;
+    animation-play-state: paused;
+
+
+    @for $i from 1 through $n {
+      &:nth-child(#{$i}) {
+        background-position: ($a * $i * -1) 0;
+        transform: rotatey(calc(360deg / $n * $i)) translate3d(-50%, -50%, $r);
+      }
+    }
+  }
+  body.playing .side
+   {
+    animation-play-state: running;
+  }
+
+  @keyframes inandout {
+    0% {
+      background-size: ($n * $a) 5%;
+    }
+
+    100% {
+      background-size: ($n * $a) 95%;
+    }
+  }

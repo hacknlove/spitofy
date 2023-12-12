@@ -1,0 +1,117 @@
+---
+import Spitofy from "../Spitofy.svg.astro";
+import "./Background.scss";
+
+---
+
+<div
+  id="basicVisuals"
+  class="container activeVisuals"
+  style={{ display: "block" }}
+>
+  <div class="polygon">
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+    <div class="side"></div>
+  </div>
+</div>
+<div class="logo">
+  <Spitofy />
+</div>
+<div id="logoover" class="logo logo-over">
+  <Spitofy />
+</div>
+<script>
+  let lastFrame = 0;
+  let audio;
+  let background;
+
+  function randomLogo(currentFrame: number) {
+    if (!document.body.classList.contains("playing")) {
+      window.requestAnimationFrame(randomLogo);
+      return;
+    }
+    const bpm = audio.dataset.bmp || "120";
+
+    let currentBpm = parseInt(bpm);
+
+    if (currentFrame - lastFrame < 1000 / (currentBpm / 60) / 4) {
+      window.requestAnimationFrame(randomLogo);
+      return;
+    }
+    lastFrame = currentFrame;
+    const logoover = document.getElementById("logoover") as HTMLElement;
+    logoover.style.top = Math.random() * 100 + "lvh";
+    logoover.style.left = Math.random() * 100 + "vw";
+    logoover.style.transform = `rotate(${Math.random() * 360}deg)`;
+    window.requestAnimationFrame(randomLogo);
+
+    background.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, ${
+      Math.random() * 25 + 25
+    }%)`;
+    background.style.perspective = `${Math.random() * 2 + 2}vmin`;
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    audio = document.getElementById("audioGlobal") as HTMLAudioElement;
+    background = document.getElementById("basicVisuals") as HTMLElement;
+  });
+
+  setTimeout(() => {
+      window.requestAnimationFrame(randomLogo);
+  }, 5000);
+
+</script>
+
+<script>
+  import { debounce } from "throttle-debounce";
+
+  function setClass() {
+    document.body.classList.add("userRecentAction");
+    document.body.classList.add("animation");
+  }
+  function removeClass() {
+    document.body.classList.remove("userRecentAction");
+  }
+
+  const setAtTheBeginning = debounce(1000, setClass, {
+    atBegin: true,
+  });
+  const removeAtTheEnd = debounce(1000, removeClass, {
+    atBegin: false,
+  });
+
+  const events = [
+    "click",
+    "touchstart",
+    "touchmove",
+    "touchend",
+    "touchcancel",
+    "mousemove",
+  ];
+
+  document.addEventListener("astro:page-load", () => {
+    document.body.classList.add("userRecentAction");
+
+    setClass();
+
+    events.forEach((event) => {
+      document.body.addEventListener(event, setAtTheBeginning);
+      document.body.addEventListener(event, removeAtTheEnd);
+    });
+  });
+</script>
+
