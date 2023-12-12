@@ -1,0 +1,14 @@
+{
+  "image": "tshirt-logo-black.png",
+  "name": "T-Shirt Logo Black",
+  "slug": "tshirt-logo-black",
+  "price": "2000",
+  "sizes": ["S", "M", "L", "XL", "XXL"],
+  "stock": {
+    "S": 0,
+    "M": 0,
+    "L": 0,
+    "XL": 0,
+    "XXL": 0
+  }
+}

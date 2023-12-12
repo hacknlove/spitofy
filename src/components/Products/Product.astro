@@ -1,0 +1,97 @@
+---
+const { image, name, price } = Astro.props;
+---
+
+<div>
+  <img
+    class="Track__img"
+    src={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${image}/350x350`}
+    srcset={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${image}/350x350 x1, ${
+      import.meta.env.PUBLIC_CF_IMAGE_URL
+    }${image}/700x700 x2`}
+    alt={name}
+  />
+  <h2>{name}</h2>
+  <span class="price">${(price / 100).toString().padEnd(2, "0")}€</span>
+  <span class="outOfStock">Out of stock</span>
+  <button> Add to cart</button>
+</div>
+
+<style lang="scss">
+  div {
+    cursor: url(/hand.webp), pointer;
+    position: relative;
+  }
+  div:hover {
+    background: #0008;
+    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+  }
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  h2 {
+    color: white;
+  }
+  .price {
+    color: black;
+    background: white;
+    padding: 10px 20px;
+    transform: rotate(30deg);
+    position: absolute;
+    font-weight: 900;
+    box-shadow: 0 0 25px -5px #0008;
+    top: 15%;
+    right: 15%;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  div:hover {
+    span {
+      opacity: 1;
+    }
+    button {
+      opacity: 1;
+    }
+  }
+  button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #0008;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-weight: 900;
+    font-size: 20px;
+    box-shadow: 0 0 25px -5px #0008;
+    opacity: 0;
+    transition: opacity 0.5s;
+    cursor: inherit;
+    &:hover {
+      background: black;
+    }
+  }
+  .outOfStock {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 0, 0, 0.742);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-weight: 900;
+    font-size: 40px;
+    box-shadow: 0 0 25px -5px #0008;
+    opacity: 0;
+    transition: opacity 0.5s;
+    cursor: inherit;
+  }
+</style>

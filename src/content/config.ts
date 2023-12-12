@@ -14,4 +14,18 @@ const tracks = defineCollection({
 });
 // 3. Export a single `collections` object to register your collection(s)
 //    This key should match your collection directory name in "src/content"
-export const collections = { tracks };
+
+const merch = defineCollection({
+  type: "data",
+  schema: z.object({
+    image: z.string(),
+    name: z.string(),
+    slug: z.string(),
+    price: z.string(),
+  }),
+});
+
+export const collections = {
+  tracks,
+  merch,
+};

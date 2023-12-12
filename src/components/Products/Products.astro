@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import Product from "./Product.astro";
+
+const products = await getCollection("merch");
+---
+
+<div id="Products">
+  {products.map((track) => <Product {...track.data} />)}
+</div>
+
+<style>
+  div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
+    gap: 40px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>
+
+<script src="./random.ts"></script>
+<script src="./addToCart.ts"></script>
