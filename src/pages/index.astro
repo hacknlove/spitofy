@@ -5,6 +5,7 @@ import Footer from "@/components/Menu/Footer.astro";
 import Title from "@/components/Title.astro";
 import Playlist from "@/components/Playlist.astro";
 import Products from "@/components/Products/Products.astro";
+import Toast from "@/components/Toast.astro";
 ---
 
 <Layout title="Spitofy">
@@ -15,5 +16,16 @@ import Products from "@/components/Products/Products.astro";
   <Title title="Merch" />
   <Products />
 
+  <Title title="Shows" />
+  <Toast text="No shows for the next 30 days" />
+
+  <div></div>
+
   <Footer />
 </Layout>
+
+<style>
+  div {
+    height: 50vh;
+  }
+</style>
