@@ -36,13 +36,10 @@ import Spitofy from "./Spitofy.svg.astro";
 
     let currentBpm = parseInt(bpm);
 
-    console.log(currentBpm);
-
     if (currentFrame - lastFrame < 1000 / (currentBpm / 60) / 4) {
       window.requestAnimationFrame(randomLogo);
       return;
     }
-    console.log("frame");
     lastFrame = currentFrame;
 
     logoover ??= document.getElementById("logoover") as HTMLElement;
