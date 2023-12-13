@@ -16,7 +16,7 @@ function updateTime() {
   const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
 
   const span = WaveFormProgess.querySelector("span") as HTMLSpanElement;
-  span.innerText = `${secondsToHuman(audio.currentTime)} / ${secondsToHuman(
+  span.innerText = `${secondsToHuman(audio.currentTime)}/${secondsToHuman(
     audio.duration,
   )}`;
 
