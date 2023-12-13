@@ -3,7 +3,7 @@ import "./Background.scss";
 ---
 
 <div
-  id="basicVisuals"
+  id="Background"
   class="container activeVisuals"
   style={{ display: "block" }}
 >
@@ -26,6 +26,8 @@ import "./Background.scss";
     <div class="side"></div>
   </div>
 </div>
+<script src="./randomBackground.ts"></script>
+
 <script>
   let lastFrame = 0;
   let audio;
@@ -45,10 +47,6 @@ import "./Background.scss";
       return;
     }
     lastFrame = currentFrame;
-    const logoover = document.getElementById("logoover") as HTMLElement;
-    logoover.style.top = Math.random() * 100 + "lvh";
-    logoover.style.left = Math.random() * 100 + "vw";
-    logoover.style.transform = `rotate(${Math.random() * 360}deg)`;
     window.requestAnimationFrame(randomLogo);
 
     background.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, ${
@@ -59,7 +57,7 @@ import "./Background.scss";
 
   document.addEventListener("astro:page-load", () => {
     audio = document.getElementById("audioGlobal") as HTMLAudioElement;
-    background = document.getElementById("basicVisuals") as HTMLElement;
+    background = document.getElementById("Background") as HTMLElement;
   });
 
   setTimeout(() => {
