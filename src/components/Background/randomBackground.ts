@@ -20,6 +20,8 @@ function randomBackground() {
   }
 }
 
+randomBackground();
+
 document.addEventListener("astro:page-load", randomBackground);
 
 export default {};
