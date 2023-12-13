@@ -43,7 +43,7 @@ const { title, track } = Astro.props;
     <Audio transition:name="audioGlobal" transition:persist track={track} />
     <slot />
     <LogoOver />
-    <style is:global>
+    <style is:global lang="scss">
       html {
         font-family: system-ui, sans-serif;
         background: #13151a;
@@ -74,6 +74,14 @@ const { title, track } = Astro.props;
         --sixteenth-note: calc(60s / var(--BPM) / 4);
         --word: calc(var(--whole-note) * 4);
         --phrase: calc(var(--word) * 4);
+
+        --button-size: 50px;
+        @media (max-width: 500px) {
+          --button-size: 40px;
+        }
+        @media (max-width: 400px) {
+          --button-size: 30px;
+        }
       }
     </style>
     <script>
