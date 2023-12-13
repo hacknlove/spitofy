@@ -28,17 +28,9 @@ documentEvents.forEach((event) => {
   document.body.addEventListener(event, removeAtTheEnd);
 });
 
-const audioEvents = [
-  "play",
-  "pause",
-  "ended",
-  "timeupdate",
-  "volumechange",
-  "ratechange",
-  "progress",
-];
+const audioEvents = ["play", "pause", "ended", "volumechange", "ratechange"];
 
-const audio = document.getElementById("audioGlobal");
+const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
 audioEvents.forEach((event) => {
   audio.addEventListener(event, setAtTheBeginning);
   audio.addEventListener(event, removeAtTheEnd);
