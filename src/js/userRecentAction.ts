@@ -24,8 +24,8 @@ const documentEvents = [
   "mousemove",
 ];
 documentEvents.forEach((event) => {
-  document.body.addEventListener(event, setAtTheBeginning);
-  document.body.addEventListener(event, removeAtTheEnd);
+  document.addEventListener(event, setAtTheBeginning);
+  document.addEventListener(event, removeAtTheEnd);
 });
 
 const audioEvents = ["play", "pause", "ended", "volumechange", "ratechange"];
