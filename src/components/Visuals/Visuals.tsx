@@ -9,7 +9,7 @@ import styles from "./Visuals.module.scss";
 import { createSignal } from "solid-js";
 
 export default function Visuals() {
-  const [mode, setMode] = createSignal("basicVisuals");
+  const [mode, setMode] = createSignal("Background");
 
   function onClick() {
     const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
@@ -70,9 +70,9 @@ export default function Visuals() {
           <MingcuteFireworkFill />
         </button>
         <button
-          class={mode() === "basicVisuals" ? styles.active : ""}
+          class={mode() === "Background" ? styles.active : ""}
           onClick={onClick}
-          data-type="basicVisuals"
+          data-type="Background"
         >
           <PhSpiralFill />
         </button>

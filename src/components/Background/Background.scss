@@ -10,11 +10,11 @@
   height: 100lvh;
   top: 0;
   left: 0;
-  animation: 0.11s linear infinite hueRotate;
   animation-play-state: paused;
   z-index: -1;
 }
 body.playing .container {
+  animation: 0.11s linear infinite hueRotate;
   animation-play-state: running;
 }
 
@@ -33,7 +33,6 @@ body.playing .container {
 // Polygon -----------------------------
 
 .polygon {
-  animation: 0.13s linear infinite polygon;
   animation-play-state: paused;
   left: 50%;
   position: fixed;
@@ -43,6 +42,7 @@ body.playing .container {
   transform: rotatex(90deg) rotatey(0) translatey(-25vmin);
 }
 body.playing .polygon {
+  animation: 0.13s linear infinite polygon;
   animation-play-state: running;
 }
 
@@ -69,7 +69,6 @@ $a: 2 * $r * tan(180deg / $n); // side length
   position: fixed;
   transform-origin: 0;
   width: calc(#{$a} + 1px);
-  animation: 0.25s ease alternate infinite inandout;
   animation-play-state: paused;
 
   @for $i from 1 through $n {
@@ -80,6 +79,7 @@ $a: 2 * $r * tan(180deg / $n); // side length
   }
 }
 body.playing .side {
+  animation: 0.25s ease alternate infinite inandout;
   animation-play-state: running;
 }
 
