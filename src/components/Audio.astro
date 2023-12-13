@@ -1,8 +1,23 @@
 ---
-import { getEntry } from "astro:content";
+import { getEntry, getCollection } from "astro:content";
 
 const track =
   Astro.props.track || (await getEntry("tracks", "we will never die"));
+
+const unsortedTracks = await getCollection("tracks");
+
+unsortedTracks.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
+
+const tracks = unsortedTracks.map(({ data: { mp3, slug, bpm, waveform } }) => ({
+  mp3,
+  slug,
+  bpm,
+  waveform,
+}));
+
+const songIndex = tracks.findIndex((t) => t.slug === track.data.slug);
+
+tracks.push(...tracks.splice(0, songIndex + 1));
 ---
 
 <audio
@@ -15,23 +30,57 @@ const track =
   data-waveform={track.data.waveform}
   preload="metadata"
   src={track.data.mp3}></audio>
+<script define:vars={{ tracks }}>
+  window.playlist = tracks;
+</script>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+  import { navigate } from "astro:transitions/client";
 
-    if (!audio.paused) {
-      document.body.classList.add("playing");
+  interface PlaylistItem {
+    mp3: string;
+    bpm: string;
+    waveform: string;
+    slug: string;
+    // Include any other properties that playlist items have
+  }
+
+  interface CustomWindow extends Window {
+    playlist: PlaylistItem[];
+  }
+
+  declare let window: CustomWindow;
+
+  const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+
+  if (!audio.paused) {
+    document.body.classList.add("playing");
+  }
+
+  audio.addEventListener("ended", () => {
+    document.body.classList.remove("playing");
+  });
+  audio.addEventListener("play", () => {
+    document.body.classList.add("playing");
+  });
+  audio.addEventListener("pause", () => {
+    document.body.classList.remove("playing");
+  });
+
+  audio.addEventListener("ended", () => {
+    audio.currentTime = 0;
+    const nextTrack = window.playlist.shift() as PlaylistItem;
+    window.playlist.push(nextTrack);
+
+    audio.currentTime = 0;
+    audio.src = nextTrack.mp3;
+    audio.dataset.bpm = nextTrack.bpm;
+    audio.dataset.waveform = nextTrack.waveform;
+
+    if (location.pathname.startsWith("/track/")) {
+      navigate(`/track/${nextTrack.slug}`);
+    } else {
+      audio.play();
     }
-
-    audio.addEventListener("ended", () => {
-      document.body.classList.remove("playing");
-    });
-    audio.addEventListener("play", () => {
-      document.body.classList.add("playing");
-    });
-    audio.addEventListener("pause", () => {
-      document.body.classList.remove("playing");
-    });
   });
 </script>
