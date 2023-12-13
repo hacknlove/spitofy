@@ -24,4 +24,11 @@ randomBackground();
 
 document.addEventListener("astro:page-load", randomBackground);
 
+document
+  .getElementById("audioGlobal")
+  ?.addEventListener("pause", randomBackground);
+document
+  .getElementById("audioGlobal")
+  ?.addEventListener("ended", randomBackground);
+
 export default {};
