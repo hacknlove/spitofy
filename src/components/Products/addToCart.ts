@@ -5,7 +5,6 @@ function outOfStock() {
   }, 200);
 }
 document.addEventListener("astro:page-load", () => {
-  console.log("loaded");
   document.querySelectorAll("#Products>div").forEach((button) => {
     button.addEventListener("click", outOfStock);
   });
