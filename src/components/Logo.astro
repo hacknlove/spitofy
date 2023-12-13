@@ -1,0 +1,48 @@
+---
+import Spitofy from "./Spitofy.svg.astro";
+---
+
+<div>
+  <Spitofy />
+</div>
+
+<style>
+  div {
+    width: 350px;
+    right: 0;
+    position: fixed;
+    bottom: 0;
+    z-index: 0;
+    filter: drop-shadow(0 0 15px #000);
+    mix-blend-mode: multiply;
+    animation: explode var(--quarter-note) linear infinite;
+    animation-play-state: paused;
+  }
+  body.playing div {
+    animation-play-state: running;
+  }
+
+  @keyframes explode {
+    0% {
+      transform: scale(1);
+    }
+
+    75% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(10);
+      opacity: 0.5;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .logo {
+      width: 200px;
+      svg {
+        width: 200px;
+      }
+    }
+  }
+</style>
