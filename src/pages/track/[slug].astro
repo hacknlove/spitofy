@@ -19,7 +19,13 @@ const track = Astro.props;
 const { name } = track.data;
 ---
 
-<Layout title={`Spitofy. ${name}`} track={track}>
+<Layout
+  title={`Spitofy. ${name}`}
+  track={track}
+  og={{
+    type: "music",
+  }}
+>
   <Header title={name} />
   <div>
     <Cover track={track} />

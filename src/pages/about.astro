@@ -6,7 +6,12 @@ import Header from "@/components/Menu/Header.astro";
 import LegalStuff from "@/components/LegalStuff.astro";
 ---
 
-<Layout title="About Spitofy.">
+<Layout
+  title="About Spitofy."
+  og={{
+    type: "website",
+  }}
+>
   <Header title="About" />
   <Title title="About" />
 

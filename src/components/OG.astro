@@ -2,29 +2,26 @@
 const { title, track } = Astro.props;
 const og = Object.assign({}, Astro.props.og, {
   title: title,
-  url: Astro.url.pathname,
   image: `${import.meta.env.PUBLIC_CF_IMAGE_URL}${track.data.img}/1024x1024`,
-  audio: track?.data.mp3,
-  type: "music",
-  "audio:type": "audio/mpeg",
-  "music:musicial": "spitofy",
   site_name: "spitofy",
-  "music:release_date": track.data.date,
+  type: "website",
 });
 ---
 
 <meta property="og:title" content={og.title} />
-<meta property="og:type" content={og.type} />
-<meta property="og:url" content={og.url} />
 <meta property="og:image" content={og.image} />
 <meta property="og:site_name" content={og.site_name} />
+
 {
-  og.type === "music" && (
+  og.type === "music" ? (
     <>
-      <meta property="og:audio" content={og.audio} />
-      <meta property="og:audio:type" content={og["audio:type"]} />
-      <meta property="music:musicial" content={og["music:musicial"]} />
-      <meta property="music:release_date" content={og["music:release_date"]} />
+      <meta property="og:type" content="music" />
+      <meta property="og:musicial" content="spitofy" />
+      <meta property="audio:type" content="audio/mp3" />
+      <meta property="og:audio" content={track.data.mp3} />
+      <meta property="music:release_date" content={track.data.date} />
     </>
+  ) : (
+    <meta property="og:type" content="website" />
   )
 }
