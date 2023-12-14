@@ -1,14 +1,25 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Audio from "@/components/Audio.astro";
-import type { CollectionEntry } from "astro:content";
+import { getEntry, type CollectionEntry } from "astro:content";
+import OG from "@/components/OG.astro";
 
 interface Props {
   title: string;
   track?: CollectionEntry<"tracks">;
+  og?: {
+    title?: string;
+    description?: string;
+    image?: string;
+    url?: string;
+    type?: string;
+    audio?: string;
+    site_name?: string;
+  };
 }
 
-const { title, track } = Astro.props;
+const { title, track: commingTrack, og } = Astro.props;
+const track = commingTrack ?? (await getEntry("tracks", "we will never die"));
 ---
 
 <!doctype html>
@@ -28,6 +39,7 @@ const { title, track } = Astro.props;
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
     <script src="@/js/userRecentAction.js"></script>
+    <OG title={title} track={track} og={og} />
 
     <ViewTransitions />
   </head>
