@@ -3,11 +3,18 @@ import { getCollection } from "astro:content";
 import Product from "./Product.astro";
 
 const products = await getCollection("merch");
+const productsBySlug = Object.fromEntries(
+  products.map((p) => [p.data.slug, p.data]),
+);
 ---
 
 <div id="Products">
   {products.map((track) => <Product {...track.data} />)}
 </div>
+
+<script define:vars={{ productsBySlug }}>
+  window.productsBySlug ??= productsBySlug;
+</script>
 
 <style>
   div {
