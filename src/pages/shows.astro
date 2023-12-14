@@ -8,7 +8,12 @@ import Header from "@/components/Menu/Header.astro";
 import LegalStuff from "@/components/LegalStuff.astro";
 ---
 
-<Layout title="Spitofy. Shows.">
+<Layout
+  title="Spitofy. Shows."
+  og={{
+    type: "website",
+  }}
+>
   <Header title="Shows" />
   <Title title="Shows" />
   <Toast text="No shows for the next 30 days" />

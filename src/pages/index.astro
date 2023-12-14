@@ -9,7 +9,12 @@ import Toast from "@/components/Toast.astro";
 import LegalStuff from "@/components/LegalStuff.astro";
 ---
 
-<Layout title="Spitofy. Oficial website.">
+<Layout
+  title="Spitofy. Oficial website."
+  og={{
+    type: "website",
+  }}
+>
   <Header title="Spitofy" />
   <Title title="Tracks" />
   <Playlist />
