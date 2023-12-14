@@ -27,7 +27,6 @@ const merch = defineCollection({
   }),
 });
 
-
 export const collections = {
   tracks,
   merch,
