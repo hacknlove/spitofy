@@ -9,3 +9,5 @@ document.addEventListener("astro:page-load", () => {
     button.addEventListener("click", outOfStock);
   });
 });
+
+export default {};
