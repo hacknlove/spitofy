@@ -22,8 +22,11 @@ const merch = defineCollection({
     name: z.string(),
     slug: z.string(),
     price: z.string(),
+    sizes: z.array(z.string()),
+    stock: z.record(z.number()),
   }),
 });
+
 
 export const collections = {
   tracks,
