@@ -6,6 +6,7 @@ import Title from "@/components/Title.astro";
 import Playlist from "@/components/Playlist.astro";
 import Products from "@/components/Products/Products.astro";
 import Toast from "@/components/Toast.astro";
+import LegalStuff from "@/components/LegalStuff.astro";
 ---
 
 <Layout title="Spitofy">
@@ -19,13 +20,6 @@ import Toast from "@/components/Toast.astro";
   <Title title="Shows" />
   <Toast text="No shows for the next 30 days" />
 
-  <div></div>
-
+  <LegalStuff />
   <Footer />
 </Layout>
-
-<style>
-  div {
-    height: 50vh;
-  }
-</style>

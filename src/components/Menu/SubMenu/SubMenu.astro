@@ -3,24 +3,16 @@ import CiHamburgerMd from "./CiHamburgerMd.astro";
 
 const url = Astro.url;
 
-let current: string;
+const pathnames = {
+  "/": "Spitofy",
+  "/tracks": "Tracks",
+  "/shows": "Shows",
+  "/merch": "Merch",
+  "/about": "About",
+};
 
-switch (url.pathname) {
-  case "/":
-    current = "home";
-    break;
-  case "/tracks":
-    current = "tracks";
-    break;
-  case "/shows":
-    current = "shows";
-    break;
-  case "/merch":
-    current = "merch";
-    break;
-  default:
-    current = "tracks";
-}
+const current =
+  pathnames[url.pathname] ?? (url.pathname.startsWith("/track") && "tracks");
 ---
 
 <div>
@@ -28,11 +20,13 @@ switch (url.pathname) {
     <CiHamburgerMd class="openSubmenu" />
   </button>
   <nav>
-    <a class:list={[{ current: current === "home" }]} href="/">Spitofy</a>
-    <a class:list={[{ current: current === "tracks" }]} href="/tracks">Tracks</a
-    >
-    <a class:list={[{ current: current === "shows" }]} href="/shows">Shows</a>
-    <a class:list={[{ current: current === "merch" }]} href="/merch">Merch</a>
+    {
+      Object.entries(pathnames).map(([pathname, label]) => (
+        <a class:list={[{ current: current === label }]} href={pathname}>
+          {label}
+        </a>
+      ))
+    }
   </nav>
 </div>
 
