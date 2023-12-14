@@ -1,8 +1,7 @@
 ---
-import { getEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 
-const track =
-  Astro.props.track || (await getEntry("tracks", "we will never die"));
+const track = Astro.props.track;
 
 const unsortedTracks = await getCollection("tracks");
 
