@@ -3,12 +3,12 @@ import CiShoppingBag02 from "../Cart/CiShoppingBag02.astro";
 import CartContent from "./CartContent";
 ---
 
-<div id="Cart" data-items="4" transition:name="Cart" transition:persist>
+<div id="Cart" data-items="0" transition:name="Cart" transition:persist>
   <button>
     <CiShoppingBag02 />
   </button>
   <nav>
-    <CartContent client:visible client:only/>
+    <CartContent client:idle client:only />
   </nav>
 </div>
 

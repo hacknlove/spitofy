@@ -1,8 +1,8 @@
 ---
-const { image, name, price } = Astro.props;
+const { image, name, price, slug, sizes } = Astro.props;
 ---
 
-<div>
+<div data-slug={slug}>
   <img
     class="Track__img"
     src={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${image}/350x350`}
@@ -15,11 +15,27 @@ const { image, name, price } = Astro.props;
   <span class="price">${(price / 100).toString().padEnd(2, "0")}€</span>
   <span class="outOfStock">Out of stock</span>
   <button> Add to cart</button>
+  {
+    sizes && (
+      <div class="sizes">
+        {sizes.map((size) => (
+          <label>
+            <input
+              type="radio"
+              name="size"
+              value={size}
+              checked={size === "M"}
+            />
+            <span>{size}</span>
+          </label>
+        ))}
+      </div>
+    )
+  }
 </div>
 
 <style lang="scss">
   div {
-    cursor: url(/hand.webp), pointer;
     position: relative;
   }
   div:hover {
@@ -57,6 +73,9 @@ const { image, name, price } = Astro.props;
     button {
       opacity: 1;
     }
+    .sizes {
+      opacity: 1;
+    }
   }
   button {
     position: absolute;
@@ -72,7 +91,8 @@ const { image, name, price } = Astro.props;
     box-shadow: 0 0 25px -5px #0008;
     opacity: 0;
     transition: opacity 0.5s;
-    cursor: inherit;
+    cursor: url(/hand.webp), pointer;
+
     &:hover {
       background: black;
     }
@@ -92,6 +112,35 @@ const { image, name, price } = Astro.props;
     box-shadow: 0 0 25px -5px #0008;
     opacity: 0;
     transition: opacity 0.5s;
-    cursor: inherit;
+  }
+
+  .sizes {
+    color: white;
+    opacity: 0;
+    transition: opacity 0.5s;
+    display: flex;
+    justify-content: center;
+    input {
+      display: none;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      span {
+        cursor: url(/hand.webp), pointer;
+        display: block;
+        width: 30px;
+        text-align: center;
+        padding: 5px;
+      }
+      span:hover {
+        font-weight: 900;
+      }
+      input[type="radio"]:checked + span {
+        background: white;
+        color: black;
+      }
+    }
   }
 </style>
