@@ -114,9 +114,16 @@ const Icons = {
     svg {
       height: 80px;
       width: auto;
+      max-width: 100%;
       filter: saturate(0);
       opacity: 0.5;
       &:hover {
+        filter: saturate(1);
+        opacity: 1;
+      }
+    }
+    &:active {
+      svg {
         filter: saturate(1);
         opacity: 1;
       }
