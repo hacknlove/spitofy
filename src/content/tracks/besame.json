@@ -5,5 +5,15 @@
   "waveform": "besame.mp3.png",
   "name": "Besame",
   "slug": "besame",
-  "bpm": 120
+  "bpm": 120,
+  "links": {
+    "iTunes": "http://itunes.apple.com/album/id/1667547431",
+    "Spotify": "https://open.spotify.com/album/5hqbAqfiAhQMIQ53zVDrms",
+    "Tidal": "https://listen.tidal.com/album/273154303/track/273154304",
+    "Deezer": "https://www.deezer.com/es/track/2122033377",
+    "Napster": "https://web.napster.com/track/tra.738313645",
+    "AmazonMusic": "https://music.amazon.com/albums/B0BSXNW1V6",
+    "YoutubeMusic": "https://music.youtube.com/watch?v=xWs7vC0AdIU&list=OLAK5uy_mtK55Z-y9DLR2rpGt92TfFE2RFD03HZ_g",
+    "Mixcloud": "https://www.mixcloud.com/spitofy/besame/"
+  }
 }

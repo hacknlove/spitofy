@@ -10,6 +10,7 @@ const tracks = defineCollection({
     slug: z.string(),
     bpm: z.number(),
     date: z.string(),
+    links: z.record(z.string()),
   }),
 });
 // 3. Export a single `collections` object to register your collection(s)

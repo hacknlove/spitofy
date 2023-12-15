@@ -5,5 +5,14 @@
   "waveform": "fuck%20off%20baby.mp3.png",
   "name": "Fuck Off, Baby",
   "slug": "fuck off baby",
-  "bpm": 120
+  "bpm": 120,
+  "links": {
+    "iTunes": "http://itunes.apple.com/album/id/1693059172",
+    "Spotify": "https://open.spotify.com/intl-es/track/7rMkb3U1oNpTSfGYJXBmHH?si=275edc91855e419b",
+    "Tidal": "https://listen.tidal.com/album/300425350/track/300425351",
+    "Deezer": "https://www.deezer.com/es/track/2331853825",
+    "Napster": "https://web.napster.com/track/tra.778471740",
+    "AmazonMusic": "https://music.amazon.com/albums/B0C8FRR7D3",
+    "YoutubeMusic": "https://music.youtube.com/playlist?list=OLAK5uy_lwsW8zJjXWwowwukptH05fiwvEC3REmUc"
+  }
 }

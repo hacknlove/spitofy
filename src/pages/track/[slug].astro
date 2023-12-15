@@ -5,6 +5,16 @@ import Footer from "@/components/Menu/Footer.astro";
 import Layout from "@/layouts/Layout.astro";
 import Cover from "@/components/Cover/Cover.astro";
 import Controls from "@/components/Controls/Controls.astro";
+import LegalStuff from "@/components/LegalStuff.astro";
+
+import AmazonMusic from "@/components/Icons/AmazonMusic.astro";
+import Deezer from "@/components/Icons/Deezer.astro";
+import Spotify from "@/components/Icons/Spotify.astro";
+import iTunes from "@/components/Icons/iTunes.astro";
+import Napster from "@/components/Icons/Napster.astro";
+import YoutubeMusic from "@/components/Icons/YoutubeMusic.astro";
+import Mixcloud from "@/components/Icons/Mixcloud.astro";
+import Tidal from "@/components/Icons/Tidal.astro";
 
 export async function getStaticPaths() {
   const tracks = await getCollection("tracks");
@@ -17,6 +27,17 @@ type Props = CollectionEntry<"tracks">;
 
 const track = Astro.props;
 const { name } = track.data;
+
+const Icons = {
+  AmazonMusic,
+  Deezer,
+  Spotify,
+  iTunes,
+  Napster,
+  YoutubeMusic,
+  Mixcloud,
+  Tidal,
+};
 ---
 
 <Layout
@@ -27,15 +48,38 @@ const { name } = track.data;
   }}
 >
   <Header title={name} />
-  <div>
+  <div class="TrackMain">
     <Cover track={track} />
     <Controls track={track} />
   </div>
+  <div class="TrackLinks">
+    {
+      Object.entries(track.data.links).map(([key, value]) => {
+        const Icon = Icons[key];
+        if (!Icon) {
+          console.error(`Icon ${key} not found`);
+          return null;
+        }
+        return (
+          <a
+            class="icon"
+            href={value}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon />
+          </a>
+        );
+      })
+    }
+  </div>
+
+  <LegalStuff />
   <Footer />
 </Layout>
 
-<style>
-  div {
+<style lang="scss">
+  .TrackMain {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,5 +87,39 @@ const { name } = track.data;
     width: 100vw;
     height: 100vh;
     height: 100lvh;
+  }
+
+  .TrackLinks {
+    color: white;
+    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+    background-color: #0009;
+    width: auto;
+    display: inline-block;
+    padding: 20px 40px;
+    font-size: 19px;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.151);
+    z-index: 10;
+    margin-bottom: 20px;
+    width: 80vmin;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .icon {
+    display: block;
+    color: #fff;
+    svg {
+      height: 80px;
+      width: auto;
+      filter: saturate(0);
+      opacity: 0.5;
+      &:hover {
+        filter: saturate(1);
+        opacity: 1;
+      }
+    }
   }
 </style>
