@@ -4,7 +4,9 @@ type ProductKind = {
   slug: string;
   price: string;
   sizes: [string];
-  stock: Record<string, number>;
+  stock: number;
+  from: string;
+  to: string;
 };
 declare global {
   interface Window {
@@ -12,29 +14,49 @@ declare global {
   }
 }
 
-function outOfStock() {
-  console.log(this);
-  setTimeout(() => {
-    this.querySelector(".outOfStock").style.display = "block";
-    this.querySelector("button").style.display = "none";
-  }, 200);
+function showProblem(productElement, selector) {
+  productElement.querySelector(selector).style.display = "block";
+  productElement.querySelector("button").style.display = "none";
 }
 
-function addToCart() {
+function tryToAddToCart() {
   const productElement = this.closest("[data-slug]");
 
   const product = window.productsBySlug[productElement.dataset.slug];
 
+  if (product.stock <= 0) {
+    return showProblem(productElement, ".outOfStock");
+  }
+
+  const now = Date.now();
+  const fromTs = new Date(product.from).getTime();
+  const toTs = new Date(product.to).getTime();
+
+  if (now < fromTs) {
+    return showProblem(productElement, ".waitForIt");
+  }
+  if (now > toTs) {
+    return showProblem(productElement, ".expired");
+  }
+
   const size = productElement.querySelector("input:checked")?.value;
 
-  if (size && product.stock[size] <= 0) {
-    outOfStock.call(productElement);
-  }
+  const id = `${product.slug}-${size}`;
+
+  window.addToCart({
+    image: product.image,
+    name: product.name,
+    slug: product.slug,
+    price: product.price,
+    amount: 1,
+    size,
+    id,
+  });
 }
 
 document.addEventListener("astro:page-load", () => {
   document.querySelectorAll("#Products button").forEach((button) => {
-    button.addEventListener("click", addToCart);
+    button.addEventListener("click", tryToAddToCart);
   });
 
   document.querySelectorAll("input").forEach((input) => {

@@ -23,7 +23,9 @@ const merch = defineCollection({
     slug: z.string(),
     price: z.string(),
     sizes: z.array(z.string()),
-    stock: z.record(z.number()),
+    stock: z.number(),
+    from: z.string(),
+    to: z.string(),
   }),
 });
 
