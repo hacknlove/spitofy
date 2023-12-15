@@ -4,6 +4,7 @@ import FePause from "@/components/Controls/FePause.astro";
 import AntDesignFullscreenOutlined from "./AntDesignFullscreenOutlined.astro";
 import AntDesignFullscreenExitOutlined from "./AntDesignFullscreenExitOutlined.astro";
 import WaveFormProgress from "./WaveFormProgess.astro";
+import BiStars from "./BiStars.astro";
 ---
 
 <div id="AudioPlayer">
@@ -12,6 +13,14 @@ import WaveFormProgress from "./WaveFormProgess.astro";
     <FePause id="playerPauseButton" class="pause" />
   </button>
   <WaveFormProgress />
+
+  <button>
+    <BiStars />
+    <div class="sub">
+      <span data-visuals="visuals-off">Off</span>
+      <span data-visuals="visuals-vortix">Vortix</span>
+    </div>
+  </button>
 
   <button class="fullscreen">
     <AntDesignFullscreenOutlined class="fullscreenEnter" />
@@ -30,6 +39,7 @@ import WaveFormProgress from "./WaveFormProgess.astro";
   }
   button {
     background: none;
+    position: relative;
     border: none;
     cursor: url("/hand.webp"), pointer;
 
@@ -38,6 +48,39 @@ import WaveFormProgress from "./WaveFormProgess.astro";
       width: var(--button-size);
       height: var(--button-size);
       color: white;
+    }
+
+    .sub {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      padding-bottom: 0%;
+      transform: translateY(100%);
+      transition:
+        transform 0.5s,
+        clip-path 0.5s;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      background: #0008;
+      backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+      clip-path: inset(0 0 100% 0);
+      width: 140px;
+      span {
+        font-size: 20px;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        &:hover {
+          font-weight: 900;
+        }
+      }
+    }
+    &:hover,
+    &:focus {
+      .sub {
+        transform: translateY(0%);
+        clip-path: inset(0 0 0 0);
+      }
     }
   }
   button:hover {
@@ -58,6 +101,14 @@ import WaveFormProgress from "./WaveFormProgess.astro";
     .fullscreenExit {
       display: block;
     }
+  }
+
+  body.visuals-vortix span[data-visuals="visuals-vortix"] {
+    background: black;
+  }
+
+  body.visuals-off span[data-visuals="visuals-off"] {
+    background: black;
   }
 </style>
 
@@ -90,6 +141,26 @@ import WaveFormProgress from "./WaveFormProgess.astro";
       } else {
         document.body.classList.remove("fullscreen");
       }
+    });
+
+    document.querySelectorAll("span[data-visuals]").forEach((visuals) => {
+      visuals.addEventListener("click", function () {
+        const current =
+          [...document.body.classList].find((el) =>
+            el.startsWith("visuals-"),
+          ) || "";
+
+        document.body.classList.remove(current);
+        document.body.classList.add(this.dataset.visuals);
+
+        document.dispatchEvent(
+          new CustomEvent("visualChange", {
+            detail: {
+              type: this.dataset.visuals,
+            },
+          }),
+        );
+      });
     });
   });
 </script>
