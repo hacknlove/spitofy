@@ -1,8 +1,9 @@
 ---
 const text = Astro.props.text;
+const className = Astro.props.class;
 ---
 
-<div>
+<div class={className}>
   {text}
   <slot />
 </div>

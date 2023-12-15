@@ -5,5 +5,15 @@
   "waveform": "traia.mp3.png",
   "name": "Traia",
   "slug": "traia",
-  "bpm": 120
+  "bpm": 120,
+  "links": {
+    "iTunes": "http://itunes.apple.com/album/id/1667779969",
+    "Spotify": "https://open.spotify.com/album/4kqHueqVpX0na8hQg6GtCH",
+    "Tidal": "https://listen.tidal.com/album/273324958/track/273324959",
+    "Deezer": "https://www.deezer.com/es/track/2123426267",
+    "Napster": "https://web.napster.com/track/tra.738545356",
+    "AmazonMusic": "https://music.amazon.com/albums/B0BT1R5KN8",
+    "YoutubeMusic": "https://music.youtube.com/watch?v=_caUSBI3V3Y&list=OLAK5uy_mtK55Z-y9DLR2rpGt92TfFE2RFD03HZ_g",
+    "Mixcloud": "https://www.mixcloud.com/spitofy/traia-/"
+  }
 }

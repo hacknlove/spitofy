@@ -5,5 +5,14 @@
   "waveform": "soundtrack.mp3.png",
   "name": "Sound Track",
   "slug": "soundtrack",
-  "bpm": 120
+  "bpm": 120,
+  "links": {
+    "iTunes": "http://itunes.apple.com/album/id/1671525247",
+    "Spotify": "https://open.spotify.com/album/4KDOub8SpVPNky7RezoxUX",
+    "Tidal": "https://listen.tidal.com/album/276448869/track/276448870",
+    "Deezer": "https://www.deezer.com/es/album/406967277",
+    "Napster": "https://web.napster.com/track/tra.744000419",
+    "AmazonMusic": "https://music.amazon.com/albums/B0BVML44YY?trackAsin=B0BVMJ5BJR&do=play",
+    "YoutubeMusic": "https://music.youtube.com/watch?v=f8Q_hiCBEq0&list=OLAK5uy_mtK55Z-y9DLR2rpGt92TfFE2RFD03HZ_g"
+  }
 }

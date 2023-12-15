@@ -5,5 +5,14 @@
   "waveform": "we%20will%20never%20die.mp3.png",
   "name": "We will never die",
   "slug": "we will never die",
-  "bpm": 120
+  "bpm": 120,
+  "links": {
+    "iTunes": "http://itunes.apple.com/album/id/1714630177",
+    "Spotify": "https://open.spotify.com/album/5jt5M5LYoKCUn2f9GFRTg1",
+    "Tidal": "https://listen.tidal.com/album/325964045/track/325964046",
+    "Deezer": "https://www.deezer.com/es/track/2523925491",
+    "Napster": "https://web.napster.com/track/tra.792505940",
+    "AmazonMusic": "https://music.amazon.com/albums/B0CM9MYVZ3",
+    "YoutubeMusic": "https://music.youtube.com/playlist?list=OLAK5uy_lW8tQ7lZAosSEHocNKOxQn_A47cm0j5U8"
+  }
 }
