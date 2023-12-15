@@ -5,17 +5,31 @@ import Title from "../components/Title.astro";
 import Header from "@/components/Menu/Header.astro";
 import Products from "@/components/Products/Products.astro";
 import LegalStuff from "@/components/LegalStuff.astro";
+import Toast from "@/components/Toast.astro";
 ---
 
 <Layout
-  title="Spitofy. Merch."
+  title="Spitofy. Shop."
   og={{
     type: "website",
   }}
 >
-  <Header title="Merch" />
+  <Header title="Shop" />
 
-  <Title title="Merch" />
+  <Title title="Shop" />
+
+  <Toast>
+    <h3>Top Quality.</h3>
+    <p>
+      All products are premium and high quality, because It's my reputation
+      which it's at stake.
+    </p>
+    <h3>Limited Time, Limited Stock.</h3>
+    <p>
+      We only sell units of each product. And products are only available for 1
+      month.
+    </p>
+  </Toast>
 
   <Products />
 

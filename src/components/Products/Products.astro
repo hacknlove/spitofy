@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Product from "./Product.astro";
 
 const products = await getCollection("merch");
+products.sort((a, b) => (a.data.from < b.data.from ? 1 : -1));
 const productsBySlug = Object.fromEntries(
   products.map((p) => [p.data.slug, p.data]),
 );

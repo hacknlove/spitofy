@@ -24,12 +24,33 @@ export default function CartContent() {
   const Cart = document.getElementById("Cart") as HTMLDivElement;
 
   window.addToCart = (product) => {
-    setCart([...cart(), product]);
+    const item = cart().find((p) => p.id === product.id);
+
+    if (!item) {
+      setCart([...cart(), product]);
+    } else {
+      item.amount += 1;
+      setCart([...cart()]);
+    }
 
     Cart.dataset.items = cart().length.toString();
   };
   window.removeFromCart = (product) => {
-    setCart(cart().filter((p) => p !== product));
+    const item = cart().find((p) => p.id === product.id);
+
+    if (!item) {
+      return;
+    }
+
+    item.amount -= 1;
+
+    if (item.amount <= 0) {
+      setCart(cart().filter((p) => p.id !== product.id));
+    } else {
+      setCart([...cart()]);
+    }
+
+    Cart.dataset.items = cart().length.toString();
   };
 
   return (
