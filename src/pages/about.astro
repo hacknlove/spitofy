@@ -4,6 +4,7 @@ import Footer from "@/components/Menu/Footer.astro";
 import Title from "@/components/Title.astro";
 import Header from "@/components/Menu/Header.astro";
 import LegalStuff from "@/components/LegalStuff.astro";
+import Contact from "@/components/Contact.astro";
 ---
 
 <Layout
@@ -28,15 +29,9 @@ import LegalStuff from "@/components/LegalStuff.astro";
     </p>
     <p>Thank you, thank you, thank you. You make this worth it.</p>
   </section>
-  <section>
-    <h3>Contact:</h3>
-    <div class="contact">
-      <span>Email:</span><span>me@Spitofy.com</span>
-      <span>Telegram:</span><span>https://t.me/spitofy_dot_com</span>
-      <span>Twitter:</span><span>https://twitter.com/spitofy_oficial</span>
-      <span>Phone:</span><span>+34 651 580 030</span>
-    </div>
-  </section>
+
+  <Contact />
+
   <LegalStuff />
 
   <Footer />
@@ -58,22 +53,5 @@ import LegalStuff from "@/components/LegalStuff.astro";
 
     min-width: 50%;
     max-width: 600px;
-  }
-
-  .contact {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    column-gap: 10px;
-    & > span {
-      padding: 10px 0;
-    }
-    & > span:nth-child(even) {
-      text-align: left;
-    }
-    & > span:nth-child(odd) {
-      text-align: right;
-      padding-right: 10px;
-      border-right: 1px solid #fff4;
-    }
   }
 </style>
