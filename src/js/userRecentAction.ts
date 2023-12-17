@@ -2,7 +2,6 @@ import { debounce } from "throttle-debounce";
 
 function setClass() {
   document.body.classList.add("userRecentAction");
-  document.body.classList.add("animation");
 }
 function removeClass() {
   document.body.classList.remove("userRecentAction");
