@@ -47,8 +47,8 @@ const track = commingTrack ?? (await getEntry("tracks", "we will never die"));
     <ViewTransitions />
   </head>
   <body class="visuals-vortix">
-    <Butterchurn transition:name="canvas" transition:persist />
     <Background transition:name="background" transition:persist />
+    <Butterchurn transition:name="canvas" transition:persist />
     <Logo />
 
     <Audio transition:name="audioGlobal" transition:persist track={track} />
