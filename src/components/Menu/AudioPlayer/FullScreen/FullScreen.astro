@@ -1,0 +1,50 @@
+---
+import AntDesignFullscreenOutlined from "./AntDesignFullscreenOutlined.astro";
+import AntDesignFullscreenExitOutlined from "./AntDesignFullscreenExitOutlined.astro";
+---
+
+<button class="fullscreen">
+  <AntDesignFullscreenOutlined class="fullscreenEnter" />
+  <AntDesignFullscreenExitOutlined class="fullscreenExit" />
+</button>
+
+<style lang="scss">
+  @use "../AudioPlayerButton.scss" as *;
+
+  button {
+    @include AudioPlayerButton;
+    .fullscreenExit {
+      display: none;
+    }
+  }
+
+  body.fullscreen {
+    .fullscreenEnter {
+      display: none;
+    }
+    .fullscreenExit {
+      display: block;
+    }
+  }
+</style>
+<script>
+  document.addEventListener("astro:page-load", () => {
+    document
+      .querySelector("#AudioPlayer .fullscreen")
+      ?.addEventListener("click", () => {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        } else {
+          document.documentElement.requestFullscreen();
+        }
+      });
+
+    document.addEventListener("fullscreenchange", () => {
+      if (document.fullscreenElement) {
+        document.body.classList.add("fullscreen");
+      } else {
+        document.body.classList.remove("fullscreen");
+      }
+    });
+  });
+</script>

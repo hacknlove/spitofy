@@ -1,0 +1,42 @@
+---
+import FePlay from "@/components/Controls/FePlay.astro";
+import FePause from "@/components/Controls/FePause.astro";
+---
+
+<button class="playPause">
+  <FePlay id="playerPlayButton" class="play" />
+  <FePause id="playerPauseButton" class="pause" />
+</button>
+<style lang="scss">
+  @use "../AudioPlayerButton.scss" as *;
+  button {
+    @include AudioPlayerButton;
+    .pause {
+      display: none;
+    }
+  }
+
+  body.playing {
+    .play {
+      display: none;
+    }
+    .pause {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    document
+      .getElementById("playerPlayButton")
+      ?.addEventListener("click", () => {
+        (document.getElementById("audioGlobal") as HTMLAudioElement)?.play();
+      });
+    document
+      .getElementById("playerPauseButton")
+      ?.addEventListener("click", () => {
+        (document.getElementById("audioGlobal") as HTMLAudioElement)?.pause();
+      });
+  });
+</script>
