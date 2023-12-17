@@ -13,7 +13,7 @@
   animation-play-state: paused;
   z-index: -1;
 }
-body.playing .container {
+body.playing.visuals-vortix .container {
   animation: 0.11s linear infinite hueRotate;
   animation-play-state: running;
 }
@@ -41,7 +41,7 @@ body.playing .container {
   transition: top 0.5s;
   transform: rotatex(90deg) rotatey(0) translatey(-25vmin);
 }
-body.playing .polygon {
+body.playing.visuals-vortix .polygon {
   animation: 0.13s linear infinite polygon;
   animation-play-state: running;
 }
@@ -78,7 +78,7 @@ $a: 2 * $r * tan(180deg / $n); // side length
     }
   }
 }
-body.playing .side {
+body.playing.visuals-vortix .side {
   animation: 0.25s ease alternate infinite inandout;
   animation-play-state: running;
 }
