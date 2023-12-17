@@ -1,6 +1,5 @@
 import butterchurn from "butterchurn";
 import isButterchurnSupported from "butterchurn/lib/isSupported.min";
-import butterchurnPresets from "butterchurn-presets";
 
 interface MyCustomEvent extends Event {
   detail: {
@@ -16,16 +15,27 @@ let lastFrameTime = 0;
 // eslint-disable-next-line
 let interval: any = 0;
 
-const presets = Object.values(butterchurnPresets.getPresets());
+let presets;
+
+async function loadPreset() {
+  presets ??= Object.values(
+    await fetch("/allPresets").then((res) => res.json()),
+  );
+
+  visualizer.loadPreset(
+    presets[Math.floor(Math.random() * presets.length)],
+    1.0,
+  );
+}
 
 const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
 
-document.body.addEventListener("visualChange", ({ detail }: MyCustomEvent) => {
+document.addEventListener("visualChange", ({ detail }: MyCustomEvent) => {
   if (!isButterchurnSupported()) {
     return;
   }
 
-  if (detail.type !== "butterchurnVisuals") {
+  if (detail.type !== "visuals-winamp") {
     closeButterchurn();
     return;
   }
@@ -80,12 +90,7 @@ function connectTrack() {
 
   startRenderer(window.performance.now());
 
-  interval = setInterval(() => {
-    visualizer.loadPreset(
-      presets[Math.floor(Math.random() * presets.length)],
-      1.0,
-    );
-  }, 15000);
+  interval = setInterval(loadPreset, 15000);
 }
 
 function startButterchurn() {
@@ -107,10 +112,7 @@ function startButterchurn() {
     },
   );
 
-  visualizer.loadPreset(
-    presets[Math.floor(Math.random() * presets.length)],
-    1.0,
-  );
+  loadPreset();
 
   connectTrack();
 }
