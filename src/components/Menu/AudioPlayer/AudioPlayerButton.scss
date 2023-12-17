@@ -1,0 +1,49 @@
+@mixin AudioPlayerButton {
+  background: none;
+  position: relative;
+  border: none;
+  cursor: url("/hand.webp"), pointer;
+
+  svg {
+    padding: 10px;
+    width: var(--button-size);
+    height: var(--button-size);
+    color: white;
+  }
+
+  .sub {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    padding-bottom: 0%;
+    transform: translateY(100%);
+    transition:
+      transform 0.5s,
+      clip-path 0.5s;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    background: #0008;
+    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+    clip-path: inset(0 0 100% 0);
+    width: 140px;
+    span {
+      font-size: 20px;
+      padding: 10px 20px;
+      box-sizing: border-box;
+      &:hover {
+        font-weight: 900;
+      }
+    }
+  }
+  &:hover,
+  &:focus {
+    .sub {
+      transform: translateY(0%);
+      clip-path: inset(0 0 0 0);
+    }
+  }
+  &:hover {
+    background: black;
+  }
+}

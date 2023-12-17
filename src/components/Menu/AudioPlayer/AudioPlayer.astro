@@ -1,166 +1,20 @@
 ---
-import FePlay from "@/components/Controls/FePlay.astro";
-import FePause from "@/components/Controls/FePause.astro";
-import AntDesignFullscreenOutlined from "./AntDesignFullscreenOutlined.astro";
-import AntDesignFullscreenExitOutlined from "./AntDesignFullscreenExitOutlined.astro";
 import WaveFormProgress from "./WaveFormProgess.astro";
-import BiStars from "./BiStars.astro";
+import VisualSelector from "./VisualSelector/VisualSelector.astro";
+import PlayPause from "./PlayPause/PlayPause.astro";
+import FullScreen from "./FullScreen/FullScreen.astro";
 ---
 
 <div id="AudioPlayer">
-  <button class="playPause">
-    <FePlay id="playerPlayButton" class="play" />
-    <FePause id="playerPauseButton" class="pause" />
-  </button>
+  <PlayPause />
   <WaveFormProgress />
 
-  <button>
-    <BiStars />
-    <div class="sub">
-      <span data-visuals="visuals-off">Off</span>
-      <span data-visuals="visuals-vortix">Vortix</span>
-    </div>
-  </button>
+  <VisualSelector />
 
-  <button class="fullscreen">
-    <AntDesignFullscreenOutlined class="fullscreenEnter" />
-    <AntDesignFullscreenExitOutlined class="fullscreenExit" />
-  </button>
+  <FullScreen />
 </div>
 <style lang="scss">
   div {
     display: flex;
   }
-  .pause {
-    display: none;
-  }
-  .fullscreenExit {
-    display: none;
-  }
-  button {
-    background: none;
-    position: relative;
-    border: none;
-    cursor: url("/hand.webp"), pointer;
-
-    svg {
-      padding: 10px;
-      width: var(--button-size);
-      height: var(--button-size);
-      color: white;
-    }
-
-    .sub {
-      position: absolute;
-      bottom: 100%;
-      right: 0;
-      padding-bottom: 0%;
-      transform: translateY(100%);
-      transition:
-        transform 0.5s,
-        clip-path 0.5s;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      background: #0008;
-      backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
-      clip-path: inset(0 0 100% 0);
-      width: 140px;
-      span {
-        font-size: 20px;
-        padding: 10px 20px;
-        box-sizing: border-box;
-        &:hover {
-          font-weight: 900;
-        }
-      }
-    }
-    &:hover,
-    &:focus {
-      .sub {
-        transform: translateY(0%);
-        clip-path: inset(0 0 0 0);
-      }
-    }
-  }
-  button:hover {
-    background: black;
-  }
-  body.playing {
-    .play {
-      display: none;
-    }
-    .pause {
-      display: block;
-    }
-  }
-  body.fullscreen {
-    .fullscreenEnter {
-      display: none;
-    }
-    .fullscreenExit {
-      display: block;
-    }
-  }
-
-  body.visuals-vortix span[data-visuals="visuals-vortix"] {
-    background: black;
-  }
-
-  body.visuals-off span[data-visuals="visuals-off"] {
-    background: black;
-  }
 </style>
-
-<script>
-  document.addEventListener("astro:page-load", () => {
-    document
-      .getElementById("playerPlayButton")
-      ?.addEventListener("click", () => {
-        (document.getElementById("audioGlobal") as HTMLAudioElement)?.play();
-      });
-    document
-      .getElementById("playerPauseButton")
-      ?.addEventListener("click", () => {
-        (document.getElementById("audioGlobal") as HTMLAudioElement)?.pause();
-      });
-
-    document
-      .querySelector("#AudioPlayer .fullscreen")
-      ?.addEventListener("click", () => {
-        if (document.fullscreenElement) {
-          document.exitFullscreen();
-        } else {
-          document.documentElement.requestFullscreen();
-        }
-      });
-
-    document.addEventListener("fullscreenchange", () => {
-      if (document.fullscreenElement) {
-        document.body.classList.add("fullscreen");
-      } else {
-        document.body.classList.remove("fullscreen");
-      }
-    });
-
-    document.querySelectorAll("span[data-visuals]").forEach((visuals) => {
-      visuals.addEventListener("click", function () {
-        const current =
-          [...document.body.classList].find((el) =>
-            el.startsWith("visuals-"),
-          ) || "";
-
-        document.body.classList.remove(current);
-        document.body.classList.add(this.dataset.visuals);
-
-        document.dispatchEvent(
-          new CustomEvent("visualChange", {
-            detail: {
-              type: this.dataset.visuals,
-            },
-          }),
-        );
-      });
-    });
-  });
-</script>

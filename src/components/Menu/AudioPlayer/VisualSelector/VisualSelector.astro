@@ -1,0 +1,50 @@
+---
+import BiStars from "./BiStars.astro";
+---
+
+<button>
+  <BiStars />
+  <div class="sub">
+    <span data-visuals="visuals-off">Off</span>
+    <span data-visuals="visuals-vortix">Vortix</span>
+  </div>
+</button>
+
+<style lang="scss">
+  @use "../AudioPlayerButton.scss" as *;
+
+  button {
+    @include AudioPlayerButton;
+  }
+
+  body.visuals-off span[data-visuals="visuals-off"],
+  body.visuals-vortix span[data-visuals="visuals-vortix"] {
+    background: black;
+    font-weight: 900;
+    cursor: url(/normalhand.webp), pointer;
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll("span[data-visuals]").forEach((visuals) => {
+      visuals.addEventListener("click", function () {
+        const current =
+          [...document.body.classList].find((el) =>
+            el.startsWith("visuals-"),
+          ) || "";
+
+        document.body.classList.remove(current);
+        document.body.classList.add(this.dataset.visuals);
+
+        document.dispatchEvent(
+          new CustomEvent("visualChange", {
+            detail: {
+              type: this.dataset.visuals,
+            },
+          }),
+        );
+      });
+    });
+  });
+</script>
