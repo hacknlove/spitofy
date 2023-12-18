@@ -1,6 +1,8 @@
 import butterchurn from "butterchurn";
 import isButterchurnSupported from "butterchurn/lib/isSupported.min";
 
+const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+
 interface MyCustomEvent extends Event {
   detail: {
     type: string;
@@ -28,7 +30,6 @@ async function loadPreset() {
   );
 }
 
-const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
 
 document.addEventListener("visualChange", ({ detail }: MyCustomEvent) => {
   if (!isButterchurnSupported()) {
