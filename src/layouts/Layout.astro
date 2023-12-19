@@ -45,6 +45,7 @@ const track = commingTrack ?? (await getEntry("tracks", "we will never die"));
     <script src="@/js/userRecentAction.js"></script>
     <OG title={title} track={track} og={og} />
     <ViewTransitions />
+    <script src="@/js/posthog.ts"></script>
   </head>
   <body class="visuals-vortix">
     <Background transition:name="background" transition:persist />

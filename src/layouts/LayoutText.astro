@@ -42,6 +42,7 @@ const track = commingTrack ?? (await getEntry("tracks", "we will never die"));
     <OG title={title} track={track} og={og} />
 
     <ViewTransitions />
+    <script src="@/js/posthog.ts"></script>
   </head>
   <body>
     <Audio transition:name="audioGlobal" transition:persist track={track} />

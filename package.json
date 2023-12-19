@@ -19,6 +19,7 @@
     "astro": "^3.6.4",
     "butterchurn": "^2.6.7",
     "butterchurn-presets": "^2.4.7",
+    "posthog-js": "^1.96.1",
     "solid-js": "^1.4.3",
     "throttle-debounce": "^5.0.0"
   },
