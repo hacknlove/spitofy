@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "pages:dev": "wrangler pages dev --compatibility-date=2023-10-03 --proxy 4321 --do ROOM=Room@room -- astro dev --port 4321",
+    "pages:dev": "wrangler pages dev --compatibility-date=2023-10-03 --proxy 4321 --kv REACTIONS -- astro dev --port 4321",
     "pages:deploy": "astro build && wrangler pages deploy ./dist",
     "pages:preview": "wrangler pages dev ./dist --compatibility-date=2023-10-03",
     "lint": "eslint --fix . && prettier --write .",
