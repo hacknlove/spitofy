@@ -2,6 +2,7 @@
   "date": "2023/02/04",
   "img": "soundtrack.png",
   "mp3": "https://media.spitofy.com/soundtrack.mp3",
+  "duration": 273.6,
   "waveform": "soundtrack.mp3.png",
   "name": "Sound Track",
   "slug": "soundtrack",
