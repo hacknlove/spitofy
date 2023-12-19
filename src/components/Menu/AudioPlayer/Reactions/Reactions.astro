@@ -1,0 +1,71 @@
+---
+import FluentEmojiFlatAstonishedFace from "./FluentEmojiFlatAstonishedFace.astro";
+import FluentEmojiFlatExplodingHead from "./FluentEmojiFlatExplodingHead.astro";
+import FluentEmojiFlatHeartOnFire from "./FluentEmojiFlatHeartOnFire.astro";
+import FluentEmojiFlatManDancing from "./FluentEmojiFlatManDancing.astro";
+import FluentEmojiFlatRaisingHands from "./FluentEmojiFlatRaisingHands.astro";
+import FluentEmojiFlatSignOfTheHorns from "./FluentEmojiFlatSignOfTheHorns.astro";
+import MdiChat from "./MdiChat.astro";
+---
+
+<button>
+  <MdiChat />
+  <div class="sub" id="reactions">
+    <span><FluentEmojiFlatAstonishedFace id="astonished" /></span>
+    <span><FluentEmojiFlatExplodingHead id="exploding" /></span>
+    <span><FluentEmojiFlatHeartOnFire id="heart" /></span>
+    <span><FluentEmojiFlatManDancing id="dancing" /></span>
+    <span><FluentEmojiFlatRaisingHands id="raising" /></span>
+    <span><FluentEmojiFlatSignOfTheHorns id="thorns" /></span>
+  </div>
+</button>
+
+<style lang="scss">
+  @use "../AudioPlayerButton.scss" as *;
+
+  button {
+    @include AudioPlayerButton;
+
+    .sub {
+      width: auto;
+      span {
+        padding: 4px;
+      }
+    }
+  }
+</style>
+<style is:global lang="scss">
+  .reaction {
+    position: fixed;
+    top: 100vh;
+    left: var(--from);
+    animation: fly var(--speed) linear forwards;
+    width: 50px;
+    height: 50px;
+  }
+
+  @keyframes fly {
+    from {
+      opacity: 0.9;
+      top: calc(100vh - 70px);
+      left: var(--from);
+    }
+    to {
+      opacity: 0.4;
+      top: -50px;
+      left: var(--to);
+    }
+  }
+</style>
+
+<script>
+  import { launch } from "@/js/reactions.ts";
+
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll("#reactions svg").forEach((reaction) => {
+      reaction.addEventListener("click", () => {
+        launch(reaction.id);
+      });
+    });
+  });
+</script>

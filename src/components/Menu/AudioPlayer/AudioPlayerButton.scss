@@ -33,6 +33,9 @@
       box-sizing: border-box;
       &:hover {
         font-weight: 900;
+        svg {
+          transform: scale(1.2);
+        }
       }
     }
   }
