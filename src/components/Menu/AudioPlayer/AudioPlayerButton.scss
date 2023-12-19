@@ -18,8 +18,8 @@
     padding-bottom: 0%;
     transform: translateY(100%);
     transition:
-      transform 0.5s,
-      clip-path 0.5s;
+      transform 0.5s ease-in-out,
+      clip-path 0.5s ease-in-out;
     color: white;
     display: flex;
     flex-direction: column;

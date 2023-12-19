@@ -70,6 +70,7 @@ const track = commingTrack ?? (await getEntry("tracks", "we will never die"));
         align-items: center;
         min-height: 100vh;
         min-height: 100lvh;
+        overflow-x: hidden;
       }
       a {
         cursor: url(/hand.webp), pointer;
@@ -101,6 +102,7 @@ const track = commingTrack ?? (await getEntry("tracks", "we will never die"));
       document.addEventListener("astro:before-swap", () => {
         bodyClassName = document.body.className;
       });
+
       document.addEventListener("astro:after-swap", () => {
         document.body.className = bodyClassName;
       });

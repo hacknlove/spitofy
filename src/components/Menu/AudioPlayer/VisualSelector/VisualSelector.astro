@@ -31,6 +31,11 @@ import BiStars from "./BiStars.astro";
   document.addEventListener("astro:page-load", () => {
     document.querySelectorAll("span[data-visuals]").forEach((visuals) => {
       visuals.addEventListener("click", function () {
+        setTimeout(() => {
+          const closest = visuals.closest("button:focus") as HTMLButtonElement;
+          closest.blur();
+        }, 100);
+
         const current =
           [...document.body.classList].find((el) =>
             el.startsWith("visuals-"),

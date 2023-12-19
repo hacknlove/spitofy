@@ -20,3 +20,13 @@ import Reactions from "./Reactions/Reactions.astro";
     display: flex;
   }
 </style>
+<style lang="scss" is:global>
+  .reactionIcon {
+    position: absolute;
+    top: 0;
+    left: var(--left);
+    opacity: 0.5;
+    width: 14px;
+    transform: translateX(-50%);
+  }
+</style>
