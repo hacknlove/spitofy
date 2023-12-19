@@ -20,12 +20,11 @@ tracks.push(...tracks.splice(0, songIndex + 1));
 ---
 
 <audio
-  autoplay
   id="audioGlobal"
   crossorigin="anonymous"
   transition:name="audioGlobal"
   transition:persist
-  data-bmp={track.data.bpm}
+  data-bpm={track.data.bpm}
   data-waveform={track.data.waveform}
   data-slug={track.data.slug}
   preload="metadata"
@@ -53,6 +52,8 @@ tracks.push(...tracks.splice(0, songIndex + 1));
 
   const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
 
+  audio.setAttribute("autoplay", "true");
+
   if (!audio.paused) {
     document.body.classList.add("playing");
   }
@@ -76,6 +77,7 @@ tracks.push(...tracks.splice(0, songIndex + 1));
     audio.src = nextTrack.mp3;
     audio.dataset.bpm = nextTrack.bpm;
     audio.dataset.waveform = nextTrack.waveform;
+    audio.dataset.slug = nextTrack.slug;
 
     if (location.pathname.startsWith("/track/")) {
       navigate(`/track/${nextTrack.slug}`);
