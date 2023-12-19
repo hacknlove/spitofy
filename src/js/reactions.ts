@@ -19,7 +19,7 @@ function getFrom() {
   const left = waveformClientRects.left;
   const width = waveformClientRects.width;
 
-  return left + (width * audio.currentTime) / audio.duration - 25;
+  return left + (width * audio.currentTime) / audio.duration - 35;
 }
 
 export function launch(id) {

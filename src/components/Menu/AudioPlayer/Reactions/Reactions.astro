@@ -39,7 +39,7 @@ import MdiChat from "./MdiChat.astro";
     position: fixed;
     top: 100vh;
     left: var(--from);
-    animation: fly var(--speed) linear forwards;
+    animation: fly var(--speed) linear forwards, trembling var(--quarter-note) linear infinite;
     width: 50px;
     height: 50px;
   }
@@ -49,6 +49,8 @@ import MdiChat from "./MdiChat.astro";
       opacity: 0.9;
       top: calc(100vh - 70px);
       left: var(--from);
+      width: 70px;
+      height: 70px;
     }
     to {
       opacity: 0.4;
@@ -56,15 +58,36 @@ import MdiChat from "./MdiChat.astro";
       left: var(--to);
     }
   }
+  @keyframes trembling {
+    0% {
+      transform: scale(1.15);
+    }
+    100% {
+      transform: scale(0.85);
+    }
+  }
 </style>
 
 <script>
   import { launch } from "@/js/reactions.ts";
 
+  const audio = document.getElementById("audioGlobal") as HTMLAudioElement;
+
   document.addEventListener("astro:page-load", () => {
     document.querySelectorAll("#reactions svg").forEach((reaction) => {
       reaction.addEventListener("click", () => {
         launch(reaction.id);
+
+        if (audio.currentTime !== 0) {
+          fetch("/sendReaction", {
+            method: "POST",
+            body: JSON.stringify({
+              track: audio.dataset.slug,
+              reaction: reaction.id,
+              currentTime: audio.currentTime,
+            }),
+          });
+        }
       });
     });
   });
