@@ -27,6 +27,7 @@ tracks.push(...tracks.splice(0, songIndex + 1));
   transition:persist
   data-bmp={track.data.bpm}
   data-waveform={track.data.waveform}
+  data-slug={track.data.slug}
   preload="metadata"
   src={track.data.mp3}></audio>
 <script define:vars={{ tracks }}>
