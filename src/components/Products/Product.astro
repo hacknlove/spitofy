@@ -18,7 +18,7 @@ const { image, name, price, slug, sizes, from, to, stock } = Astro.props;
     srcset={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${image}/350x350 x1, ${
       import.meta.env.PUBLIC_CF_IMAGE_URL
     }${image}/700x700 x2`}
-    alt={name}
+    alt={name ?? "product image"}
   />
   <h2>{name}</h2>
   <script>
@@ -43,7 +43,7 @@ const { image, name, price, slug, sizes, from, to, stock } = Astro.props;
   <span class="problem expired"
     >Sells ended at <span class="dateTs" data-date={to}>{to}</span></span
   >
-  <button> Add to cart</button>
+  <button aria-label="add To Cart"> Add to cart</button>
   {
     sizes && (
       <div class="sizes">

@@ -4,6 +4,7 @@ const { track } = Astro.props;
 
 <div>
   <img
+    alt={track.data.name ?? "track cover"}
     transition:name={track.data.name}
     class="mainPicture"
     src={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${track.data.img}/350x350`}

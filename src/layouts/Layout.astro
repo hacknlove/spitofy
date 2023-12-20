@@ -42,6 +42,7 @@ const track = commingTrack ?? (await getEntry("tracks", "we will never die"));
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content={og?.description} />
     <script src="@/js/userRecentAction.js"></script>
     <OG title={title} track={track} og={og} />
     <ViewTransitions />

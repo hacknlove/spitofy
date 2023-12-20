@@ -45,6 +45,7 @@ const Icons = {
   track={track}
   og={{
     type: "music",
+    description: track.data.description,
   }}
 >
   <Header title={name} />
@@ -52,6 +53,11 @@ const Icons = {
     <Cover track={track} />
     <Controls track={track} />
   </div>
+
+  <p class="TrackDescription">
+    {track.data.description ?? name}
+  </p>
+
   <div class="TrackLinks">
     {
       Object.entries(track.data.links).map(([key, value]) => {
@@ -79,6 +85,19 @@ const Icons = {
 </Layout>
 
 <style lang="scss">
+  .TrackDescription {
+    color: white;
+    max-width: 700px;
+    text-align: justify;
+    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+    background-color: #0009;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
   .TrackMain {
     display: flex;
     flex-direction: column;

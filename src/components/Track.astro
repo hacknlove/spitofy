@@ -17,7 +17,7 @@ const { img, mp3, name, slug, waveform, bpm } = Astro.props;
     srcset={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350 x1, ${
       import.meta.env.PUBLIC_CF_IMAGE_URL
     }${img}/700x700 x2`}
-    alt={name}
+    alt={name ?? "track cover"}
   />
 </a>
 
