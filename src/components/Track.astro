@@ -60,6 +60,9 @@ const { img, mp3, name, slug, waveform, bpm } = Astro.props;
     });
 
     async function onClick() {
+      if (audio.src === this.dataset.mp3) {
+        return;
+      }
       audio.dataset.waveform = this.dataset.waveform;
       audio.src = this.dataset.mp3;
       audio.dataset.bpm = this.dataset.bpm;
