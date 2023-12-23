@@ -28,6 +28,7 @@ import BiStars from "./BiStars.astro";
 </style>
 
 <script>
+  import { isButterchurnSupported } from "butterchurn/lib/isSupported.min";
   document.addEventListener("astro:page-load", () => {
     document.querySelectorAll("span[data-visuals]").forEach((visuals) => {
       visuals.addEventListener("click", function () {
@@ -53,5 +54,9 @@ import BiStars from "./BiStars.astro";
         );
       });
     });
+
+    if (isButterchurnSupported()) {
+      document.querySelector(".visuals-winamp")?.remove();
+    }
   });
 </script>
