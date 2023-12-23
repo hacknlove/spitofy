@@ -18,6 +18,7 @@ tracks.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
         slug={track.data.slug}
         bpm={track.data.bpm}
         waveform={track.data.waveform}
+        description={track.data.description}
       />
     ))
   }
@@ -25,11 +26,13 @@ tracks.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 
 <style>
   div {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
+    display: flex;
+    flex-direction: column;
     gap: 40px;
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 1979px;
+    margin: 0 auto;
   }
 </style>
