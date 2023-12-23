@@ -43,7 +43,7 @@ const track = commingTrack ?? (await getEntry("tracks", "we will never die"));
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="description" content={og?.description} />
-    <script src="@/js/userRecentAction.js"></script>
+    <script src="@/js/userRecentAction.ts"></script>
     <OG title={title} track={track} og={og} />
     <ViewTransitions />
     <script src="@/js/posthog.ts"></script>
