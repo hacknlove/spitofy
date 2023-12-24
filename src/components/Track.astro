@@ -1,5 +1,32 @@
 ---
-const { img, mp3, name, slug, waveform, bpm, description } = Astro.props;
+import AmazonMusic from "@/components/Icons/AmazonMusic.astro";
+import Deezer from "@/components/Icons/Deezer.astro";
+import Spotify from "@/components/Icons/Spotify.astro";
+import iTunes from "@/components/Icons/iTunes.astro";
+import Napster from "@/components/Icons/Napster.astro";
+import YoutubeMusic from "@/components/Icons/YoutubeMusic.astro";
+import Mixcloud from "@/components/Icons/Mixcloud.astro";
+import Tidal from "@/components/Icons/Tidal.astro";
+import Spitofy from "./Spitofy.svg.astro";
+
+const Icons = {
+  AmazonMusic,
+  Deezer,
+  Spotify,
+  iTunes,
+  Napster,
+  YoutubeMusic,
+  Mixcloud,
+  Tidal,
+  Spitofy,
+};
+
+import FePlay from "@/components/Controls/FePlay.astro";
+import FePause from "@/components/Controls/FePause.astro";
+
+const { img, mp3, name, slug, waveform, bpm, description, links } = Astro.props;
+
+const platformLinks = Object.entries(links);
 ---
 
 <div
@@ -10,17 +37,44 @@ const { img, mp3, name, slug, waveform, bpm, description } = Astro.props;
   data-waveform={waveform}
   data-bpm={bpm}
 >
-  <img
-    class="Track__img"
-    src={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350`}
-    srcset={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350 x1, ${
-      import.meta.env.PUBLIC_CF_IMAGE_URL
-    }${img}/700x700 x2`}
-    alt={name ?? "track cover"}
-  />
+  <div class="TrackCover">
+    <img
+      class="Track__img"
+      src={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350`}
+      srcset={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350 x1, ${
+        import.meta.env.PUBLIC_CF_IMAGE_URL
+      }${img}/700x700 x2`}
+      alt={name ?? "track cover"}
+    />
+    <div class="controls paused">
+      <FePlay id="mainPlayButton" class="play" />
+      <FePause id="mainPauseButton" class="pause" />
+    </div>
+  </div>
   <div class="TrackInfo">
     <h2>{name}</h2>
     <p>{description}</p>
+    <div class="TrackLinks">
+      {
+        platformLinks.map(([key, value]: [string, string]) => {
+          const Icon = Icons[key];
+          if (!Icon) {
+            console.error(`Icon ${key} not found`);
+            return null;
+          }
+          return (
+            <a
+              class="icon"
+              href={value}
+              target={key === "Spitofy" ? "_self" : "_blank"}
+              rel="noopener noreferrer"
+            >
+              <Icon />
+            </a>
+          );
+        })
+      }
+    </div>
   </div>
 </div>
 
@@ -35,7 +89,6 @@ const { img, mp3, name, slug, waveform, bpm, description } = Astro.props;
     align-items: flex-start;
     color: white;
     align-items: flex-start;
-    cursor: url(/hand.webp), pointer;
     transform: scale(0.95);
     transition: 0.15s;
     box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.151);
@@ -45,14 +98,15 @@ const { img, mp3, name, slug, waveform, bpm, description } = Astro.props;
       flex-direction: row-reverse;
     }
   }
-  .Track__img {
-    width: 300px;
-    height: auto;
-    max-width: 100%;
-    display: block;
-    margin: 0;
-    margin: 10px 0;
-    padding: 0;
+  .TrackCover {
+    position: relative;
+    .Track__img {
+      width: 300px;
+      height: auto;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
   }
 
   .TrackInfo {
@@ -68,9 +122,93 @@ const { img, mp3, name, slug, waveform, bpm, description } = Astro.props;
     padding: 10px 20px;
   }
 
-  .Track:hover {
-    .Track__img {
-      transform: scale(1.05);
+  .TrackLinks {
+    color: white;
+    width: auto;
+    display: inline-block;
+    font-size: 19px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    max-width: 700px;
+
+    .icon {
+      display: block;
+      color: #fff;
+      svg {
+        height: auto;
+        width: 75px;
+        max-width: 100%;
+        filter: saturate(0);
+        opacity: 0.5;
+        &:hover {
+          filter: saturate(1);
+          opacity: 1;
+        }
+      }
+      &:active {
+        svg {
+          filter: saturate(1);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 50px;
+      height: auto;
+      background: #0008;
+      opacity: 0;
+      transition: var(--quarter-note);
+      cursor: url(/hand.webp), pointer;
+    }
+
+    .pause {
+      display: none;
+    }
+    .play {
+      display: none;
+    }
+
+    @media (pointer: none) {
+      svg {
+        opacity: 1;
+      }
+    }
+
+    @media (hover: none) {
+      svg {
+        opacity: 1;
+      }
+    }
+
+    &.playing .pause {
+      display: block;
+    }
+    &.paused .play {
+      display: block;
+    }
+
+    &:hover {
+      svg {
+        opacity: 1;
+      }
     }
   }
 </style>
@@ -79,18 +217,58 @@ const { img, mp3, name, slug, waveform, bpm, description } = Astro.props;
   document.addEventListener("astro:page-load", () => {
     const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
 
-    document.querySelectorAll(".Track").forEach((el) => {
+    document.querySelectorAll(".TrackCover .controls").forEach((el) => {
       el.addEventListener("click", onClick);
     });
 
+    audio.addEventListener("play", () => {
+      document
+        .querySelectorAll(
+          `.Track:not([data-slug="${audio.dataset.slug}"]) .controls.playing`,
+        )
+        .forEach((el) => {
+          el.classList.remove("playing");
+          el.classList.add("paused");
+        });
+      const thisTrackControls = document.querySelector(
+        `.Track[data-slug="${audio.dataset.slug}"] .controls`,
+      );
+
+      thisTrackControls?.classList.remove("paused");
+      thisTrackControls?.classList.add("playing");
+    });
+
+    audio.addEventListener("pause", () => {
+      const thisTrackControls = document.querySelector(
+        `.Track[data-slug="${audio.dataset.slug}"] .controls`,
+      );
+      thisTrackControls?.classList.remove("playing");
+      thisTrackControls?.classList.add("paused");
+    });
+
     async function onClick() {
-      if (audio.src === this.dataset.mp3) {
+      const track = this.closest(".Track");
+      if (audio.src === track.dataset.mp3) {
+        if (document.body.classList.contains("playing")) {
+          audio.pause();
+        } else {
+          audio.play();
+        }
         return;
       }
-      audio.dataset.waveform = this.dataset.waveform;
-      audio.src = this.dataset.mp3;
-      audio.dataset.bpm = this.dataset.bpm;
-      audio.dataset.slug = this.dataset.slug;
+      audio.dataset.waveform = track.dataset.waveform;
+      audio.src = track.dataset.mp3;
+      audio.dataset.bpm = track.dataset.bpm;
+      audio.dataset.slug = track.dataset.slug;
+    }
+
+    if (document.body.classList.contains("playing")) {
+      const currentTrack = document.querySelector(
+        `.Track[data-slug="${audio.dataset.slug}"] .controls`,
+      );
+
+      currentTrack?.classList.remove("paused");
+      currentTrack?.classList.add("playing");
     }
   });
 </script>
