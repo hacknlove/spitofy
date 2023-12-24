@@ -5,7 +5,7 @@ const allowedTracks = new Set([
   "soundtrack",
   "traia",
   "we will never die",
-  "universe"
+  "universe",
 ]);
 
 async function getReactions(context, params, reactions = []) {
