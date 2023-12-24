@@ -5,6 +5,8 @@ const trackDurations = {
   soundtrack: 273.6,
   traia: 312.827596,
   "we will never die": 155.533025,
+  "universe": 195.552625,
+
 };
 
 export async function onRequest(context) {
