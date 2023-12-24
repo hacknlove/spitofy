@@ -7,6 +7,9 @@
   "name": "Universe",
   "slug": "universe",
   "bpm": 135,
-  "links": {},
+  "links": {
+    "Mixcloud": "https://www.mixcloud.com/spitofy/universe/",
+    "Spitofy": "/track/universe"
+  },
   "description": "\"Universe\" is a techno track that transcends just being about positive energy for dancing and fun. It blends futurism with primitivism, aiming to convey the interconnectedness of life's origin and destiny. We stem from the stars and are driven by our desire to reach them."
 }

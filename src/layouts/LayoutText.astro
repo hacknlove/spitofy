@@ -19,7 +19,7 @@ interface Props {
 }
 
 const { title, track: commingTrack, og } = Astro.props;
-const track = commingTrack ?? (await getEntry("tracks", "we will never die"));
+const track = commingTrack ?? (await getEntry("tracks", "universe"));
 ---
 
 <!doctype html>
