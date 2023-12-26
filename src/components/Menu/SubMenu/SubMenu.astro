@@ -36,13 +36,7 @@ const current =
       window.requestAnimationFrame(random);
       return;
     }
-    // 'NodeListOf' is not defined
-    const as = document.querySelectorAll(
-      "nav>a:not(:hover)",
-      // eslint-disable-next-line
-    ) as NodeListOf<HTMLElement>;
-
-    as.forEach((a) => {
+    document.querySelectorAll("nav>a:not(:hover)").forEach((a: HTMLElement) => {
       a.style.fontWeight = (200 + Math.random() * 700).toString();
 
       if (Math.random() < 0.9) {
