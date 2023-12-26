@@ -1,0 +1,140 @@
+---
+import FePlay from "@/components/Controls/FePlay.astro";
+import FePause from "@/components/Controls/FePause.astro";
+---
+
+<div class="controls paused">
+  <FePlay id="mainPlayButton" class="play" />
+  <FePause id="mainPauseButton" class="pause" />
+</div>
+<style lang="scss">
+  .controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 50px;
+      height: auto;
+      background: #0008;
+      opacity: 0;
+      transition: var(--quarter-note);
+      cursor: url(/hand.webp), pointer;
+    }
+
+    .pause {
+      display: none;
+    }
+    .play {
+      display: none;
+    }
+
+    @media (pointer: none) {
+      svg {
+        opacity: 1;
+      }
+    }
+
+    @media (hover: none) {
+      svg {
+        opacity: 1;
+      }
+    }
+
+    &.playing .pause {
+      display: block;
+    }
+    &.paused .play {
+      display: block;
+    }
+
+    &:hover {
+      svg {
+        opacity: 1;
+      }
+    }
+  }
+</style>
+
+<script>
+  const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+
+  function onPlaySetOtherTracksToPaused() {
+    document
+      .querySelectorAll(
+        `.Track:not([data-slug="${audio.dataset.slug}"]) .controls.playing`,
+      )
+      .forEach((el) => {
+        el.classList.remove("playing");
+        el.classList.add("paused");
+      });
+  }
+
+  function onPlaySetCurrentTrackToPlaying() {
+    const currentTrack = document.querySelector(
+      `.Track[data-slug="${audio.dataset.slug}"] .controls`,
+    );
+
+    currentTrack?.classList.remove("paused");
+    currentTrack?.classList.add("playing");
+  }
+
+  function onPauseSetCurrentTrackToPaused() {
+    const currentTrack = document.querySelector(
+      `.Track[data-slug="${audio.dataset.slug}"] .controls`,
+    );
+    currentTrack?.classList.remove("playing");
+    currentTrack?.classList.add("paused");
+  }
+
+  function onClickPlay() {
+    const track = this.closest(".Track");
+    if (audio.src !== track.dataset.mp3) {
+      audio.dataset.waveform = track.dataset.waveform;
+      audio.src = track.dataset.mp3;
+      audio.dataset.bpm = track.dataset.bpm;
+      audio.dataset.slug = track.dataset.slug;
+    }
+    audio.play().catch(() => undefined);
+  }
+
+  function onClickPause() {
+    audio.pause();
+  }
+
+  function onLoadAddEventListeners() {
+    console.log("here");
+    document.querySelectorAll(".TrackCover .controls .play").forEach((el) => {
+      console.log(el);
+      el.addEventListener("click", onClickPlay);
+    });
+
+    document.querySelectorAll(".TrackCover .controls .pause").forEach((el) => {
+      el.addEventListener("click", onClickPause);
+    });
+  }
+
+  function onLoadUpdatePlayingClass() {
+    if (document.body.classList.contains("playing")) {
+      const currentTrack = document.querySelector(
+        `.Track[data-slug="${audio.dataset.slug}"] .controls`,
+      );
+
+      currentTrack?.classList.remove("paused");
+      currentTrack?.classList.add("playing");
+    }
+  }
+
+  audio.addEventListener("play", onPlaySetCurrentTrackToPlaying);
+  audio.addEventListener("play", onPlaySetOtherTracksToPaused);
+  audio.addEventListener("pause", onPauseSetCurrentTrackToPaused);
+  audio.addEventListener("ended", onPauseSetCurrentTrackToPaused);
+
+  document.addEventListener("astro:page-load", onLoadAddEventListeners);
+  document.addEventListener("astro:page-load", onLoadUpdatePlayingClass);
+</script>
