@@ -55,17 +55,17 @@ tracks.push(...tracks.splice(0, songIndex + 1));
   audio.setAttribute("autoplay", "true");
 
   if (!audio.paused) {
-    document.body.classList.add("playing");
+    document.body?.classList.add("playing");
   }
 
   audio.addEventListener("ended", () => {
-    document.body.classList.remove("playing");
+    document.body?.classList.remove("playing");
   });
   audio.addEventListener("play", () => {
-    document.body.classList.add("playing");
+    document.body?.classList.add("playing");
   });
   audio.addEventListener("pause", () => {
-    document.body.classList.remove("playing");
+    document.body?.classList.remove("playing");
   });
 
   audio.addEventListener("ended", () => {
