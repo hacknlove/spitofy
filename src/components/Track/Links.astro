@@ -1,0 +1,114 @@
+---
+import AmazonMusic from "@/components/Icons/AmazonMusic.astro";
+import Deezer from "@/components/Icons/Deezer.astro";
+import Spotify from "@/components/Icons/Spotify.astro";
+import iTunes from "@/components/Icons/iTunes.astro";
+import Napster from "@/components/Icons/Napster.astro";
+import YoutubeMusic from "@/components/Icons/YoutubeMusic.astro";
+import Mixcloud from "@/components/Icons/Mixcloud.astro";
+import Tidal from "@/components/Icons/Tidal.astro";
+import Spitofy from "@/components/Icons/Spitofy.svg.astro";
+
+const Icons = {
+  AmazonMusic,
+  Deezer,
+  Spotify,
+  iTunes,
+  Napster,
+  YoutubeMusic,
+  Mixcloud,
+  Tidal,
+  Spitofy,
+};
+
+const { links } = Astro.props;
+
+const platformLinks = Object.entries(links);
+---
+
+<div class="TrackLinks">
+  {
+    platformLinks.map(([key, value]: [string, string]) => {
+      const Icon = Icons[key];
+      if (!Icon) {
+        console.error(`Icon ${key} not found`);
+        return null;
+      }
+      return (
+        <a
+          class="icon"
+          href={value}
+          target={key === "Spitofy" ? "_self" : "_blank"}
+          rel="noopener noreferrer"
+        >
+          <Icon />
+        </a>
+      );
+    })
+  }
+</div>
+
+<style lang="scss">
+  .TrackLinks {
+    color: white;
+    width: auto;
+    display: inline-block;
+    font-size: 19px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    max-width: 700px;
+
+    .icon {
+      display: block;
+      color: #fff;
+      svg {
+        height: auto;
+        width: 75px;
+        max-width: 100%;
+        filter: saturate(0);
+        opacity: 0.5;
+        &:hover {
+          filter: saturate(1);
+          opacity: 1;
+        }
+      }
+      &:active {
+        svg {
+          filter: saturate(1);
+          opacity: 1;
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
+  document.addEventListener("astro:page-load", () => {
+    document
+      .querySelectorAll('.TrackLinks a[target="_self"]')
+      .forEach((autoLink) => {
+        autoLink?.addEventListener("click", () => {
+          const track = autoLink.closest(".Track") as HTMLDivElement;
+
+          if (audio.src === track.dataset.mp3) {
+            if (track.classList.contains("paused")) {
+              audio.play();
+            }
+            return;
+          }
+
+          audio.dataset.waveform = track.dataset.waveform;
+          audio.src = track.dataset.mp3 as string;
+          audio.dataset.bpm = track.dataset.bpm;
+          audio.dataset.slug = track.dataset.slug;
+        });
+      });
+  });
+</script>

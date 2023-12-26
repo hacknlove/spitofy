@@ -1,0 +1,93 @@
+---
+import Links from "./Links.astro";
+import Controls from "./Controls.astro";
+
+const { img, mp3, name, slug, waveform, bpm, description, links } = Astro.props;
+---
+
+<div
+  class="Track"
+  transition:name={name}
+  data-slug={slug}
+  data-mp3={mp3}
+  data-waveform={waveform}
+  data-bpm={bpm}
+>
+  <div class="TrackCover">
+    <img
+      class="Track__img"
+      src={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350`}
+      srcset={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350 x1, ${
+        import.meta.env.PUBLIC_CF_IMAGE_URL
+      }${img}/700x700 x2`}
+      alt={name ?? "track cover"}
+    />
+    <Controls />
+  </div>
+  <div class="TrackInfo">
+    <h2>{name}</h2>
+    <p>{description}</p>
+    <div class="TrackLinks">
+      <Links links={links} />
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .Track {
+    display: flex;
+    max-width: 800px;
+    gap: 10px;
+    flex-direction: row;
+    backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
+    background-color: #0008;
+    align-items: flex-start;
+    color: white;
+    align-items: flex-start;
+    transform: scale(0.95);
+    transition: 0.15s;
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.151);
+    align-self: flex-start;
+    &:nth-child(2n) {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      &:nth-child(2n) {
+        align-self: flex-start;
+        flex-direction: column;
+      }
+    }
+  }
+  .TrackCover {
+    position: relative;
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+    .Track__img {
+      width: 300px;
+      height: auto;
+      display: block;
+      margin: 0;
+      padding: 0;
+      @media (max-width: 600px) {
+        width: 100%;
+      }
+    }
+  }
+
+  .TrackInfo {
+    text-align: left;
+    h2 {
+      margin: 0;
+    }
+
+    p {
+      text-align: justify;
+    }
+
+    padding: 10px 20px;
+  }
+</style>
