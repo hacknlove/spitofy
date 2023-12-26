@@ -31,13 +31,13 @@ document.addEventListener("visualChange", ({ detail }: MyCustomEvent) => {
 });
 
 audio.addEventListener("pause", () => {
-  if (document.body.classList.contains("visuals-winamp")) {
+  if (document.body?.classList.contains("visuals-winamp")) {
     pauseButterchurn();
   }
 });
 
 audio.addEventListener("play", () => {
-  if (document.body.classList.contains("visuals-winamp")) {
+  if (document.body?.classList.contains("visuals-winamp")) {
     continueButterchurn();
   }
 });
