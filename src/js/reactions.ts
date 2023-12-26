@@ -85,6 +85,10 @@ async function loadReactions() {
 }
 
 function timeupdate() {
+  if (!document.body) {
+    // audio timeupdate event might be fired when the page is loading
+    return;
+  }
   if (disableReactions) {
     return;
   }
