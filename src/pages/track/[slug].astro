@@ -63,7 +63,6 @@ const Icons = {
       Object.entries(track.data.links).map(([key, value]) => {
         const Icon = Icons[key];
         if (!Icon) {
-          console.error(`Icon ${key} not found`);
           return null;
         }
         return (

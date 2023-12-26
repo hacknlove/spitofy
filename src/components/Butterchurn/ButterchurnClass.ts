@@ -2,14 +2,14 @@ import butterchurn from "butterchurn";
 
 interface Viusalizer {
   connectAudio(source: MediaElementAudioSourceNode): void;
-  loadPreset(preset: Record<string, any>): void;
+  loadPreset(preset: Record<string, unknown>): void;
   render(): void;
 }
 
 export class Butterchurn {
   audio: HTMLMediaElement;
   canvas: HTMLCanvasElement;
-  presets: Record<string, any>[];
+  presets: Record<string, unknown>[];
   audioCtx: AudioContext;
   track: MediaElementAudioSourceNode;
   visualizer: Viusalizer;
@@ -81,7 +81,10 @@ export class Butterchurn {
 
   randomPresetInterval() {
     clearInterval(this.interval);
-    this.interval = setInterval(this.loadRandomPreset.bind(this), 15000);
+    this.interval = setInterval(
+      this.loadRandomPreset.bind(this),
+      15000,
+    ) as unknown as number;
   }
 }
 
@@ -96,7 +99,6 @@ export async function getButterChurn(audio, canvas, options) {
     options,
     presets: await fetch("/allPresets.json").then((res) => res.json()),
   });
-  window.butterchurnInstance = butterchurnInstance;
 
   return butterchurnInstance;
 }
