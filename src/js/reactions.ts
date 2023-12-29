@@ -64,7 +64,10 @@ let disableReactions = false;
 let i = 0;
 
 async function loadReactions() {
-  console.log("loading reactions");
+  if (!document.body) {
+    setTimeout(loadReactions, 1000);
+    return;
+  }
   if (loaded) {
     return;
   }
@@ -111,7 +114,6 @@ function seeking() {
 }
 
 function ended() {
-  console.log("ended");
   disableReactions = false;
   i = 0;
   reactions = [];
@@ -126,3 +128,4 @@ audio.addEventListener("timeupdate", timeupdate);
 audio.addEventListener("seeked", seeked);
 audio.addEventListener("seeking", seeking);
 audio.addEventListener("ended", ended);
+
