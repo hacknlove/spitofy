@@ -13,6 +13,10 @@ function updateTime() {
     "WaveFormProgress",
   ) as HTMLDivElement;
 
+  if (!WaveFormProgess) {
+    return;
+  }
+
   const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
 
   const span = WaveFormProgess.querySelector("span") as HTMLSpanElement;
