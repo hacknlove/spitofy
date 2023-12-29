@@ -27,7 +27,7 @@ import Spitofy from "./Icons/Spitofy.svg.astro";
   let logoover;
 
   function randomLogo(currentFrame: number) {
-    if (!document.body.classList.contains("playing")) {
+    if (!document.body?.classList.contains("playing")) {
       window.requestAnimationFrame(randomLogo);
       return;
     }

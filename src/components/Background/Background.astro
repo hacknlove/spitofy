@@ -37,7 +37,7 @@ import "./Background.scss";
 
   function randomLogo(currentFrame: number) {
     if (
-      !document.body.classList.contains("playing") ||
+      !document.body?.classList.contains("playing") ||
       !document.body.classList.contains("visuals-vortix")
     ) {
       running = false;

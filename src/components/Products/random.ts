@@ -1,5 +1,5 @@
 function random() {
-  if (!document.body.classList.contains("playing")) {
+  if (!document.body?.classList.contains("playing")) {
     window.requestAnimationFrame(random);
     return;
   }

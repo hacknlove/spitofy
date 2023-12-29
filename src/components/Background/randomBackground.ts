@@ -4,6 +4,9 @@ function exponentialRandom(lambda) {
 
 function randomBackground() {
   const Background = document.getElementById("Background") as HTMLDivElement;
+  if (!Background) {
+    return;
+  }
 
   Background.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
 
