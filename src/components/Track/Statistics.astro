@@ -1,0 +1,29 @@
+---
+const { plays, reactions } = Astro.props;
+---
+
+<div>
+  <div>
+    <span class="plays">
+      {plays}
+    </span>
+     play{plays === 1 ? "" : "s"}
+  </div>
+  <div>
+    <span class="reactions">
+      {reactions}
+    </span>
+     reaction{reactions === 1 ? "" : "s"}
+  </div>
+</div>
+
+<style lang="scss">
+  div {
+    display: flex;
+    justify-content: space-around;
+    column-gap: 10px;
+    span {
+      font-weight: bolder;
+    }
+  }
+</style>

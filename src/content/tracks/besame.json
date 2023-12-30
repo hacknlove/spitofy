@@ -7,6 +7,10 @@
   "name": "Besame",
   "slug": "besame",
   "bpm": 120,
+  "statistics": {
+    "plays": 0,
+    "reactions": 0
+  },
   "links": {
     "iTunes": "http://itunes.apple.com/album/id/1667547431",
     "Spotify": "https://open.spotify.com/album/5hqbAqfiAhQMIQ53zVDrms",

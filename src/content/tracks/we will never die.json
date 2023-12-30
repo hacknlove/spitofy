@@ -7,6 +7,10 @@
   "name": "We will never die",
   "slug": "we will never die",
   "bpm": 120,
+  "statistics": {
+    "plays": 0,
+    "reactions": 0
+  },
   "links": {
     "iTunes": "http://itunes.apple.com/album/id/1714630177",
     "Spotify": "https://open.spotify.com/album/5jt5M5LYoKCUn2f9GFRTg1",

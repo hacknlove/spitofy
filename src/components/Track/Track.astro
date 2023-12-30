@@ -1,8 +1,24 @@
 ---
 import Links from "./Links.astro";
 import Controls from "./Controls.astro";
+// import Statistics from "./Statistics.astro";
+import { secondsToHuman } from "@/js/secondsToHuman";
+import MdiClockTimeTwoOutline from "./MdiClockTimeTwoOutline.astro";
 
-const { img, mp3, name, slug, waveform, bpm, description, links } = Astro.props;
+const {
+  img,
+  mp3,
+  name,
+  slug,
+  waveform,
+  bpm,
+  description,
+  links,
+  duration,
+  // statistics
+} = Astro.props;
+
+const time = secondsToHuman(duration);
 ---
 
 <div
@@ -26,10 +42,22 @@ const { img, mp3, name, slug, waveform, bpm, description, links } = Astro.props;
   </div>
   <div class="TrackInfo">
     <h2>{name}</h2>
+    <h3>
+      <span>
+        {time}
+        <MdiClockTimeTwoOutline />
+      </span>
+
+      <!-- span>
+        {bpm} BPM
+      </span -->
+    </h3>
     <p>{description}</p>
     <div class="TrackLinks">
       <Links links={links} />
     </div>
+    <hr />
+    <!-- Statistics {...statistics} / -->
   </div>
 </div>
 
@@ -41,7 +69,6 @@ const { img, mp3, name, slug, waveform, bpm, description, links } = Astro.props;
     flex-direction: row;
     backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
     background-color: #0008;
-    align-items: flex-start;
     color: white;
     align-items: flex-start;
     transform: scale(0.95);
@@ -63,6 +90,7 @@ const { img, mp3, name, slug, waveform, bpm, description, links } = Astro.props;
   }
   .TrackCover {
     position: relative;
+    align-self: center;
     @media (max-width: 600px) {
       width: 100%;
     }
@@ -82,6 +110,21 @@ const { img, mp3, name, slug, waveform, bpm, description, links } = Astro.props;
     text-align: left;
     h2 {
       margin: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    h3 {
+      display: flex;
+      align-items: center;
+      color: #aaa;
+      margin: 0;
+      justify-content: space-between;
+      span {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+      }
     }
 
     p {

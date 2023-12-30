@@ -7,6 +7,10 @@
   "name": "Sound Track",
   "slug": "soundtrack",
   "bpm": 120,
+  "statistics": {
+    "plays": 0,
+    "reactions": 0
+  },
   "links": {
     "iTunes": "http://itunes.apple.com/album/id/1671525247",
     "Spotify": "https://open.spotify.com/album/4KDOub8SpVPNky7RezoxUX",

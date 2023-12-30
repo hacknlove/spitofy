@@ -7,6 +7,10 @@
   "name": "Los Muros más Altos",
   "slug": "los muros más altos",
   "bpm": 120,
+  "statistics": {
+    "plays": 0,
+    "reactions": 0
+  },
   "links": {
     "iTunes": "http://itunes.apple.com/album/id/1687280819",
     "Spotify": "https://open.spotify.com/album/2fy1Vt2IkWi5zHWIJ8kur6",

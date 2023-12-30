@@ -2,11 +2,15 @@
   "date": "2023/01/21",
   "img": "traia.png",
   "mp3": "https://media.spitofy.com/traia.mp3",
-  "traia": 312.827596,
+  "duration": 312.827596,
   "waveform": "traia.mp3.png",
   "name": "Traia",
   "slug": "traia",
   "bpm": 120,
+  "statistics": {
+    "plays": 0,
+    "reactions": 0
+  },
   "links": {
     "iTunes": "http://itunes.apple.com/album/id/1667779969",
     "Spotify": "https://open.spotify.com/album/4kqHueqVpX0na8hQg6GtCH",

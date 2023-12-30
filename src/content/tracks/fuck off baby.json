@@ -7,6 +7,10 @@
   "name": "Fuck Off, Baby",
   "slug": "fuck off baby",
   "bpm": 120,
+  "statistics": {
+    "plays": 0,
+    "reactions": 0
+  },
   "links": {
     "iTunes": "http://itunes.apple.com/album/id/1693059172",
     "Spotify": "https://open.spotify.com/intl-es/track/7rMkb3U1oNpTSfGYJXBmHH?si=275edc91855e419b",

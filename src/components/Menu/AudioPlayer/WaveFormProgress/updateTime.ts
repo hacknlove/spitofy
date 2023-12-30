@@ -1,13 +1,4 @@
-function secondsToHuman(seconds) {
-  const date = new Date(seconds * 1000);
-  const hh = date.getUTCHours();
-  const mm = date.getUTCMinutes().toString().padStart(2, "0");
-  const ss = date.getUTCSeconds().toString().padStart(2, "0");
-  if (hh) {
-    return `${hh}:${mm}:${ss}`;
-  }
-  return `${mm}:${ss}`;
-}
+import { secondsToClock } from "@/js/secondsToHuman";
 function updateTime() {
   const WaveFormProgess = document.getElementById(
     "WaveFormProgress",
@@ -20,7 +11,7 @@ function updateTime() {
   const audio = document.getElementById("audioGlobal") as HTMLMediaElement;
 
   const span = WaveFormProgess.querySelector("span") as HTMLSpanElement;
-  span.innerText = `${secondsToHuman(audio.currentTime)}/${secondsToHuman(
+  span.innerText = `${secondsToClock(audio.currentTime)}/${secondsToClock(
     audio.duration,
   )}`;
 

@@ -128,4 +128,3 @@ audio.addEventListener("timeupdate", timeupdate);
 audio.addEventListener("seeked", seeked);
 audio.addEventListener("seeking", seeking);
 audio.addEventListener("ended", ended);
-

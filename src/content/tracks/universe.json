@@ -7,6 +7,10 @@
   "name": "Universe",
   "slug": "universe",
   "bpm": 135,
+  "statistics": {
+    "plays": 0,
+    "reactions": 0
+  },
   "links": {
     "iTunes": "http://itunes.apple.com/album/id/1722755929",
     "Spotify": "https://open.spotify.com/intl-es/track/3RfCH8HmHAhRVHutL7JFni",

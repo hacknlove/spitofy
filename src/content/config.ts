@@ -12,6 +12,11 @@ const tracks = defineCollection({
     date: z.string(),
     links: z.record(z.string()),
     description: z.string(),
+    duration: z.number(),
+    statistics: z.object({
+      reactions: z.number(),
+      plays: z.number(),
+    }),
   }),
 });
 // 3. Export a single `collections` object to register your collection(s)

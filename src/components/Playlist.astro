@@ -9,20 +9,7 @@ tracks.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 ---
 
 <div>
-  {
-    tracks.map((track) => (
-      <Track
-        img={track.data.img}
-        mp3={track.data.mp3}
-        name={track.data.name}
-        slug={track.data.slug}
-        bpm={track.data.bpm}
-        waveform={track.data.waveform}
-        description={track.data.description}
-        links={track.data.links}
-      />
-    ))
-  }
+  {tracks.map((track) => <Track {...track.data} />)}
 </div>
 
 <style>
