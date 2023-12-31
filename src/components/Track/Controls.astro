@@ -108,9 +108,7 @@ import FePause from "@/components/Controls/FePause.astro";
   }
 
   function onLoadAddEventListeners() {
-    console.log("here");
     document.querySelectorAll(".TrackCover .controls .play").forEach((el) => {
-      console.log(el);
       el.addEventListener("click", onClickPlay);
     });
 
