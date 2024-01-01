@@ -8,11 +8,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "pages:dev": "wrangler pages dev --compatibility-date=2023-10-03 --proxy 4321 --kv REACTIONS -- astro dev --port 4321",
+    "pages:dev": "wrangler pages dev --compatibility-date=2023-10-03 --proxy 4321 --kv REACTIONS --d1=Spitofy_Statistics -- astro dev --port 4321",
     "pages:deploy": "astro build && wrangler pages deploy ./dist",
     "pages:preview": "wrangler pages dev ./dist --compatibility-date=2023-10-03",
     "lint": "eslint --fix . && prettier --write .",
-    "kill": "kill -9 $(lsof -t -i:8787) $(lsof -t -i:8788)"
+    "kill": "kill -9 $(lsof -t -i:8787) $(lsof -t -i:8788)",
+    "d1:init": "sqlite3 .wrangler/state/v3/d1/miniflare-D1DatabaseObject/*.sqlite < ./d1/Spitofy_Statistics.sql"
   },
   "dependencies": {
     "@astrojs/solid-js": "^3.0.3",
