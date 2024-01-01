@@ -13,7 +13,9 @@
     "pages:preview": "wrangler pages dev ./dist --compatibility-date=2023-10-03",
     "lint": "eslint --fix . && prettier --write .",
     "kill": "kill -9 $(lsof -t -i:8787) $(lsof -t -i:8788)",
-    "d1:init": "sqlite3 .wrangler/state/v3/d1/miniflare-D1DatabaseObject/*.sqlite < ./d1/Spitofy_Statistics.sql"
+    "d1:local:init": "sqlite3 .wrangler/state/v3/d1/miniflare-D1DatabaseObject/*.sqlite < ./d1/Spitofy_Statistics.sql",
+    "d1:edge:init": "wrangler d1 execute --config ./d1/Spitofy_Statistics.toml Spitofy_Statistics --file ./d1/Spitofy_Statistics.sql" 
+
   },
   "dependencies": {
     "@astrojs/solid-js": "^3.0.3",
