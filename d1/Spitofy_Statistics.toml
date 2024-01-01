@@ -1,6 +1,5 @@
 name = "spitofy_statistics"
 
-
 [[d1_databases]]
 binding = "Spitofy_Statistics"
 database_name = "Spitofy_Statistics"
