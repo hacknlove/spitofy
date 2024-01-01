@@ -85,4 +85,11 @@ tracks.push(...tracks.splice(0, songIndex + 1));
       audio.play();
     }
   });
+
+  audio.addEventListener("play", () => {
+    fetch("/incPlayed", {
+      method: "POST",
+      body: JSON.stringify({ slug: audio.dataset.slug }),
+    });
+  });
 </script>
