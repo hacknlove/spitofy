@@ -1,0 +1,7 @@
+name = "spitofy_statistics"
+
+
+[[d1_databases]]
+binding = "Spitofy_Statistics"
+database_name = "Spitofy_Statistics"
+database_id = "3a58ef4a-baef-423c-a3ae-e0e7a7784a9e"
