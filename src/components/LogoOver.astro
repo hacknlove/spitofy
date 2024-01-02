@@ -6,49 +6,42 @@ import Spitofy from "./Icons/Spitofy.svg.astro";
   <Spitofy />
 </div>
 
-<style>
+<style lang="scss">
   div {
-    left: 50%;
+    left: 100px;
     position: fixed;
-    top: 50%;
-    top: 50lvh;
+    width: 200px;
+    top: 30px;
     transform: translate(-50%, -50%);
-    mix-blend-mode: multiply;
+    mix-blend-mode: overlay;
     opacity: 0.5;
     z-index: 99999;
     pointer-events: none;
-    filter: drop-shadow(0 0 15px #fff);
+    filter: drop-shadow(0 0 50px #fff);
+    animation: random var(--word) linear infinite;
+    animation-play-state: paused;
+  }
+
+  body.playing div {
+    animation-play-state: running;
+  }
+
+  @keyframes random {
+    @for $i from 1 through 16 {
+      #{($i * 6.25% )} {
+        top:random(100) * 1%;
+        left: random(100) * 1%;
+        transform: translate(-50%, -50%) rotate(random(360) * 1deg);
+        opacity: 0.1;
+      }
+      #{($i * 6.25% + 0.1%)} {
+        top:random(100) * 1%;
+        left: random(100) * 1%;
+        opacity: 0.5;
+        transform: translate(-50%, -50%) rotate(random(360) * 1deg) scale(2);
+      }
+
+    }
   }
 </style>
 
-<script>
-  let audio;
-  let lastFrame = 0;
-  let logoover;
-
-  function randomLogo(currentFrame: number) {
-    if (!document.body?.classList.contains("playing")) {
-      window.requestAnimationFrame(randomLogo);
-      return;
-    }
-    audio ??= document.getElementById("audioGlobal");
-    const bpm = audio.dataset.bpm || "120";
-
-    let currentBpm = parseInt(bpm);
-
-    if (currentFrame - lastFrame < 1000 / (currentBpm / 60) / 4) {
-      window.requestAnimationFrame(randomLogo);
-      return;
-    }
-    lastFrame = currentFrame;
-
-    logoover ??= document.getElementById("logoover") as HTMLElement;
-    logoover.style.top = Math.random() * 100 + "lvh";
-    logoover.style.left = Math.random() * 100 + "vw";
-    logoover.style.transform = `rotate(${Math.random() * 360}deg)`;
-    logoover.style.width = `${Math.random() * 20 + 10}vmin`;
-    window.requestAnimationFrame(randomLogo);
-  }
-
-  setTimeout(() => randomLogo(window.performance.now()), 3000);
-</script>
