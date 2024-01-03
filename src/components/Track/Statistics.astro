@@ -1,19 +1,15 @@
 ---
-const { plays, reactions } = Astro.props;
+const { slug } = Astro.props;
 ---
 
 <div>
   <div>
-    <span class="plays">
-      {plays}
+    <span class="plays" data-slug={slug}>
     </span>
-    play{plays === 1 ? "" : "s"}
   </div>
   <div>
-    <span class="reactions">
-      {reactions}
+    <span class="reactions" data-slug={slug}>
     </span>
-    reaction{reactions === 1 ? "" : "s"}
   </div>
 </div>
 

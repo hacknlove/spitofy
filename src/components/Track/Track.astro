@@ -1,7 +1,7 @@
 ---
 import Links from "./Links.astro";
 import Controls from "./Controls.astro";
-// import Statistics from "./Statistics.astro";
+import Statistics from "./Statistics.astro";
 import { secondsToHuman } from "@/js/secondsToHuman";
 import MdiClockTimeTwoOutline from "./MdiClockTimeTwoOutline.astro";
 
@@ -15,7 +15,7 @@ const {
   description,
   links,
   duration,
-  // statistics
+  statistics
 } = Astro.props;
 
 const time = secondsToHuman(duration);
@@ -57,7 +57,7 @@ const time = secondsToHuman(duration);
       <Links links={links} />
     </div>
     <hr />
-    <!-- Statistics {...statistics} / -->
+    <Statistics slug={slug} />
   </div>
 </div>
 
