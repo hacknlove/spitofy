@@ -118,6 +118,10 @@ import FePause from "@/components/Controls/FePause.astro";
   }
 
   function onLoadUpdatePlayingClass() {
+    if (!document.body) {
+      setTimeout(onLoadUpdatePlayingClass, 100);
+      return;
+    }
     if (document.body.classList.contains("playing")) {
       const currentTrack = document.querySelector(
         `.Track[data-slug="${audio.dataset.slug}"] .controls`,
