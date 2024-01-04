@@ -55,8 +55,8 @@ import BiStars from "./BiStars.astro";
       });
     });
 
-    if (isButterchurnSupported()) {
-      document.querySelector(".visuals-winamp")?.remove();
+    if (!isButterchurnSupported()) {
+      document.querySelector('span[data-visuals="visuals-winamp"]')?.remove();
     }
   });
 </script>
