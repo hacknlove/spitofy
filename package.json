@@ -15,22 +15,22 @@
     "kill": "kill -9 $(lsof -t -i:8787) $(lsof -t -i:8788)"
   },
   "dependencies": {
-    "@astrojs/solid-js": "^3.0.2",
+    "@astrojs/solid-js": "^3.0.3",
     "astro": "^3.6.4",
     "butterchurn": "^2.6.7",
     "butterchurn-presets": "^2.4.7",
     "posthog-js": "^1.96.1",
-    "solid-js": "^1.4.3",
+    "solid-js": "^1.8.8",
     "throttle-debounce": "^5.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
-    "eslint": "^8.55.0",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "eslint": "^8.56.0",
     "eslint-plugin-astro": "^0.30.0",
-    "prettier": "^3.1.0",
-    "prettier-plugin-astro": "^0.12.2",
-    "sass": "^1.69.5",
-    "wrangler": "^3.18.0"
+    "prettier": "^3.1.1",
+    "prettier-plugin-astro": "^0.12.3",
+    "sass": "^1.69.7",
+    "wrangler": "^3.22.2"
   }
 }
