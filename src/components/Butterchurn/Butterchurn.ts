@@ -41,21 +41,3 @@ audio.addEventListener("play", () => {
     continueButterchurn();
   }
 });
-
-document.addEventListener("astro:before-swap", () => {
-  if (
-    document.body?.classList.contains("visuals-winamp") && 
-    document.body?.classList.contains("playing")
-  ) {
-    pauseButterchurn();
-  }
-})
-
-document.addEventListener("astro:after-swap", () => {
-  if (
-    document.body?.classList.contains("visuals-winamp") && 
-    document.body?.classList.contains("playing")
-  ) {
-    continueButterchurn();
-  }
-})
