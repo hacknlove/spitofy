@@ -1,4 +1,9 @@
-export async function onRequest(context) {
+export async function onRequestGet(context) {
+    const upgradeHeader = context.request.headers.get("Upgrade");
+    if (upgradeHeader === "websocket") {
+      return context.next();
+    }
+
     const url = new URL(context.request.url);
     const pageRequest = context.env.ASSETS.fetch(url)
 
@@ -45,3 +50,9 @@ export async function onRequest(context) {
         
     return rewriter.transform(await pageRequest);
 }
+
+export function onRequestHead(context) {
+    console.log('Head');
+    return context.next();
+}
+
