@@ -4,12 +4,20 @@ const { slug } = Astro.props;
 
 <div>
   <div>
-    <span class="plays" data-slug={slug}>
-    </span>
+    <span
+      data-ssr-namespace="statistics"
+      data-ssr-id={slug}
+      data-ssr-field="plays"
+    >
+    </span> Plays
   </div>
   <div>
-    <span class="reactions" data-slug={slug}>
-    </span>
+    <span
+      data-ssr-namespace="statistics"
+      data-ssr-id={slug}
+      data-ssr-field="reactions"
+    >
+    </span> Reactions
   </div>
 </div>
 

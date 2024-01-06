@@ -12,6 +12,15 @@ import { getEntry } from "astro:content";
 interface Props {
   title: string;
   track?: CollectionEntry<"tracks">;
+  ssr?: {
+    d1?: [
+      {
+        name: string;
+        database: string;
+        query: string;
+      },
+    ];
+  };
   og?: {
     title?: string;
     description?: string;
@@ -23,7 +32,7 @@ interface Props {
   };
 }
 
-const { title, track: commingTrack, og } = Astro.props;
+const { title, track: commingTrack, og, ssr } = Astro.props;
 
 const track = commingTrack ?? (await getEntry("tracks", "universe"));
 ---
@@ -31,6 +40,17 @@ const track = commingTrack ?? (await getEntry("tracks", "universe"));
 <!doctype html>
 <html lang="en">
   <head>
+    {
+      ssr?.d1 &&
+        ssr.d1.map(({ name, query, database }) => (
+          <script
+            type="ssr/d1"
+            data-name={name}
+            data-query={query}
+            data-database={database}
+          />
+        ))
+    }
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
