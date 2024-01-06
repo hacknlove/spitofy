@@ -62,6 +62,10 @@ tracks.push(...tracks.splice(0, songIndex + 1));
     document.body?.classList.remove("playing");
   });
   audio.addEventListener("play", () => {
+    document.documentElement.style.setProperty(
+      "--BPM",
+      audio.dataset.bpm as string,
+    );
     document.body?.classList.add("playing");
   });
   audio.addEventListener("pause", () => {

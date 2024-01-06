@@ -4,52 +4,6 @@ const title = Astro.props.title;
 
 <h1>{title}</h1>
 
-<script>
-  function random() {
-    if (!document.body?.classList.contains("playing")) {
-      window.requestAnimationFrame(random);
-      return;
-    }
-    // 'NodeListOf' is not defined
-    // eslint-disable-next-line
-    const as = document.querySelectorAll("h1") as NodeListOf<HTMLElement>;
-
-    as.forEach((a) => {
-      a.style.fontWeight = (200 + Math.random() * 700).toString();
-
-      if (Math.random() < 0.9) {
-        a.style.textTransform = "uppercase";
-      } else {
-        a.style.textTransform = "lowercase";
-      }
-
-      a.style.textDecorationLine = "none";
-
-      if (Math.random() > 0.95) {
-        a.style.letterSpacing = -2 + Math.random() * 6 + "px";
-      }
-      if (Math.random() < 0.8) {
-        a.style.fontStyle = "normal";
-      } else {
-        a.style.fontStyle = "oblique";
-      }
-
-      a.style.textDecorationThickness = Math.random() * 5 + "px";
-      a.style.textDecorationLine = ["underline", "overline", "line-through"][
-        Math.floor(Math.random() * 3)
-      ];
-      a.style.textDecorationColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
-      a.style.textDecorationStyle = ["solid", "dotted", "dashed"][
-        Math.floor(Math.random() * 3)
-      ];
-    });
-
-    window.requestAnimationFrame(random);
-  }
-
-  window.requestAnimationFrame(random);
-</script>
-
 <style lang="scss">
   h1 {
     font-size: 5em;
@@ -59,11 +13,40 @@ const title = Astro.props.title;
     margin: 100px 0 10px;
     max-width: 100vw;
     overflow: hidden;
+    position: relative;
     @media (max-width: 400px) {
       font-size: 4em;
     }
     @media (max-width: 300px) {
       font-size: 3em;
+    }
+    animation:
+      randomSpace var(--quarter-note) ease-in-out infinite forwards,
+      fontSize var(--eighth-note) ease-in-out infinite forwards;
+    animation-play-state: paused;
+  }
+
+  body.playing h1 {
+    animation-play-state: running;
+  }
+  @keyframes randomSpace {
+    0% {
+      letter-spacing: 10px;
+    }
+    50% {
+      letter-spacing: 0px;
+    }
+  }
+
+  $minFontSize: 4.5em;
+  $maxFontSize: 5.5em;
+  $range: $maxFontSize - $minFontSize;
+  @keyframes fontSize {
+    0% {
+      font-size: 5.5em;
+    }
+    50% {
+      font-size: 5em;
     }
   }
 </style>

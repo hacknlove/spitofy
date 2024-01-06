@@ -13,54 +13,6 @@ const title = Astro.props.title;
   </div>
 </header>
 
-<script>
-  function random() {
-    if (!document.body?.classList.contains("playing")) {
-      window.requestAnimationFrame(random);
-      return;
-    }
-    // 'NodeListOf' is not defined
-    // eslint-disable-next-line
-    const h1 = document.querySelector("header>h1") as HTMLHeadingElement;
-
-    h1.style.fontWeight = (200 + Math.random() * 700).toString();
-
-    if (Math.random() < 0.9) {
-      h1.style.textTransform = "uppercase";
-    } else {
-      h1.style.textTransform = "lowercase";
-    }
-
-    if (Math.random() > 0.95) {
-      h1.style.letterSpacing = -2 + Math.random() * 6 + "px";
-    }
-    if (Math.random() < 0.8) {
-      h1.style.fontStyle = "normal";
-    } else {
-      h1.style.fontStyle = "oblique";
-    }
-
-    if (Math.random() < 0.5) {
-      h1.style.color = "#fff";
-    } else {
-      h1.style.color = `hsl(${Math.random() * 360}, 100%, 75%)`;
-    }
-
-    h1.style.textDecorationThickness = Math.random() * 5 + "px";
-    h1.style.textDecorationLine = ["underline", "overline", "line-through"][
-      Math.floor(Math.random() * 3)
-    ];
-    h1.style.textDecorationColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
-    h1.style.textDecorationStyle = ["solid", "dotted", "dashed"][
-      Math.floor(Math.random() * 3)
-    ];
-
-    window.requestAnimationFrame(random);
-  }
-
-  window.requestAnimationFrame(random);
-</script>
-
 <style lang="scss">
   header {
     background: #0006;
