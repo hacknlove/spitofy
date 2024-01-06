@@ -23,7 +23,7 @@ export async function onRequest(context) {
   const duration = await context.env.Spitofy_Statistics.prepare(
     "SELECT duration FROM tracks WHERE slug = ?",
   )
-    .bind(data.slug)
+    .bind(data.track)
     .first("duration");
 
   if (!duration) {
