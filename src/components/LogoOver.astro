@@ -29,19 +29,17 @@ import Spitofy from "./Icons/Spitofy.svg.astro";
   @keyframes random {
     @for $i from 1 through 16 {
       #{($i * 6.25% )} {
-        top:random(100) * 1%;
+        top: random(100) * 1%;
         left: random(100) * 1%;
         transform: translate(-50%, -50%) rotate(random(360) * 1deg);
-        opacity: 0.1;
+        opacity: 0.2;
       }
       #{($i * 6.25% + 0.1%)} {
-        top:random(100) * 1%;
+        top: random(100) * 1%;
         left: random(100) * 1%;
-        opacity: 0.5;
+        opacity: 0.8;
         transform: translate(-50%, -50%) rotate(random(360) * 1deg) scale(2);
       }
-
     }
   }
 </style>
-

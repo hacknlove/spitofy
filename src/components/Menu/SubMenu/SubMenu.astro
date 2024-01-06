@@ -30,56 +30,6 @@ const current =
   </nav>
 </div>
 
-<script>
-  function random() {
-    if (!document.body?.classList.contains("playing")) {
-      window.requestAnimationFrame(random);
-      return;
-    }
-    document.querySelectorAll("nav>a:not(:hover)").forEach((a: HTMLElement) => {
-      a.style.fontWeight = (200 + Math.random() * 700).toString();
-
-      if (Math.random() < 0.9) {
-        a.style.textTransform = "uppercase";
-      } else {
-        a.style.textTransform = "lowercase";
-      }
-
-      a.style.textDecorationLine = "none";
-
-      if (Math.random() > 0.95) {
-        a.style.letterSpacing = -2 + Math.random() * 6 + "px";
-      }
-      if (Math.random() < 0.8) {
-        a.style.fontStyle = "normal";
-      } else {
-        a.style.fontStyle = "oblique";
-      }
-    });
-
-    const current = document.querySelector("nav>a.current") as HTMLElement;
-
-    if (current) {
-      current.style.textDecorationThickness = Math.random() * 5 + "px";
-      current.style.textDecorationLine = [
-        "underline",
-        "overline",
-        "line-through",
-      ][Math.floor(Math.random() * 3)];
-      current.style.textDecorationColor = `hsl(${
-        Math.random() * 360
-      }, 100%, 75%)`;
-      current.style.textDecorationStyle = ["solid", "dotted", "dashed"][
-        Math.floor(Math.random() * 3)
-      ];
-    }
-
-    window.requestAnimationFrame(random);
-  }
-
-  window.requestAnimationFrame(random);
-</script>
-
 <style lang="scss">
   div {
     position: relative;
