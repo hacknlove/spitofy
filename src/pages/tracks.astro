@@ -13,6 +13,15 @@ import LegalStuff from "@/components/LegalStuff.astro";
     type: "website",
     description: "Spitofy. Oficial website. The best tracks.",
   }}
+  ssr={{
+    d1: [
+      {
+        name: "statistics",
+        database: "Spitofy_Statistics",
+        query: "SELECT slug as id, plays, reactions FROM tracks",
+      },
+    ],
+  }}
 >
   <Header title="Tracks" />
   <Title title="Tracks" />
