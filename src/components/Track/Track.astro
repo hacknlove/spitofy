@@ -5,7 +5,7 @@ import Statistics from "./Statistics.astro";
 import { secondsToHuman } from "@/js/secondsToHuman";
 import MdiClockTimeTwoOutline from "./MdiClockTimeTwoOutline.astro";
 
-const { img, mp3, name, slug, waveform, bpm, description, links, duration } =
+const { img, mp3, name, slug, waveform, bpm, description, links, duration, lazy } =
   Astro.props;
 
 const time = secondsToHuman(duration);
@@ -21,7 +21,7 @@ const time = secondsToHuman(duration);
 >
   <div class="TrackCover">
     <img
-      loading="lazy"
+      loading={lazy ? "lazy" : "eager"}
       class="Track__img"
       src={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350`}
       srcset={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350 x1, ${
