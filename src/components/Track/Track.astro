@@ -21,6 +21,7 @@ const time = secondsToHuman(duration);
 >
   <div class="TrackCover">
     <img
+      loading="lazy"
       class="Track__img"
       src={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350`}
       srcset={`${import.meta.env.PUBLIC_CF_IMAGE_URL}${img}/350x350 x1, ${
