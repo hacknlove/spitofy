@@ -9,7 +9,7 @@ import AntDesignFullscreenExitOutlined from "./AntDesignFullscreenExitOutlined.a
 </button>
 
 <style lang="scss">
-  @use "../AudioPlayerButton.scss" as *;
+  @use "../AudioPlayer/AudioPlayerButton.scss" as *;
 
   button {
     @include AudioPlayerButton;
@@ -30,7 +30,7 @@ import AntDesignFullscreenExitOutlined from "./AntDesignFullscreenExitOutlined.a
 <script>
   document.addEventListener("astro:page-load", () => {
     document
-      .querySelector("#AudioPlayer .fullscreen")
+      .querySelector("button.fullscreen")
       ?.addEventListener("click", () => {
         if (document.fullscreenElement) {
           document.exitFullscreen();
