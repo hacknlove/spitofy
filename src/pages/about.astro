@@ -18,8 +18,25 @@ import Contact from "@/components/Contact.astro";
   <Header title="About" />
   <Title title="About" />
 
+  <img
+    class="background"
+    src={`${import.meta.env.PUBLIC_CF_IMAGE_URL}antonio.jpg/350x350`}
+    srcset={`${import.meta.env.PUBLIC_CF_IMAGE_URL}antonio.jpg/350x350 x1, ${
+      import.meta.env.PUBLIC_CF_IMAGE_URL
+    }antonio.jpg/700x700 x2`}
+    alt="Antonio Fernández Porrúa"
+  />
+  <img
+    class="main"
+    src={`${import.meta.env.PUBLIC_CF_IMAGE_URL}antonio.jpg/350x350`}
+    srcset={`${import.meta.env.PUBLIC_CF_IMAGE_URL}antonio.jpg/350x350 x1, ${
+      import.meta.env.PUBLIC_CF_IMAGE_URL
+    }antonio.jpg/700x700 x2`}
+    alt="Antonio Fernández Porrúa"
+  />
   <section>
     <h3>About:</h3>
+    <p>I'm Antonio Fernández Porrúa, techno musician and computer nerd.</p>
     <p>
       I create music that I love, for people that I love. So if you find
       yourself enjoying my music, know that it was made for you too. Though we
@@ -40,6 +57,86 @@ import Contact from "@/components/Contact.astro";
 </Layout>
 
 <style lang="scss">
+  img.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+  }
+  img {
+    width: 80vmin;
+    height: 80vmin;
+    object-fit: cover;
+    margin-bottom: 75px;
+
+    filter: contrast(1.5) blur(5px) saturate(25) hue-rotate(180deg);
+    animation: mix var(--whole-note) linear infinite;
+    animation-play-state: paused;
+
+    &:hover {
+      animation-play-state: paused;
+      mix-blend-mode: normal;
+      filter: contrast(1.5) blur(0) grayscale(1);
+      animation-name: none;
+    }
+  }
+
+  body.playing img {
+    animation-play-state: running;
+  }
+
+  @keyframes mix {
+    0% {
+      mix-blend-mode: darken;
+    }
+    6.25% {
+      mix-blend-mode: color-burn;
+    }
+    12.5% {
+      mix-blend-mode: exclusion;
+    }
+    18.75% {
+      mix-blend-mode: color-dodge;
+    }
+    25% {
+      mix-blend-mode: difference;
+    }
+    31.25% {
+      mix-blend-mode: exclusion;
+    }
+    37.5% {
+      mix-blend-mode: difference;
+    }
+    43.75% {
+      mix-blend-mode: darken;
+    }
+    50% {
+      mix-blend-mode: multiply;
+    }
+    56.25% {
+      mix-blend-mode: overlay;
+    }
+    62.5% {
+      mix-blend-mode: saturation;
+    }
+    68.75% {
+      mix-blend-mode: screen;
+    }
+    75% {
+      mix-blend-mode: darken;
+    }
+    81.25% {
+      mix-blend-mode: exclusion;
+    }
+    87.5% {
+      mix-blend-mode: color-burn;
+    }
+    93.75% {
+      mix-blend-mode: darken;
+    }
+  }
   section {
     color: white;
     backdrop-filter: hue-rotate(180deg) contrast(13) blur(10px);
