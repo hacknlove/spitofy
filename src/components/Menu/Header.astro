@@ -62,5 +62,11 @@ const title = Astro.props.title;
     font-size: 30px;
     font-weight: 100;
     letter-spacing: 5px;
+    @media (max-width: 500px) {
+      font-size: 25px;
+    }
+    @media (max-width: 400px) {
+      font-size: 20px;
+    }
   }
 </style>
