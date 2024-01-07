@@ -9,7 +9,7 @@ tracks.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 ---
 
 <div>
-  {tracks.map((track) => <Track {...track.data} />)}
+  {tracks.map((track, i) => <Track {...track.data} lazy={i > 2} />)}
 </div>
 
 <style>
