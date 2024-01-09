@@ -5,8 +5,18 @@ import Statistics from "./Statistics.astro";
 import { secondsToHuman } from "@/js/secondsToHuman";
 import MdiClockTimeTwoOutline from "./MdiClockTimeTwoOutline.astro";
 
-const { img, mp3, name, slug, waveform, bpm, description, links, duration, lazy } =
-  Astro.props;
+const {
+  img,
+  mp3,
+  name,
+  slug,
+  waveform,
+  bpm,
+  description,
+  links,
+  duration,
+  lazy,
+} = Astro.props;
 
 const time = secondsToHuman(duration);
 ---

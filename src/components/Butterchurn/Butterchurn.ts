@@ -2,6 +2,7 @@ import {
   continueButterchurn,
   getButterChurn,
   pauseButterchurn,
+  loadRandomPreset,
 } from "./ButterchurnClass";
 
 interface MyCustomEvent extends Event {
@@ -27,6 +28,7 @@ document.addEventListener("visualChange", ({ detail }: MyCustomEvent) => {
 
   getButterChurn(audio, canvas, options).then((butterchurnInstance) => {
     butterchurnInstance.continue();
+    loadRandomPreset();
   });
 });
 
@@ -41,3 +43,26 @@ audio.addEventListener("play", () => {
     continueButterchurn();
   }
 });
+
+let duration;
+let bmp;
+let phraseSeconds;
+
+audio.addEventListener("timeupdate", () => {
+  if (duration !== audio.duration) {
+    duration = audio.duration;
+    bmp = parseFloat(audio.dataset.bpm as string);
+    phraseSeconds = (60 / bmp) * 4 * 4;
+  }
+
+  const currentPhrase = Math.floor(
+    (audio.currentTime + 60 / bmp) / phraseSeconds,
+  );
+
+  if (currentPhrase !== phrase) {
+    phrase = currentPhrase;
+    loadRandomPreset(60 / bmp);
+  }
+});
+
+let phrase = 0;

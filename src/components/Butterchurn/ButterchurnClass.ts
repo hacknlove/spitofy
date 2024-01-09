@@ -2,7 +2,7 @@ import butterchurn from "butterchurn";
 
 interface Viusalizer {
   connectAudio(source: MediaElementAudioSourceNode): void;
-  loadPreset(preset: Record<string, unknown>): void;
+  loadPreset(preset: Record<string, unknown>, blend?: number): void;
   render(): void;
 }
 
@@ -14,7 +14,6 @@ export class Butterchurn {
   track: MediaElementAudioSourceNode;
   visualizer: Viusalizer;
   lastFrameTime: number;
-  interval: number;
   working: boolean;
 
   constructor({ audio, canvas, presets, options }) {
@@ -40,13 +39,13 @@ export class Butterchurn {
     this.track.connect(this.audioCtx.destination);
 
     this.lastFrameTime = 0;
-    this.interval = 0;
     this.working = false;
   }
 
-  loadRandomPreset() {
+  loadRandomPreset(blend = 0.5) {
     this.visualizer.loadPreset(
       this.presets[Math.floor(Math.random() * this.presets.length)],
+      blend,
     );
   }
 
@@ -67,7 +66,6 @@ export class Butterchurn {
   }
 
   pause() {
-    clearInterval(this.interval);
     this.working = false;
   }
   continue() {
@@ -76,15 +74,6 @@ export class Butterchurn {
     }
     this.working = true;
     this.renderNextFrame(0);
-    this.randomPresetInterval();
-  }
-
-  randomPresetInterval() {
-    clearInterval(this.interval);
-    this.interval = setInterval(
-      this.loadRandomPreset.bind(this),
-      15000,
-    ) as unknown as number;
   }
 }
 
@@ -115,4 +104,11 @@ export function continueButterchurn() {
     return;
   }
   butterchurnInstance.continue();
+}
+
+export function loadRandomPreset(blend = 0.5) {
+  if (!butterchurnInstance) {
+    return;
+  }
+  butterchurnInstance.loadRandomPreset(blend);
 }
