@@ -2,6 +2,7 @@
 import SubMenu from "./SubMenu/SubMenu.astro";
 import Cart from "./Cart/Cart.astro";
 import FullScreen from "./FullScreen/FullScreen.astro";
+import AnimatedText from "../AnimatedText.astro";
 
 const title = Astro.props.title;
 ---
@@ -10,7 +11,7 @@ const title = Astro.props.title;
   <div class="left">
     <FullScreen />
   </div>
-  <h1>{title}</h1>
+  <h1><AnimatedText text={title} /></h1>
   <div class="right">
     <Cart />
     <SubMenu />
@@ -62,6 +63,8 @@ const title = Astro.props.title;
     font-size: 30px;
     font-weight: 100;
     letter-spacing: 5px;
+    position: relative;
+    display: inline-block;
     @media (max-width: 500px) {
       font-size: 25px;
     }
