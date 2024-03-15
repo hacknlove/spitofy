@@ -1,0 +1,23 @@
+{
+  "date": "2024/02/27",
+  "img": "esos%20besos.jpeg",
+  "mp3": "https://media.spitofy.com/esos%20besos-master.mp3",
+  "duration": 141.892834,
+  "waveform": "esos%20besos-master.mp3.png",
+  "name": "Esos Besos",
+  "slug": "esos besos",
+  "bpm": 120,
+  "statistics": {
+    "plays": 34,
+    "reactions": 12
+  },
+  "links": {
+    "iTunes": "https://music.apple.com/us/album/esos-besos/1734389563?i=1734389822",
+    "Spotify": "https://open.spotify.com/intl-es/track/16oA3FTJcMgkIWelJGvTJY",
+    "Tidal": "https://listen.tidal.com/album/349060352/track/349060354",
+    "Deezer": "https://www.deezer.com/es/track/2689275072",
+    "Napster": "https://web.napster.com/track/tra.802206971",
+    "Spitofy": "/track/esos besos"
+  },
+  "description": "\"esos besos\" Is the first song I made with AI help. The lyrics are 100% mine, but I generated several hours of AI music, and then I have made a two and a half minutes collage. It's latin urban style, but I have put some love on the lyrics. It's not just a bunch of words, it has meaning, it has emotion. I hope you like it."
+}

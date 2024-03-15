@@ -1,0 +1,23 @@
+{
+  "date": "2024/03/15",
+  "img": "qué tendra.png",
+  "mp3": "https://media.spitofy.com/qu%C3%A9%20tendr%C3%A1.mp3",
+  "duration": 195.552625,
+  "waveform": "qué tendrá.mp3.png",
+  "name": "Qué tendrá",
+  "slug": "qué tendrá",
+  "bpm": 120,
+  "statistics": {
+    "plays": 34,
+    "reactions": 12
+  },
+  "links": {
+    "iTunes": "https://music.apple.com/us/album/qu%C3%A9-tendr%C3%A1/1734951189?i=1734951195",
+    "Spotify": "https://open.spotify.com/intl-es/track/0wq5WHseLXzXP20iKKK5vt",
+    "Tidal": "https://listen.tidal.com/album/349759972/track/349759973",
+    "Deezer": "https://www.deezer.com/es/track/2694704302",
+    "Napster": "https://web.napster.com/track/tra.802307635",
+    "Spitofy": "/track/qué tendrá"
+  },
+  "description": "\"Qué tendrá\" is a song I have written for my girlfriend, Ángela. It was created with AI using the same technique I used for 'Esos besos,' but more refined. It is part of my path of experimentation to include AI generation in a creative process of musical production where human sensitivity and AI agility enhance each other."
+}
